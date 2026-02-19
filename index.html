@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#6C63FF">
+<meta name="description" content="Search, filter, and download college notes across Engineering, Science, Commerce, Arts, and Medical streams.">
+<title>NoteVault — College Notes Sharing Platform</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--primary:#6C63FF;--primary-dark:#5A52D5;--primary-light:#8B85FF;
+--primary-glow:rgba(108,99,255,0.25);--secondary:#FF6584;--accent:#FFD93D;
+--bg:#F0F2F5;--bg-secondary:#E5E7EB;--card-bg:#FFFFFF;--card-bg-hover:#FAFBFC;
+--glass:rgba(255,255,255,0.85);--glass-border:rgba(255,255,255,0.3);
+--text:#1A202C;--text-secondary:#4A5568;--text-muted:#718096;--text-faint:#A0AEC0;
+--border:#E2E8F0;--border-hover:#CBD5E0;--divider:#EDF2F7;
+--shadow-xs:0 1px 2px rgba(0,0,0,0.05);--shadow-sm:0 2px 8px rgba(0,0,0,0.06);
+--shadow-md:0 4px 16px rgba(0,0,0,0.08);--shadow-lg:0 12px 32px rgba(0,0,0,0.1);
+--shadow-xl:0 20px 48px rgba(0,0,0,0.12);--shadow-primary:0 4px 16px rgba(108,99,255,0.3);
+--radius-xs:6px;--radius-sm:10px;--radius-md:14px;--radius-lg:20px;
+--radius-xl:28px;--radius-full:9999px;
+--ease:cubic-bezier(0.4,0,0.2,1);--ease-bounce:cubic-bezier(0.34,1.56,0.64,1);
+--ease-spring:cubic-bezier(0.175,0.885,0.32,1.275);
+--transition-fast:150ms var(--ease);--transition:300ms var(--ease);--transition-slow:500ms var(--ease);
+--stream-engineering:#6C63FF;--stream-science:#0EA5E9;--stream-commerce:#F59E0B;
+--stream-arts:#EF4444;--stream-medical:#10B981;
+--header-height:280px;--nav-height:60px;
+--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+--safe-left:env(safe-area-inset-left,0px);--safe-right:env(safe-area-inset-right,0px)
+}
+[data-theme="dark"]{
+--bg:#0F1117;--bg-secondary:#1A1D2E;--card-bg:#1E2235;--card-bg-hover:#252A40;
+--glass:rgba(30,34,53,0.9);--glass-border:rgba(255,255,255,0.08);
+--text:#E2E8F0;--text-secondary:#A0AEC0;--text-muted:#718096;--text-faint:#4A5568;
+--border:#2D3748;--border-hover:#4A5568;--divider:#2D3748;
+--shadow-xs:0 1px 2px rgba(0,0,0,0.2);--shadow-sm:0 2px 8px rgba(0,0,0,0.25);
+--shadow-md:0 4px 16px rgba(0,0,0,0.3);--shadow-lg:0 12px 32px rgba(0,0,0,0.35);
+--shadow-xl:0 20px 48px rgba(0,0,0,0.4)
+}
+body{
+font-family:'Segoe UI',system-ui,-apple-system,BlinkMacSystemFont,'Inter',sans-serif;
+background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;
+overflow-x:hidden;transition:background var(--transition),color var(--transition);
+-webkit-tap-highlight-color:transparent;touch-action:manipulation
+}
+@media(prefers-reduced-motion:reduce){
+*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}
+}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--text-faint);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
+
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));z-index:9999;width:0%;border-radius:0 2px 2px 0;transition:none}
+
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes floatParticle{0%{transform:translateY(100%) rotate(0deg) scale(0);opacity:0}10%{opacity:1;transform:translateY(80%) rotate(72deg) scale(1)}90%{opacity:.8}100%{transform:translateY(-100vh) rotate(720deg) scale(0);opacity:0}}
+@keyframes logoFloat{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-4px) rotate(-2deg)}75%{transform:translateY(-2px) rotate(2deg)}50%{transform:translateY(-6px) rotate(0deg)}}
+@keyframes cardReveal{from{opacity:0;transform:translateY(40px) scale(0.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes cardShine{0%{left:-150%}100%{left:250%}}
+@keyframes rippleAnim{0%{transform:scale(0);opacity:0.5}100%{transform:scale(4);opacity:0}}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(108,99,255,0.4)}70%{box-shadow:0 0 0 12px rgba(108,99,255,0)}100%{box-shadow:0 0 0 0 rgba(108,99,255,0)}}
+@keyframes bookmarkPop{0%{transform:scale(1)}30%{transform:scale(1.5) rotate(15deg)}60%{transform:scale(0.9) rotate(-5deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
+@keyframes morphBlob{0%,100%{border-radius:60% 40% 30% 70%/60% 30% 70% 40%}50%{border-radius:30% 60% 70% 40%/50% 60% 30% 60%}}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes breathe{0%,100%{opacity:0.5;transform:scale(1)}50%{opacity:0.8;transform:scale(1.05)}}
+@keyframes dropdownOpen{from{opacity:0;transform:translateY(-8px) scale(0.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes toastIn{from{opacity:0;transform:translateY(20px) scale(0.85)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes toastOut{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-16px) scale(0.9)}}
+@keyframes modalSlideUp{from{opacity:0;transform:translateY(40px) scale(0.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes counterPulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 5px var(--primary-glow)}50%{box-shadow:0 0 20px var(--primary-glow),0 0 40px rgba(108,99,255,0.1)}}
+@keyframes dotBounce{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
+
+.header{
+position:relative;
+background:linear-gradient(135deg,#4A3AFF 0%,var(--primary) 30%,#7C3AED 70%,#A855F7 100%);
+background-size:300% 300%;animation:gradientShift 8s ease infinite;
+padding:0;overflow:hidden;min-height:var(--header-height);
+display:flex;flex-direction:column;align-items:center;justify-content:center;
+padding-top:var(--safe-top)
+}
+.header::before{
+content:'';position:absolute;inset:0;
+background:radial-gradient(ellipse at 20% 50%,rgba(255,255,255,0.1) 0%,transparent 70%),
+radial-gradient(ellipse at 80% 20%,rgba(168,85,247,0.2) 0%,transparent 50%);
+pointer-events:none
+}
+.header-blob{
+position:absolute;border-radius:50%;filter:blur(40px);opacity:0.15;
+animation:morphBlob 8s ease-in-out infinite,breathe 4s ease-in-out infinite
+}
+.header-blob:nth-child(1){width:200px;height:200px;background:#FFD93D;top:-50px;left:-30px;animation-delay:-2s}
+.header-blob:nth-child(2){width:150px;height:150px;background:#FF6584;bottom:-40px;right:-20px;animation-delay:-4s}
+.header-blob:nth-child(3){width:120px;height:120px;background:#06B6D4;top:40%;left:60%;animation-delay:-6s}
+.header-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.particle{position:absolute;border-radius:50%;background:rgba(255,255,255,0.08);animation:floatParticle linear infinite}
+.particle.square{border-radius:3px;transform:rotate(45deg)}
+.particle.ring{background:transparent;border:2px solid rgba(255,255,255,0.08)}
+.header-content{position:relative;z-index:2;text-align:center;padding:2.5rem 1.5rem 3.5rem}
+.logo{font-size:clamp(2rem,6vw,2.8rem);font-weight:900;color:white;letter-spacing:-1.5px;line-height:1.1;margin-bottom:0.5rem}
+.logo-icon{display:inline-block;animation:logoFloat 3s ease-in-out infinite}
+.logo .accent{background:linear-gradient(135deg,#FFD93D,#FF6B6B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tagline{color:rgba(255,255,255,0.8);font-size:clamp(0.85rem,2.5vw,1.05rem);font-weight:400;max-width:500px;margin:0 auto}
+.stats-bar{display:flex;gap:clamp(1rem,4vw,2rem);justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
+.stat-item{text-align:center;color:white}
+.stat-number{font-size:clamp(1.2rem,3.5vw,1.6rem);font-weight:800;line-height:1.2;transition:transform 0.2s var(--ease-bounce)}
+.stat-number.counting{animation:counterPulse 0.3s var(--ease-bounce)}
+.stat-label{font-size:clamp(0.6rem,1.5vw,0.72rem);text-transform:uppercase;letter-spacing:1px;opacity:0.7;font-weight:600}
+.theme-toggle{
+position:absolute;top:calc(1rem + var(--safe-top));right:calc(1rem + var(--safe-right));z-index:10;
+background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.2);color:white;width:44px;height:44px;
+border-radius:var(--radius-full);cursor:pointer;display:flex;align-items:center;justify-content:center;
+font-size:1.2rem;transition:all var(--transition)
+}
+.theme-toggle:hover{background:rgba(255,255,255,0.25);transform:rotate(30deg) scale(1.1)}
+.theme-toggle:active{transform:rotate(30deg) scale(0.95)}
+
+.search-container{max-width:680px;margin:-1.8rem auto 0;padding:0 calc(1rem + var(--safe-left));position:relative;z-index:20}
+.search-wrapper{position:relative}
+.search-bar{
+width:100%;padding:1rem 3.5rem 1rem 3.2rem;border:2px solid transparent;border-radius:var(--radius-full);
+font-size:clamp(0.9rem,2.5vw,1rem);background:var(--card-bg);color:var(--text);box-shadow:var(--shadow-xl);
+transition:all var(--transition);outline:none;font-family:inherit
+}
+.search-bar:focus{border-color:var(--primary);box-shadow:var(--shadow-xl),0 0 0 4px var(--primary-glow);animation:glowPulse 2s ease-in-out infinite}
+.search-bar::placeholder{color:var(--text-faint)}
+.search-icon{position:absolute;left:1.1rem;top:50%;transform:translateY(-50%);color:var(--text-faint);font-size:1.15rem;pointer-events:none;transition:all var(--transition)}
+.search-bar:focus~.search-icon{color:var(--primary);transform:translateY(-50%) scale(1.15)}
+.search-actions{position:absolute;right:0.6rem;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:0.3rem}
+.search-kbd{background:var(--bg-secondary);color:var(--text-muted);font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:4px;font-family:monospace;font-weight:700;border:1px solid var(--border)}
+.search-clear-btn{
+background:var(--bg-secondary);border:none;color:var(--text-muted);width:32px;height:32px;
+border-radius:var(--radius-full);cursor:pointer;display:none;align-items:center;justify-content:center;
+font-size:0.9rem;transition:all var(--transition)
+}
+.search-clear-btn:hover{background:var(--secondary);color:white;transform:rotate(90deg)}
+.search-clear-btn.visible{display:flex}
+.search-clear-btn.visible+.search-kbd{display:none}
+
+.suggestions-dropdown{
+position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--card-bg);
+border-radius:var(--radius-md);box-shadow:var(--shadow-xl);max-height:320px;overflow-y:auto;
+z-index:100;display:none;border:1px solid var(--border);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)
+}
+.suggestions-dropdown.active{display:block;animation:dropdownOpen 0.2s var(--ease)}
+.suggestion-header{padding:0.6rem 1rem;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-faint);background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1}
+.suggestion-item{padding:0.7rem 1rem;cursor:pointer;transition:all var(--transition-fast);border-bottom:1px solid var(--divider);display:flex;align-items:center;gap:0.8rem}
+.suggestion-item:last-child{border-bottom:none}
+.suggestion-item:hover,.suggestion-item.active{background:rgba(108,99,255,0.06)}
+.suggestion-item.active{border-left:3px solid var(--primary)}
+.suggestion-icon{width:34px;height:34px;border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;transition:transform var(--transition-fast)}
+.suggestion-item:hover .suggestion-icon{transform:scale(1.15)}
+.suggestion-text{flex:1;min-width:0}
+.suggestion-title{font-size:0.92rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.suggestion-meta{font-size:0.75rem;color:var(--text-faint)}
+
+.toolbar{max-width:1280px;margin:1.5rem auto 0;padding:0 calc(1rem + var(--safe-left))}
+.toolbar-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:0.8rem}
+.toolbar-left{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap}
+.results-count{font-size:clamp(0.8rem,2vw,0.9rem);color:var(--text-secondary);font-weight:500}
+.results-count strong{color:var(--primary);font-weight:700}
+.active-filters-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.active-filter-tag{
+display:inline-flex;align-items:center;gap:0.3rem;background:rgba(108,99,255,0.1);
+color:var(--primary);font-size:0.78rem;font-weight:600;padding:0.2rem 0.6rem 0.2rem 0.7rem;
+border-radius:var(--radius-full);cursor:pointer;transition:all var(--transition-fast);animation:scaleIn 0.2s var(--ease-bounce)
+}
+.active-filter-tag:hover{background:var(--primary);color:white;transform:scale(1.05)}
+.active-filter-tag .tag-remove{font-size:0.9rem;line-height:1;opacity:0.7}
+.toolbar-right{display:flex;align-items:center;gap:0.5rem}
+.view-toggle{display:flex;background:var(--bg-secondary);border-radius:var(--radius-sm);padding:3px;gap:2px}
+.view-btn{
+width:36px;height:36px;border:none;border-radius:var(--radius-xs);background:transparent;
+color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;
+font-size:1rem;transition:all var(--transition-fast);min-height:44px;min-width:44px
+}
+.view-btn.active{background:var(--card-bg);color:var(--primary);box-shadow:var(--shadow-xs)}
+.view-btn:hover:not(.active){color:var(--text);transform:scale(1.05)}
+.view-btn:active{transform:scale(0.95)}
+.filters-toggle-btn{
+display:none;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;background:var(--card-bg);
+border:1.5px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;font-size:0.88rem;
+color:var(--text);font-weight:600;transition:all var(--transition);font-family:inherit;min-height:44px
+}
+.filters-toggle-btn:hover{border-color:var(--primary);color:var(--primary)}
+.filters-badge{background:var(--primary);color:white;font-size:0.7rem;min-width:18px;height:18px;border-radius:var(--radius-full);display:none;align-items:center;justify-content:center;font-weight:700}
+.filters-badge.visible{display:flex;animation:scaleIn 0.3s var(--ease-bounce)}
+.filters-panel{display:flex;flex-wrap:wrap;gap:0.7rem;align-items:flex-end;padding:0.8rem 0}
+.filter-group{display:flex;flex-direction:column;gap:0.25rem}
+.filter-label{font-size:0.68rem;font-weight:700;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.7px;padding-left:0.2rem}
+.filter-select{
+padding:0.55rem 2.2rem 0.55rem 0.8rem;border:1.5px solid var(--border);border-radius:var(--radius-sm);
+font-size:0.88rem;color:var(--text);background-color:var(--card-bg);cursor:pointer;transition:all var(--transition);
+appearance:none;-webkit-appearance:none;min-width:145px;font-family:inherit;min-height:44px;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+background-repeat:no-repeat;background-position:right 0.7rem center
+}
+.filter-select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)}
+.filter-select.has-value{border-color:var(--primary);background-color:rgba(108,99,255,0.04)}
+.sort-buttons{display:flex;gap:0.35rem}
+.sort-btn{
+padding:0.55rem 0.9rem;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:0.82rem;
+color:var(--text-muted);background:var(--card-bg);cursor:pointer;transition:all var(--transition);
+font-weight:600;font-family:inherit;display:inline-flex;align-items:center;gap:0.3rem;
+min-height:44px;position:relative;overflow:hidden
+}
+.sort-btn:hover{border-color:var(--primary);color:var(--primary)}
+.sort-btn.active{background:var(--primary);color:white;border-color:var(--primary);box-shadow:var(--shadow-primary)}
+.sort-btn:active{transform:scale(0.96)}
+.clear-all-btn{
+padding:0.55rem 1rem;border:1.5px solid var(--secondary);border-radius:var(--radius-sm);font-size:0.82rem;
+color:var(--secondary);background:transparent;cursor:pointer;transition:all var(--transition);
+font-weight:700;font-family:inherit;min-height:44px;position:relative;overflow:hidden
+}
+.clear-all-btn:hover{background:var(--secondary);color:white;transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,101,132,0.3)}
+.clear-all-btn:active{transform:translateY(0) scale(0.97)}
+
+.tabs-bar{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:0.5rem}
+.tab-btn{
+padding:0.7rem 1.2rem;font-size:clamp(0.82rem,2vw,0.88rem);font-weight:600;color:var(--text-muted);
+background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;
+cursor:pointer;transition:all var(--transition-fast);font-family:inherit;display:flex;
+align-items:center;gap:0.4rem;min-height:44px;position:relative;overflow:hidden
+}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-btn::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--primary);transition:all var(--transition);transform:translateX(-50%)}
+.tab-btn:hover::after{width:100%}
+.tab-btn.active::after{width:100%}
+.tab-count{background:var(--bg-secondary);font-size:0.72rem;padding:0.1rem 0.5rem;border-radius:var(--radius-full);font-weight:700;transition:all var(--transition-fast)}
+.tab-btn.active .tab-count{background:rgba(108,99,255,0.12);color:var(--primary)}
+
+.notes-container{max-width:1280px;margin:1rem auto 4rem;padding:0 calc(1rem + var(--safe-left));padding-bottom:var(--safe-bottom)}
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:1.3rem}
+.notes-grid.list-view{grid-template-columns:1fr;gap:0.8rem}
+
+.note-card{
+background:var(--card-bg);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);
+transition:all var(--transition);display:flex;flex-direction:column;position:relative;
+opacity:0;transform:translateY(40px) scale(0.95);border:1px solid var(--border);will-change:transform,opacity
+}
+.note-card.revealed{opacity:1;transform:translateY(0) scale(1)}
+.note-card::before{
+content:'';position:absolute;top:0;left:-150%;width:60%;height:100%;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);
+z-index:1;pointer-events:none;transition:none
+}
+.note-card:hover::before{animation:cardShine 0.7s ease forwards}
+.note-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:var(--shadow-lg);border-color:var(--border-hover)}
+.note-card:active{transform:translateY(-2px) scale(0.995)}
+.note-card.bookmarked{box-shadow:var(--shadow-sm),0 0 0 1px rgba(255,217,61,0.3)}
+.note-card.bookmarked .bookmark-btn{color:var(--accent)}
+
+.list-view .note-card{flex-direction:row;align-items:stretch}
+.list-view .card-accent{width:5px;height:auto;min-height:100%}
+.list-view .card-body{flex-direction:row;align-items:center;gap:1.5rem;flex:1}
+.list-view .card-badges{margin-bottom:0;flex-shrink:0;flex-direction:column}
+.list-view .card-subjects{flex:1}
+.list-view .card-subjects h3{margin-bottom:0.2rem}
+.list-view .subject-tags{margin-bottom:0}
+.list-view .card-footer{border-top:none;border-left:1px solid var(--divider);flex-direction:column;justify-content:center;min-width:140px}
+
+.card-accent{height:4px;flex-shrink:0}
+.card-body{padding:1.2rem 1.3rem;flex:1;display:flex;flex-direction:column}
+.card-top-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.7rem}
+.card-badges{display:flex;flex-wrap:wrap;gap:0.35rem}
+.badge{padding:0.18rem 0.6rem;border-radius:var(--radius-full);font-size:clamp(0.62rem,1.5vw,0.7rem);font-weight:700;letter-spacing:0.3px;text-transform:uppercase;white-space:nowrap;transition:all var(--transition-fast)}
+.badge-stream{background:rgba(108,99,255,0.1);color:var(--stream-engineering)}
+.badge-stream[data-stream="Science"]{background:rgba(14,165,233,0.1);color:var(--stream-science)}
+.badge-stream[data-stream="Commerce"]{background:rgba(245,158,11,0.1);color:var(--stream-commerce)}
+.badge-stream[data-stream="Arts"]{background:rgba(239,68,68,0.1);color:var(--stream-arts)}
+.badge-stream[data-stream="Medical"]{background:rgba(16,185,129,0.1);color:var(--stream-medical)}
+.badge-course{background:var(--bg-secondary);color:var(--text-secondary)}
+.badge-year{background:var(--bg-secondary);color:var(--text-secondary)}
+.badge-semester{color:white;font-size:0.68rem}
+.badge-semester.odd{background:var(--primary)}
+.badge-semester.even{background:var(--stream-science)}
+.bookmark-btn{
+background:none;border:none;color:var(--text-faint);font-size:1.3rem;cursor:pointer;
+padding:0.3rem;transition:all var(--transition-fast);flex-shrink:0;line-height:1;min-width:44px;min-height:44px;
+display:flex;align-items:center;justify-content:center
+}
+.bookmark-btn:hover{color:var(--accent);transform:scale(1.2)}
+.bookmark-btn:active{transform:scale(0.9)}
+.bookmark-btn.pop{animation:bookmarkPop 0.4s var(--ease-bounce)}
+
+.card-subjects{flex:1}
+.card-subjects h3{font-size:clamp(0.92rem,2.2vw,1.02rem);font-weight:700;color:var(--text);margin-bottom:0.5rem;line-height:1.35}
+.card-subjects h3 .highlight{background:linear-gradient(120deg,rgba(108,99,255,0.15),rgba(108,99,255,0.3));border-radius:3px;padding:0 3px;color:var(--primary-dark);font-weight:800}
+[data-theme="dark"] .card-subjects h3 .highlight{color:var(--primary-light)}
+.subject-tags{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.6rem}
+.subject-tag{background:var(--bg);color:var(--text-muted);padding:0.22rem 0.6rem;border-radius:var(--radius-xs);font-size:clamp(0.72rem,1.8vw,0.78rem);font-weight:500;transition:all var(--transition-fast)}
+.note-card:hover .subject-tag{background:rgba(108,99,255,0.06);color:var(--primary)}
+
+.card-footer{padding:0.8rem 1.3rem;border-top:1px solid var(--divider);display:flex;justify-content:space-between;align-items:center;gap:0.5rem}
+.file-info{font-size:clamp(0.72rem,1.8vw,0.78rem);color:var(--text-faint);display:flex;align-items:center;gap:0.3rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.download-btn{
+display:inline-flex;align-items:center;gap:0.35rem;padding:0.45rem 1rem;
+background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;text-decoration:none;
+border-radius:var(--radius-full);font-size:0.82rem;font-weight:700;transition:all var(--transition);
+box-shadow:0 2px 8px rgba(108,99,255,0.25);white-space:nowrap;border:none;cursor:pointer;
+font-family:inherit;min-height:40px;position:relative;overflow:hidden
+}
+.download-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(108,99,255,0.4)}
+.download-btn:active{transform:translateY(0) scale(0.97)}
+.download-btn svg{width:14px;height:14px}
+
+.ripple-effect{
+position:absolute;border-radius:50%;background:rgba(255,255,255,0.3);
+transform:scale(0);animation:rippleAnim 0.6s ease-out;pointer-events:none
+}
+
+.no-results{text-align:center;padding:4rem 2rem;display:none}
+.no-results.visible{display:block;animation:slideUp 0.5s var(--ease-bounce)}
+.no-results-icon{font-size:3.5rem;margin-bottom:1rem;opacity:0.5}
+.no-results h3{font-size:clamp(1.1rem,3vw,1.3rem);color:var(--text);margin-bottom:0.4rem}
+.no-results p{color:var(--text-muted);font-size:clamp(0.85rem,2vw,0.95rem);max-width:400px;margin:0 auto}
+.load-more-container{text-align:center;padding:2rem 0}
+.load-more-btn{
+padding:0.7rem 2rem;background:var(--card-bg);border:2px solid var(--border);border-radius:var(--radius-full);
+font-size:0.92rem;font-weight:600;color:var(--text-secondary);cursor:pointer;transition:all var(--transition);
+font-family:inherit;min-height:44px;position:relative;overflow:hidden
+}
+.load-more-btn:hover{border-color:var(--primary);color:var(--primary);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.load-more-btn:active{transform:translateY(0) scale(0.98)}
+.load-more-dots{display:inline-flex;gap:4px;margin-left:8px}
+.load-more-dots span{width:6px;height:6px;border-radius:50%;background:var(--primary);animation:dotBounce 1.4s infinite ease-in-out both}
+.load-more-dots span:nth-child(1){animation-delay:-0.32s}
+.load-more-dots span:nth-child(2){animation-delay:-0.16s}
+
+.scroll-top-btn{
+position:fixed;bottom:calc(2rem + var(--safe-bottom));right:calc(2rem + var(--safe-right));width:48px;height:48px;
+border-radius:var(--radius-full);background:var(--primary);color:white;border:none;cursor:pointer;
+box-shadow:var(--shadow-primary);display:flex;align-items:center;justify-content:center;
+font-size:1.3rem;z-index:50;opacity:0;visibility:hidden;transform:translateY(10px) scale(0.8);transition:all var(--transition)
+}
+.scroll-top-btn.visible{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+.scroll-top-btn:hover{transform:translateY(-3px) scale(1.1);box-shadow:0 8px 24px rgba(108,99,255,0.45)}
+.scroll-top-btn:active{transform:translateY(0) scale(0.95)}
+
+.modal-overlay{
+position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem
+}
+.modal-overlay.active{display:flex;animation:fadeIn 0.25s var(--ease)}
+.modal{
+background:var(--card-bg);border-radius:var(--radius-lg);max-width:520px;width:100%;
+box-shadow:var(--shadow-xl);animation:modalSlideUp 0.4s var(--ease-bounce);overflow:hidden;
+max-height:90vh;overflow-y:auto
+}
+.modal-header{padding:1.5rem 1.5rem 0;display:flex;justify-content:space-between;align-items:flex-start}
+.modal-close{
+background:var(--bg-secondary);border:none;width:36px;height:36px;border-radius:var(--radius-full);
+cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-muted);
+font-size:1rem;transition:all var(--transition-fast);min-width:44px;min-height:44px
+}
+.modal-close:hover{background:var(--secondary);color:white;transform:rotate(90deg)}
+.modal-body{padding:1.2rem 1.5rem 1.5rem}
+.modal-badges{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem}
+.modal-title{font-size:clamp(1.1rem,3vw,1.25rem);font-weight:800;margin-bottom:1rem;line-height:1.3}
+.modal-detail{display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0;font-size:0.9rem;color:var(--text-secondary);border-bottom:1px solid var(--divider);transition:background var(--transition-fast)}
+.modal-detail:last-of-type{border-bottom:none}
+.modal-detail:hover{background:rgba(108,99,255,0.03);border-radius:var(--radius-xs)}
+.modal-detail-icon{width:28px;text-align:center;font-size:1rem}
+.modal-actions{display:flex;gap:0.8rem;margin-top:1.5rem;flex-wrap:wrap}
+.modal-actions .download-btn{flex:1;justify-content:center;padding:0.7rem 1.5rem;font-size:0.95rem;min-width:160px}
+.modal-bookmark-btn{
+padding:0.7rem 1.2rem;border:2px solid var(--border);border-radius:var(--radius-full);background:var(--card-bg);
+cursor:pointer;font-size:1.1rem;transition:all var(--transition-fast);display:flex;align-items:center;
+gap:0.4rem;font-family:inherit;color:var(--text-secondary);min-height:44px
+}
+.modal-bookmark-btn:hover{border-color:var(--accent);color:var(--accent)}
+.modal-bookmark-btn.bookmarked{border-color:var(--accent);color:var(--accent);background:rgba(255,217,61,0.1)}
+
+.toast-container{position:fixed;bottom:calc(2rem + var(--safe-bottom));left:50%;transform:translateX(-50%);z-index:2000;display:flex;flex-direction:column;gap:0.5rem;align-items:center;pointer-events:none}
+.toast{
+background:var(--text);color:var(--bg);padding:0.7rem 1.5rem;border-radius:var(--radius-full);
+font-size:0.88rem;font-weight:600;box-shadow:var(--shadow-lg);pointer-events:auto;
+animation:toastIn 0.4s var(--ease-bounce),toastOut 0.3s var(--ease) 2.2s forwards;white-space:nowrap
+}
+.footer{text-align:center;padding:2rem calc(1rem + var(--safe-left));color:var(--text-faint);font-size:clamp(0.78rem,2vw,0.85rem);border-top:1px solid var(--border);background:var(--card-bg)}
+.footer strong{color:var(--primary)}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;margin-top:0.5rem;flex-wrap:wrap}
+.footer-links a{color:var(--text-muted);text-decoration:none;font-size:0.82rem;transition:all var(--transition-fast);padding:0.3rem}
+.footer-links a:hover{color:var(--primary);transform:translateY(-1px)}
+
+.skeleton-card{background:var(--card-bg);border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border)}
+.skeleton-bar{background:linear-gradient(90deg,var(--bg) 25%,var(--bg-secondary) 50%,var(--bg) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:4px}
+
+@media(max-width:480px){
+.stats-bar{gap:0.8rem}
+.stat-item{min-width:60px}
+.card-badges{gap:0.25rem}
+.badge{padding:0.15rem 0.45rem;font-size:0.62rem}
+.card-body{padding:1rem}
+.card-footer{padding:0.7rem 1rem;flex-wrap:wrap}
+.modal{margin:0.5rem;border-radius:var(--radius-md)}
+.modal-actions{flex-direction:column}
+.modal-actions .download-btn{min-width:unset}
+.filters-panel .filter-group{width:100%}
+}
+@media(max-width:640px){
+.toolbar-top{flex-direction:column;align-items:stretch}
+.toolbar-left{flex-direction:column;align-items:flex-start}
+.toolbar-right{justify-content:space-between}
+.footer-links{gap:1rem}
+}
+@media(max-width:768px){
+.header{min-height:220px}
+.header-content{padding:2rem 1rem 3rem}
+.search-bar{font-size:0.95rem;padding:0.85rem 3.2rem 0.85rem 2.8rem}
+.search-kbd{display:none}
+.filters-toggle-btn{display:flex}
+.filters-panel{display:none;flex-direction:column;align-items:stretch;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-md);padding:1rem;margin-top:0.5rem;box-shadow:var(--shadow-md)}
+.filters-panel.open{display:flex;animation:slideDown 0.3s var(--ease)}
+.filter-select{width:100%;min-width:unset}
+.sort-buttons{width:100%}
+.sort-btn{flex:1;justify-content:center}
+.clear-all-btn{width:100%;text-align:center}
+.notes-grid{grid-template-columns:1fr;gap:0.8rem}
+.notes-grid.list-view .note-card{flex-direction:column}
+.list-view .card-accent{width:auto;height:4px;min-height:auto}
+.list-view .card-body{flex-direction:column;align-items:stretch}
+.list-view .card-badges{flex-direction:row}
+.list-view .card-footer{border-left:none;border-top:1px solid var(--divider);min-width:unset;flex-direction:row}
+.scroll-top-btn{bottom:calc(1.2rem + var(--safe-bottom));right:calc(1.2rem + var(--safe-right));width:44px;height:44px}
+.header-blob{display:none}
+}
+@media(min-width:769px) and (max-width:1024px){
+.notes-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(min-width:1440px){
+.notes-grid{grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:1.5rem}
+.header{min-height:320px}
+.logo{font-size:3.2rem}
+}
+@media(min-width:1920px){
+.notes-container,.toolbar{max-width:1600px}
+.notes-grid{grid-template-columns:repeat(auto-fill,minmax(380px,1fr))}
+}
+@media(hover:none) and (pointer:coarse){
+.note-card:hover{transform:none;box-shadow:var(--shadow-sm)}
+.note-card:hover::before{animation:none}
+.note-card:active{transform:scale(0.98);transition-duration:100ms}
+.download-btn:hover{transform:none}
+.download-btn:active{transform:scale(0.95)}
+}
+@media(orientation:landscape) and (max-height:500px){
+.header{min-height:160px}
+.header-content{padding:1rem 1rem 2rem}
+.stats-bar{margin-top:0.5rem}
+.search-container{margin-top:-1.2rem}
+}
+@media print{
+.header,.search-container,.toolbar,.scroll-top-btn,.toast-container,.modal-overlay,.footer,.scroll-progress{display:none!important}
+.note-card{break-inside:avoid;box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
+.notes-grid{display:block}
+.note-card{margin-bottom:1rem}
+.download-btn{display:none}
+.bookmark-btn{display:none}
+body{background:white;color:black}
+}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+<header class="header" role="banner">
+<div class="header-blob"></div>
+<div class="header-blob"></div>
+<div class="header-blob"></div>
+<div class="header-particles" id="headerParticles" aria-hidden="true"></div>
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
+<div class="header-content">
+<h1 class="logo"><span class="logo-icon">📚</span> Note<span class="accent">Vault</span></h1>
+<p class="tagline">Your one-stop destination for college notes — search, filter &amp; download</p>
+<div class="stats-bar" id="statsBar">
+<div class="stat-item"><div class="stat-number" id="statNotes">0</div><div class="stat-label">Notes</div></div>
+<div class="stat-item"><div class="stat-number" id="statSubjects">0</div><div class="stat-label">Subjects</div></div>
+<div class="stat-item"><div class="stat-number" id="statStreams">0</div><div class="stat-label">Streams</div></div>
+<div class="stat-item"><div class="stat-number" id="statCourses">0</div><div class="stat-label">Courses</div></div>
+</div>
+</div>
+</header>
+<div class="search-container">
+<div class="search-wrapper" role="search">
+<span class="search-icon" aria-hidden="true">🔍</span>
+<input type="text" class="search-bar" id="searchBar" placeholder="Search subjects, courses, streams..." autocomplete="off" aria-label="Search notes" role="combobox" aria-expanded="false" aria-controls="suggestionsDropdown">
+<div class="search-actions">
+<button class="search-clear-btn" id="searchClear" aria-label="Clear search" title="Clear">✕</button>
+<kbd class="search-kbd">/</kbd>
+</div>
+<div class="suggestions-dropdown" id="suggestionsDropdown" role="listbox"></div>
+</div>
+</div>
+<section class="toolbar" id="toolbar">
+<div class="toolbar-top">
+<div class="toolbar-left">
+<span class="results-count" id="resultsCount"></span>
+<div class="active-filters-tags" id="activeFiltersTags"></div>
+</div>
+<div class="toolbar-right">
+<button class="filters-toggle-btn" id="filtersToggleBtn">⚙️ Filters <span class="filters-badge" id="filtersBadge">0</span></button>
+<div class="view-toggle" role="radiogroup" aria-label="View mode">
+<button class="view-btn active" data-view="grid" aria-label="Grid view" title="Grid view">▦</button>
+<button class="view-btn" data-view="list" aria-label="List view" title="List view">☰</button>
+</div>
+</div>
+</div>
+<div class="filters-panel" id="filtersPanel">
+<div class="filter-group"><label class="filter-label" for="filterStream">Stream</label><select class="filter-select" id="filterStream"><option value="">All Streams</option></select></div>
+<div class="filter-group"><label class="filter-label" for="filterCourse">Course</label><select class="filter-select" id="filterCourse"><option value="">All Courses</option></select></div>
+<div class="filter-group"><label class="filter-label" for="filterYear">Year</label><select class="filter-select" id="filterYear"><option value="">All Years</option></select></div>
+<div class="filter-group"><label class="filter-label" for="filterSemester">Semester</label><select class="filter-select" id="filterSemester"><option value="">All Semesters</option></select></div>
+<div class="filter-group"><label class="filter-label">Sort</label><div class="sort-buttons"><button class="sort-btn" data-sort="semester">📊 Semester</button><button class="sort-btn" data-sort="course">📁 Course</button><button class="sort-btn" data-sort="year">📅 Year</button></div></div>
+<button class="clear-all-btn" id="clearAll">✕ Clear All</button>
+</div>
+<div class="tabs-bar">
+<button class="tab-btn active" data-tab="all">📄 All Notes <span class="tab-count" id="tabAllCount">0</span></button>
+<button class="tab-btn" data-tab="bookmarks">⭐ Bookmarks <span class="tab-count" id="tabBookmarksCount">0</span></button>
+</div>
+</section>
+<main class="notes-container" role="main">
+<div class="notes-grid" id="notesGrid" aria-live="polite"></div>
+<div class="no-results" id="noResults"><div class="no-results-icon">📭</div><h3>No notes found</h3><p>Try adjusting your search or filters to find what you're looking for.</p></div>
+<div class="load-more-container" id="loadMoreContainer" style="display:none"><button class="load-more-btn" id="loadMoreBtn">Load More Notes</button></div>
+</main>
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+<div class="modal" id="modal">
+<div class="modal-header"><div class="modal-badges" id="modalBadges"></div><button class="modal-close" id="modalClose" aria-label="Close modal">✕</button></div>
+<div class="modal-body"><h2 class="modal-title" id="modalTitle"></h2><div id="modalDetails"></div><div class="modal-actions" id="modalActions"></div></div>
+</div>
+</div>
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top" title="Back to top">↑</button>
+<div class="toast-container" id="toastContainer" aria-live="assertive"></div>
+<footer class="footer" role="contentinfo">
+<p>Made with ❤️ for students everywhere. <strong>NoteVault</strong> © 2025</p>
+<div class="footer-links"><a href="#">About</a><a href="#">Contribute Notes</a><a href="#">Contact</a></div>
+</footer>
+<script>
+(()=>{
+'use strict';
+
+class TrieNode{constructor(){this.c=new Map();this.items=[]}}
+class Trie{
+constructor(){this.root=new TrieNode()}
+insert(word,item){
+let n=this.root;
+for(const ch of word.toLowerCase()){
+if(!n.c.has(ch))n.c.set(ch,new TrieNode());
+n=n.c.get(ch);
+n.items.push(item);
+}
+}
+search(prefix){
+let n=this.root;
+for(const ch of prefix.toLowerCase()){
+if(!n.c.has(ch))return[];
+n=n.c.get(ch);
+}
+return n.items;
+}
+}
+
+class InvertedIndex{
+constructor(){this.map=new Map()}
+add(key,id){
+if(!this.map.has(key))this.map.set(key,new Set());
+this.map.get(key).add(id);
+}
+get(key){return this.map.get(key)||new Set()}
+static intersect(sets){
+if(!sets.length)return new Set();
+let sorted=[...sets].sort((a,b)=>a.size-b.size);
+let result=new Set(sorted[0]);
+for(let i=1;i<sorted.length;i++){
+const next=sorted[i];
+const filtered=new Set();
+for(const v of result){if(next.has(v))filtered.add(v)}
+result=filtered;
+if(!result.size)break;
+}
+return result;
+}
+}
+
+class LRUCache{
+constructor(cap){this.cap=cap;this.map=new Map()}
+get(key){
+if(!this.map.has(key))return null;
+const val=this.map.get(key);
+this.map.delete(key);
+this.map.set(key,val);
+return val;
+}
+set(key,val){
+if(this.map.has(key))this.map.delete(key);
+else if(this.map.size>=this.cap){this.map.delete(this.map.keys().next().value)}
+this.map.set(key,val);
+}
+}
+
+const DATA=[
+{Stream:"Engineering",Course:"B.Tech",Year:3,Semester:6,Subjects:["Internet Of Things","Embedded Systems"],Source:""},
+{Stream:"Engineering",Course:"B.Tech",Year:3,Semester:5,Subjects:["Computer Networks","Operating Systems"],Source:"files/physics.pdf"},
+{Stream:"Engineering",Course:"B.Tech",Year:2,Semester:4,Subjects:["Data Structures","Algorithm Design"],Source:"files/dsa_complete.pdf"},
+{Stream:"Engineering",Course:"B.Tech",Year:2,Semester:3,Subjects:["Digital Logic Design","Discrete Mathematics"],Source:"files/dld_notes.pdf"},
+{Stream:"Engineering",Course:"B.Tech",Year:1,Semester:1,Subjects:["Engineering Mathematics I","Engineering Physics"],Source:"files/math1_notes.pdf"},
+{Stream:"Engineering",Course:"B.Tech",Year:1,Semester:2,Subjects:["Engineering Mathematics II","Engineering Chemistry"],Source:"files/math2_notes.pdf"},
+{Stream:"Engineering",Course:"B.Tech",Year:4,Semester:7,Subjects:["Machine Learning","Artificial Intelligence"],Source:"files/ml_notes.pdf"},
+{Stream:"Engineering",Course:"B.Tech",Year:4,Semester:8,Subjects:["Deep Learning","Natural Language Processing"],Source:"files/dl_nlp.pdf"},
+{Stream:"Engineering",Course:"M.Tech",Year:1,Semester:1,Subjects:["Advanced Algorithms","Research Methodology"],Source:"files/mtech_algo.pdf"},
+{Stream:"Engineering",Course:"M.Tech",Year:1,Semester:2,Subjects:["Cloud Computing","Big Data Analytics"],Source:"files/cloud_bigdata.pdf"},
+{Stream:"Science",Course:"B.Sc",Year:1,Semester:1,Subjects:["Calculus","Mechanics"],Source:"files/bsc_calc.pdf"},
+{Stream:"Science",Course:"B.Sc",Year:1,Semester:2,Subjects:["Linear Algebra","Thermodynamics"],Source:"files/bsc_linalg.pdf"},
+{Stream:"Science",Course:"B.Sc",Year:2,Semester:3,Subjects:["Organic Chemistry","Real Analysis"],Source:"files/bsc_organic.pdf"},
+{Stream:"Science",Course:"B.Sc",Year:3,Semester:5,Subjects:["Quantum Mechanics","Statistical Mechanics"],Source:"files/bsc_quantum.pdf"},
+{Stream:"Commerce",Course:"B.Com",Year:1,Semester:1,Subjects:["Financial Accounting","Business Economics"],Source:"files/bcom_fa.pdf"},
+{Stream:"Commerce",Course:"B.Com",Year:2,Semester:3,Subjects:["Corporate Accounting","Cost Accounting"],Source:"files/bcom_corp.pdf"},
+{Stream:"Commerce",Course:"B.Com",Year:3,Semester:5,Subjects:["Auditing","Income Tax"],Source:"files/bcom_audit.pdf"},
+{Stream:"Arts",Course:"B.A",Year:1,Semester:1,Subjects:["Introduction to Sociology","Political Science Basics"],Source:"files/ba_socio.pdf"},
+{Stream:"Arts",Course:"B.A",Year:2,Semester:3,Subjects:["Modern Indian History","Public Administration"],Source:"files/ba_history.pdf"},
+{Stream:"Arts",Course:"B.A",Year:3,Semester:6,Subjects:["Philosophy of Mind","Ethics and Governance"],Source:"files/ba_philosophy.pdf"},
+{Stream:"Medical",Course:"MBBS",Year:1,Semester:1,Subjects:["Human Anatomy","Biochemistry"],Source:"files/mbbs_anatomy.pdf"},
+{Stream:"Medical",Course:"MBBS",Year:2,Semester:3,Subjects:["Pathology","Microbiology"],Source:"files/mbbs_patho.pdf"},
+{Stream:"Engineering",Course:"B.Tech",Year:3,Semester:5,Subjects:["Database Management Systems","Software Engineering"],Source:"files/dbms_se.pdf"},
+{Stream:"Engineering",Course:"B.Tech",Year:3,Semester:6,Subjects:["Compiler Design","Computer Graphics"],Source:"files/compiler_cg.pdf"},
+{Stream:"Science",Course:"M.Sc",Year:1,Semester:1,Subjects:["Advanced Quantum Theory","Mathematical Physics"],Source:"files/msc_quantum.pdf"},
+{Stream:"Science",Course:"M.Sc",Year:2,Semester:3,Subjects:["Condensed Matter Physics","Nuclear Physics"],Source:"files/msc_condensed.pdf"},
+{Stream:"Engineering",Course:"B.Tech",Year:2,Semester:4,Subjects:["Object Oriented Programming","Computer Organization"],Source:"files/oop_co.pdf"},
+{Stream:"Engineering",Course:"B.Tech",Year:4,Semester:7,Subjects:["Cyber Security","Blockchain Technology"],Source:"files/cyber_blockchain.pdf"},
+{Stream:"Commerce",Course:"B.Com",Year:2,Semester:4,Subjects:["Business Statistics","Management Accounting"],Source:"files/bcom_stats.pdf"},
+{Stream:"Medical",Course:"MBBS",Year:3,Semester:5,Subjects:["Pharmacology","Forensic Medicine"],Source:"files/mbbs_pharma.pdf"}
+];
+
+class NoteVaultApp{
+constructor(rawData){
+this.notes=rawData.map((n,i)=>({...n,id:i}));
+this.trie=new Trie();
+this.idx=new InvertedIndex();
+this.cache=new LRUCache(64);
+this.observer=null;
+this.activeSuggIdx=-1;
+this.state={query:'',stream:'',course:'',year:'',semester:'',sort:null,sortDir:1,view:'grid',tab:'all',bookmarks:new Set(),displayCount:12,pageSize:12,filtered:[]};
+this.refs={};
+this.accentGradients={Engineering:'linear-gradient(90deg,#6C63FF,#A855F7)',Science:'linear-gradient(90deg,#0EA5E9,#06B6D4)',Commerce:'linear-gradient(90deg,#F59E0B,#FBBF24)',Arts:'linear-gradient(90deg,#EF4444,#F87171)',Medical:'linear-gradient(90deg,#10B981,#34D399)'};
+this.streamIcons={Engineering:'⚙️',Science:'🔬',Commerce:'📈',Arts:'🎨',Medical:'🏥'};
+this.sortIcons={semester:'📊',course:'📁',year:'📅'};
+this.buildIndexes();
+this.cacheRefs();
+this.init();
+}
+
+buildIndexes(){
+const allIds=new Set();
+this.notes.forEach(note=>{
+allIds.add(note.id);
+this.idx.add('stream:'+note.Stream,note.id);
+this.idx.add('course:'+note.Course,note.id);
+this.idx.add('year:'+note.Year,note.id);
+this.idx.add('semester:'+note.Semester,note.id);
+note.Subjects.forEach(subj=>{
+this.trie.insert(subj,{type:'subject',text:subj,stream:note.Stream,course:note.Course,sem:note.Semester,id:note.id});
+subj.split(/\s+/).forEach(word=>{
+if(word.length>1){
+this.idx.add('word:'+word.toLowerCase(),note.id);
+this.trie.insert(word,{type:'subject',text:subj,stream:note.Stream,course:note.Course,sem:note.Semester,id:note.id});
+}
+});
+});
+this.trie.insert(note.Course,{type:'course',text:note.Course,stream:note.Stream,id:note.id});
+this.trie.insert(note.Stream,{type:'stream',text:note.Stream,id:note.id});
+});
+this.idx.add('all',allIds);
+this.allStreams=[...new Set(this.notes.map(n=>n.Stream))].sort();
+this.allCourses=[...new Set(this.notes.map(n=>n.Course))].sort();
+this.allYears=[...new Set(this.notes.map(n=>n.Year))].sort((a,b)=>a-b);
+this.allSemesters=[...new Set(this.notes.map(n=>n.Semester))].sort((a,b)=>a-b);
+this.allSubjects=new Set();
+this.notes.forEach(n=>n.Subjects.forEach(s=>this.allSubjects.add(s)));
+}
+
+cacheRefs(){
+const $=id=>document.getElementById(id);
+['searchBar','searchClear','suggestionsDropdown','filterStream','filterCourse','filterYear','filterSemester',
+'notesGrid','noResults','resultsCount','filtersPanel','filtersToggleBtn','filtersBadge','activeFiltersTags',
+'loadMoreContainer','loadMoreBtn','modalOverlay','modal','modalClose','modalBadges','modalTitle','modalDetails',
+'modalActions','scrollTopBtn','toastContainer','themeToggle','scrollProgress','headerParticles',
+'statNotes','statSubjects','statStreams','statCourses','tabAllCount','tabBookmarksCount'
+].forEach(id=>this.refs[id]=$(id));
+}
+
+init(){
+this.initTheme();
+this.createParticles();
+this.setupScrollObserver();
+this.populateFilters();
+this.loadBookmarks();
+this.hashToState();
+this.updateCourseFilter();
+this.animateStats();
+this.bindEvents();
+this.applyFilters();
+}
+
+initTheme(){
+const saved=localStorage.getItem('notevault-theme');
+if(saved)document.documentElement.setAttribute('data-theme',saved);
+else if(window.matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');
+this.updateThemeIcon();
+}
+
+toggleTheme(){
+const curr=document.documentElement.getAttribute('data-theme');
+const next=curr==='dark'?'light':'dark';
+document.documentElement.setAttribute('data-theme',next);
+localStorage.setItem('notevault-theme',next);
+this.updateThemeIcon();
+}
+
+updateThemeIcon(){
+this.refs.themeToggle.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';
+}
+
+createParticles(){
+const container=this.refs.headerParticles;
+const frag=document.createDocumentFragment();
+const shapes=['','square','ring'];
+for(let i=0;i<25;i++){
+const p=document.createElement('div');
+const size=Math.random()*22+4;
+const shape=shapes[Math.floor(Math.random()*shapes.length)];
+p.className='particle'+(shape?' '+shape:'');
+p.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${Math.random()*18+8}s;animation-delay:${Math.random()*-25}s;opacity:${Math.random()*0.12+0.03}`;
+frag.appendChild(p);
+}
+container.appendChild(frag);
+}
+
+setupScrollObserver(){
+this.observer=new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+const delay=entry.target.dataset.delay||0;
+setTimeout(()=>entry.target.classList.add('revealed'),delay*40);
+this.observer.unobserve(entry.target);
+}
+});
+},{threshold:0.08,rootMargin:'60px'});
+}
+
+animateStats(){
+const ease=t=>t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const animate=(el,target)=>{
+const duration=800;
+const start=performance.now();
+const tick=now=>{
+const elapsed=Math.min((now-start)/duration,1);
+const val=Math.round(ease(elapsed)*target);
+el.textContent=val;
+if(elapsed<1)requestAnimationFrame(tick);
+else{el.textContent=target;el.classList.add('counting')}
+};
+requestAnimationFrame(tick);
+};
+animate(this.refs.statNotes,this.notes.length);
+animate(this.refs.statSubjects,this.allSubjects.size);
+animate(this.refs.statStreams,this.allStreams.length);
+animate(this.refs.statCourses,this.allCourses.length);
+}
+
+loadBookmarks(){
+try{
+const saved=JSON.parse(localStorage.getItem('notevault-bookmarks')||'[]');
+saved.forEach(id=>this.state.bookmarks.add(id));
+}catch(e){}
+this.updateBookmarkCount();
+}
+
+saveBookmarks(){
+localStorage.setItem('notevault-bookmarks',JSON.stringify([...this.state.bookmarks]));
+this.updateBookmarkCount();
+}
+
+toggleBookmark(id){
+if(this.state.bookmarks.has(id)){this.state.bookmarks.delete(id);this.showToast('Bookmark removed')}
+else{this.state.bookmarks.add(id);this.showToast('⭐ Note bookmarked!')}
+this.saveBookmarks();
+this.applyFilters();
+}
+
+updateBookmarkCount(){this.refs.tabBookmarksCount.textContent=this.state.bookmarks.size}
+
+showToast(msg){
+const t=document.createElement('div');
+t.className='toast';
+t.textContent=msg;
+this.refs.toastContainer.appendChild(t);
+setTimeout(()=>t.remove(),2600);
+}
+
+createRipple(e,el){
+const r=document.createElement('span');
+const rect=el.getBoundingClientRect();
+const size=Math.max(rect.width,rect.height)*2;
+r.className='ripple-effect';
+r.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+el.appendChild(r);
+setTimeout(()=>r.remove(),600);
+}
+
+populateFilters(){
+const addOpts=(sel,items,label)=>{
+const frag=document.createDocumentFragment();
+items.forEach(v=>{
+const opt=document.createElement('option');
+opt.value=v;
+opt.textContent=label?`${label} ${v}`:v;
+frag.appendChild(opt);
+});
+sel.appendChild(frag);
+};
+addOpts(this.refs.filterStream,this.allStreams);
+addOpts(this.refs.filterCourse,this.allCourses);
+addOpts(this.refs.filterYear,this.allYears,'Year');
+addOpts(this.refs.filterSemester,this.allSemesters,'Semester');
+}
+
+updateCourseFilter(){
+const stream=this.refs.filterStream.value;
+const prev=this.refs.filterCourse.value;
+const courses=stream
+?[...new Set(this.notes.filter(n=>n.Stream===stream).map(n=>n.Course))].sort()
+:this.allCourses;
+this.refs.filterCourse.innerHTML='<option value="">All Courses</option>';
+const frag=document.createDocumentFragment();
+courses.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;frag.appendChild(o)});
+this.refs.filterCourse.appendChild(frag);
+this.refs.filterCourse.value=courses.includes(prev)?prev:'';
+}
+
+escapeRegex(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+
+highlightMatch(text,query){
+if(!query)return text;
+const words=query.trim().split(/\s+/).filter(Boolean).map(w=>this.escapeRegex(w));
+if(!words.length)return text;
+return text.replace(new RegExp(`(${words.join('|')})`,'gi'),'<span class="highlight">$1</span>');
+}
+
+showSuggestions(query){
+const words=query.toLowerCase().split(/\s+/).filter(Boolean);
+if(!words.length){this.closeSuggestions();return}
+const results=[];
+const seen=new Set();
+const trieResults=this.trie.search(words[0]);
+const uniqueMap=new Map();
+trieResults.forEach(item=>{
+const key=item.type+':'+item.text;
+if(uniqueMap.has(key))return;
+if(words.length>1){
+const matchAll=words.every(w=>item.text.toLowerCase().includes(w));
+if(!matchAll)return;
+}
+uniqueMap.set(key,item);
+});
+uniqueMap.forEach(r=>results.push(r));
+if(!results.length&&words.length){
+this.notes.forEach(note=>{
+note.Subjects.forEach(subj=>{
+if(seen.has(subj))return;
+if(words.every(w=>subj.toLowerCase().includes(w))){
+seen.add(subj);
+results.push({type:'subject',text:subj,stream:note.Stream,course:note.Course,sem:note.Semester});
+}
+});
+});
+}
+this.refs.suggestionsDropdown.innerHTML='';
+this.activeSuggIdx=-1;
+if(!results.length){this.closeSuggestions();return}
+const frag=document.createDocumentFragment();
+const deduped=[];
+const dedupSet=new Set();
+results.forEach(r=>{
+const k=r.type+r.text;
+if(!dedupSet.has(k)){dedupSet.add(k);deduped.push(r)}
+});
+deduped.slice(0,10).forEach((r,i)=>{
+const div=document.createElement('div');
+div.className='suggestion-item';
+div.setAttribute('role','option');
+div.dataset.index=i;
+const iconBg=r.type==='subject'?'rgba(108,99,255,0.1)':r.type==='course'?'rgba(14,165,233,0.1)':'rgba(245,158,11,0.1)';
+const icon=r.type==='subject'?'📝':r.type==='course'?'🎓':'🏫';
+const meta=[r.stream,r.course,r.sem?`Sem ${r.sem}`:null].filter(Boolean).join(' · ');
+div.innerHTML=`<div class="suggestion-icon" style="background:${iconBg}">${icon}</div><div class="suggestion-text"><div class="suggestion-title">${this.highlightMatch(r.text,query)}</div>${meta?`<div class="suggestion-meta">${meta}</div>`:''}</div>`;
+div.addEventListener('click',()=>{
+this.refs.searchBar.value=r.text;
+this.refs.searchClear.classList.add('visible');
+this.closeSuggestions();
+this.applyFilters();
+});
+frag.appendChild(div);
+});
+this.refs.suggestionsDropdown.appendChild(frag);
+this.refs.suggestionsDropdown.classList.add('active');
+this.refs.searchBar.setAttribute('aria-expanded','true');
+}
+
+closeSuggestions(){
+this.refs.suggestionsDropdown.classList.remove('active');
+this.refs.searchBar.setAttribute('aria-expanded','false');
+this.activeSuggIdx=-1;
+}
+
+handleSuggestionKeys(e){
+const items=this.refs.suggestionsDropdown.querySelectorAll('.suggestion-item');
+if(!items.length||!this.refs.suggestionsDropdown.classList.contains('active'))return;
+if(e.key==='ArrowDown'){e.preventDefault();this.activeSuggIdx=Math.min(this.activeSuggIdx+1,items.length-1)}
+else if(e.key==='ArrowUp'){e.preventDefault();this.activeSuggIdx=Math.max(this.activeSuggIdx-1,-1)}
+else if(e.key==='Enter'&&this.activeSuggIdx>=0){e.preventDefault();items[this.activeSuggIdx].click();return}
+else if(e.key==='Escape'){this.closeSuggestions();this.refs.searchBar.blur();return}
+else return;
+items.forEach((it,i)=>it.classList.toggle('active',i===this.activeSuggIdx));
+if(this.activeSuggIdx>=0)items[this.activeSuggIdx].scrollIntoView({block:'nearest'});
+}
+
+getCacheKey(){
+const s=this.state;
+return`${s.stream}|${s.course}|${s.year}|${s.semester}|${s.tab}|${this.refs.searchBar.value.trim().toLowerCase()}|${s.sort}|${s.sortDir}`;
+}
+
+applyFilters(){
+const cacheKey=this.getCacheKey();
+let filtered=this.cache.get(cacheKey);
+if(!filtered){
+const query=this.refs.searchBar.value.trim().toLowerCase();
+const words=query.split(/\s+/).filter(Boolean);
+const {stream,course,year,semester,sort,sortDir,tab}=this.state;
+const sets=[];
+if(stream)sets.push(this.idx.get('stream:'+stream));
+if(course)sets.push(this.idx.get('course:'+course));
+if(year)sets.push(this.idx.get('year:'+year));
+if(semester)sets.push(this.idx.get('semester:'+semester));
+let candidateIds;
+if(sets.length)candidateIds=InvertedIndex.intersect(sets);
+else candidateIds=new Set(this.notes.map(n=>n.id));
+if(tab==='bookmarks'){
+candidateIds=new Set([...candidateIds].filter(id=>this.state.bookmarks.has(id)));
+}
+let candidates=[...candidateIds].map(id=>this.notes[id]);
+if(words.length){
+candidates=candidates.filter(note=>{
+const haystack=[...note.Subjects,note.Course,note.Stream,`Year ${note.Year}`,`Semester ${note.Semester}`,`Sem ${note.Semester}`].map(s=>s.toLowerCase());
+return words.every(w=>haystack.some(h=>h.includes(w)));
+});
+candidates.forEach(note=>{
+let score=0;
+note.Subjects.forEach(s=>{
+const sl=s.toLowerCase();
+words.forEach(w=>{
+if(sl===w)score+=10;
+else if(sl.startsWith(w))score+=5;
+else if(sl.includes(w))score+=2;
+});
+});
+if(note.Course.toLowerCase().includes(query))score+=3;
+if(note.Stream.toLowerCase().includes(query))score+=1;
+note._score=score;
+});
+candidates.sort((a,b)=>b._score-a._score);
+}
+if(sort){
+const cmp=sort==='semester'?(a,b)=>(a.Semester-b.Semester)*sortDir
+:sort==='year'?(a,b)=>(a.Year-b.Year)*sortDir
+:(a,b)=>a.Course.localeCompare(b.Course)*sortDir;
+candidates.sort(cmp);
+}
+filtered=candidates;
+this.cache.set(cacheKey,filtered);
+}
+this.state.filtered=filtered;
+this.renderNotes(filtered,this.refs.searchBar.value.trim().toLowerCase());
+this.updateActiveFilterTags();
+this.updateFilterSelectStyles();
+this.updateFilterBadge();
+this.refs.tabAllCount.textContent=this.notes.length;
+}
+
+renderNotes(notes,query){
+this.refs.notesGrid.innerHTML='';
+if(!notes.length){
+this.refs.noResults.classList.add('visible');
+this.refs.resultsCount.innerHTML='';
+this.refs.loadMoreContainer.style.display='none';
+return;
+}
+this.refs.noResults.classList.remove('visible');
+const showing=Math.min(this.state.displayCount,notes.length);
+this.refs.resultsCount.innerHTML=`Showing <strong>${showing}</strong> of <strong>${notes.length}</strong> note${notes.length!==1?'s':''}`;
+const frag=document.createDocumentFragment();
+notes.slice(0,this.state.displayCount).forEach((note,i)=>{
+const card=this.createCard(note,query,i);
+frag.appendChild(card);
+});
+this.refs.notesGrid.appendChild(frag);
+this.refs.notesGrid.querySelectorAll('.note-card').forEach((card,i)=>{
+card.dataset.delay=i;
+this.observer.observe(card);
+});
+if(notes.length>this.state.displayCount){
+this.refs.loadMoreContainer.style.display='block';
+this.refs.loadMoreBtn.textContent=`Load More (${notes.length-this.state.displayCount} remaining)`;
+}else this.refs.loadMoreContainer.style.display='none';
+}
+
+createCard(note,query,index){
+const card=document.createElement('article');
+card.className='note-card'+(this.state.bookmarks.has(note.id)?' bookmarked':'');
+card.setAttribute('tabindex','0');
+card.setAttribute('role','article');
+card.setAttribute('aria-label',note.Subjects.join(' and '));
+const semType=note.Semester%2===0?'even':'odd';
+const fileName=note.Source?note.Source.split('/').pop():'No file';
+const accent=this.accentGradients[note.Stream]||this.accentGradients.Engineering;
+const subjectTags=note.Subjects.map(s=>`<span class="subject-tag">${query?this.highlightMatch(s,query):s}</span>`).join('');
+const titleHTML=query?this.highlightMatch(note.Subjects.join(' & '),query):note.Subjects.join(' & ');
+const bmIcon=this.state.bookmarks.has(note.id)?'★':'☆';
+card.innerHTML=`<div class="card-accent" style="background:${accent}"></div><div class="card-body"><div class="card-top-row"><div class="card-badges"><span class="badge badge-stream" data-stream="${note.Stream}">${this.streamIcons[note.Stream]||''} ${note.Stream}</span><span class="badge badge-course">${note.Course}</span><span class="badge badge-year" data-year="${note.Year}">Year ${note.Year}</span><span class="badge badge-semester ${semType}">Sem ${note.Semester}</span></div><button class="bookmark-btn" aria-label="${this.state.bookmarks.has(note.id)?'Remove bookmark':'Bookmark this note'}" data-id="${note.id}">${bmIcon}</button></div><div class="card-subjects"><h3>${titleHTML}</h3><div class="subject-tags">${subjectTags}</div></div></div><div class="card-footer"><span class="file-info">📄 ${fileName}</span>${note.Source?`<a href="${note.Source}" class="download-btn" download title="Download ${fileName}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</a>`:'<span class="badge badge-course">Coming Soon</span>'}</div>`;
+const bmBtn=card.querySelector('.bookmark-btn');
+bmBtn.addEventListener('click',e=>{
+e.stopPropagation();
+bmBtn.classList.add('pop');
+setTimeout(()=>bmBtn.classList.remove('pop'),400);
+this.toggleBookmark(note.id);
+});
+card.addEventListener('click',e=>{
+if(e.target.closest('.download-btn')||e.target.closest('.bookmark-btn'))return;
+this.createRipple(e,card);
+setTimeout(()=>this.openModal(note),150);
+});
+card.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();this.openModal(note)}});
+return card;
+}
+
+openModal(note){
+const semType=note.Semester%2===0?'even':'odd';
+const fileName=note.Source?note.Source.split('/').pop():'No file';
+const isBm=this.state.bookmarks.has(note.id);
+this.refs.modalBadges.innerHTML=`<span class="badge badge-stream" data-stream="${note.Stream}">${this.streamIcons[note.Stream]||''} ${note.Stream}</span><span class="badge badge-course">${note.Course}</span><span class="badge badge-year" data-year="${note.Year}">Year ${note.Year}</span><span class="badge badge-semester ${semType}">Sem ${note.Semester}</span>`;
+this.refs.modalTitle.textContent=note.Subjects.join(' & ');
+this.refs.modalDetails.innerHTML=`<div class="modal-detail"><span class="modal-detail-icon">🏫</span><span>Stream: <strong>${note.Stream}</strong></span></div><div class="modal-detail"><span class="modal-detail-icon">🎓</span><span>Course: <strong>${note.Course}</strong></span></div><div class="modal-detail"><span class="modal-detail-icon">📅</span><span>Year ${note.Year}, Semester ${note.Semester}</span></div><div class="modal-detail"><span class="modal-detail-icon">📝</span><span>Subjects: <strong>${note.Subjects.join(', ')}</strong></span></div><div class="modal-detail"><span class="modal-detail-icon">📄</span><span>File: ${fileName}</span></div>`;
+this.refs.modalActions.innerHTML=`${note.Source?`<a href="${note.Source}" class="download-btn" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download PDF</a>`:'<button class="download-btn" disabled style="opacity:0.5;cursor:not-allowed">Coming Soon</button>'}<button class="modal-bookmark-btn${isBm?' bookmarked':''}" id="modalBookmarkBtn">${isBm?'★ Bookmarked':'☆ Bookmark'}</button>`;
+document.getElementById('modalBookmarkBtn').addEventListener('click',()=>{
+this.toggleBookmark(note.id);
+const b=this.state.bookmarks.has(note.id);
+const btn=document.getElementById('modalBookmarkBtn');
+btn.className='modal-bookmark-btn'+(b?' bookmarked':'');
+btn.innerHTML=b?'★ Bookmarked':'☆ Bookmark';
+});
+this.refs.modalOverlay.classList.add('active');
+this.refs.modalOverlay.setAttribute('aria-hidden','false');
+document.body.style.overflow='hidden';
+this.refs.modalClose.focus();
+}
+
+closeModal(){
+this.refs.modalOverlay.classList.remove('active');
+this.refs.modalOverlay.setAttribute('aria-hidden','true');
+document.body.style.overflow='';
+}
+
+updateActiveFilterTags(){
+this.refs.activeFiltersTags.innerHTML='';
+const frag=document.createDocumentFragment();
+const addTag=(label,clearFn)=>{
+const tag=document.createElement('span');
+tag.className='active-filter-tag';
+tag.innerHTML=`${label} <span class="tag-remove">✕</span>`;
+tag.addEventListener('click',clearFn);
+frag.appendChild(tag);
+};
+const s=this.state;
+if(s.stream)addTag(s.stream,()=>{this.refs.filterStream.value='';s.stream='';this.updateCourseFilter();this.cache=new LRUCache(64);this.applyFilters()});
+if(s.course)addTag(s.course,()=>{this.refs.filterCourse.value='';s.course='';this.cache=new LRUCache(64);this.applyFilters()});
+if(s.year)addTag(`Year ${s.year}`,()=>{this.refs.filterYear.value='';s.year='';this.cache=new LRUCache(64);this.applyFilters()});
+if(s.semester)addTag(`Sem ${s.semester}`,()=>{this.refs.filterSemester.value='';s.semester='';this.cache=new LRUCache(64);this.applyFilters()});
+this.refs.activeFiltersTags.appendChild(frag);
+}
+
+updateFilterSelectStyles(){
+['filterStream','filterCourse','filterYear','filterSemester'].forEach(id=>{
+this.refs[id].classList.toggle('has-value',!!this.refs[id].value);
+});
+}
+
+updateFilterBadge(){
+const count=[this.state.stream,this.state.course,this.state.year,this.state.semester].filter(Boolean).length;
+this.refs.filtersBadge.textContent=count;
+this.refs.filtersBadge.classList.toggle('visible',count>0);
+}
+
+handleSort(type){
+if(this.state.sort===type)this.state.sortDir*=-1;
+else{this.state.sort=type;this.state.sortDir=1}
+document.querySelectorAll('.sort-btn').forEach(btn=>{
+const isActive=btn.dataset.sort===this.state.sort;
+btn.classList.toggle('active',isActive);
+const arrow=isActive?(this.state.sortDir===1?' ↑':' ↓'):'';
+btn.innerHTML=`${this.sortIcons[btn.dataset.sort]} ${btn.dataset.sort.charAt(0).toUpperCase()+btn.dataset.sort.slice(1)}${arrow}`;
+});
+this.state.displayCount=this.state.pageSize;
+this.cache=new LRUCache(64);
+this.applyFilters();
+}
+
+clearAll(){
+this.refs.searchBar.value='';
+this.refs.searchClear.classList.remove('visible');
+['filterStream','filterCourse','filterYear','filterSemester'].forEach(id=>this.refs[id].value='');
+Object.assign(this.state,{query:'',stream:'',course:'',year:'',semester:'',sort:null,sortDir:1,displayCount:this.state.pageSize});
+document.querySelectorAll('.sort-btn').forEach(btn=>{
+btn.classList.remove('active');
+btn.innerHTML=`${this.sortIcons[btn.dataset.sort]} ${btn.dataset.sort.charAt(0).toUpperCase()+btn.dataset.sort.slice(1)}`;
+});
+this.closeSuggestions();
+this.updateCourseFilter();
+this.cache=new LRUCache(64);
+this.applyFilters();
+this.stateToHash();
+}
+
+setView(view){
+this.state.view=view;
+this.refs.notesGrid.classList.toggle('list-view',view==='list');
+document.querySelectorAll('.view-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.view===view));
+}
+
+setTab(tab){
+this.state.tab=tab;
+document.querySelectorAll('.tab-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.tab===tab));
+this.state.displayCount=this.state.pageSize;
+this.cache=new LRUCache(64);
+this.applyFilters();
+}
+
+updateScrollProgress(){
+const scrollTop=window.scrollY;
+const docHeight=document.documentElement.scrollHeight-window.innerHeight;
+const progress=docHeight>0?(scrollTop/docHeight)*100:0;
+this.refs.scrollProgress.style.width=progress+'%';
+}
+
+stateToHash(){
+const params=new URLSearchParams();
+if(this.state.stream)params.set('stream',this.state.stream);
+if(this.state.course)params.set('course',this.state.course);
+if(this.state.year)params.set('year',this.state.year);
+if(this.state.semester)params.set('semester',this.state.semester);
+if(this.refs.searchBar.value.trim())params.set('q',this.refs.searchBar.value.trim());
+const hash=params.toString();
+history.replaceState(null,'',hash?'#'+hash:window.location.pathname);
+}
+
+hashToState(){
+const hash=window.location.hash.slice(1);
+if(!hash)return;
+const params=new URLSearchParams(hash);
+if(params.has('stream')){this.refs.filterStream.value=params.get('stream');this.state.stream=params.get('stream')}
+if(params.has('course')){this.refs.filterCourse.value=params.get('course');this.state.course=params.get('course')}
+if(params.has('year')){this.refs.filterYear.value=params.get('year');this.state.year=params.get('year')}
+if(params.has('semester')){this.refs.filterSemester.value=params.get('semester');this.state.semester=params.get('semester')}
+if(params.has('q')){this.refs.searchBar.value=params.get('q');this.refs.searchClear.classList.add('visible')}
+}
+
+debounce(fn,ms){
+let t;
+return(...args)=>{clearTimeout(t);t=setTimeout(()=>fn.apply(this,args),ms)};
+}
+
+bindEvents(){
+const debouncedFilter=this.debounce(()=>{this.state.displayCount=this.state.pageSize;this.cache=new LRUCache(64);this.applyFilters()},200);
+
+this.refs.searchBar.addEventListener('input',()=>{
+const q=this.refs.searchBar.value.trim();
+this.refs.searchClear.classList.toggle('visible',q.length>0);
+if(q.length>0)this.showSuggestions(q);
+else this.closeSuggestions();
+debouncedFilter();
+});
+this.refs.searchBar.addEventListener('focus',()=>{const q=this.refs.searchBar.value.trim();if(q.length>0)this.showSuggestions(q)});
+this.refs.searchBar.addEventListener('keydown',e=>this.handleSuggestionKeys(e));
+this.refs.searchClear.addEventListener('click',()=>{
+this.refs.searchBar.value='';
+this.refs.searchClear.classList.remove('visible');
+this.closeSuggestions();
+this.cache=new LRUCache(64);
+this.applyFilters();
+this.refs.searchBar.focus();
+});
+document.addEventListener('click',e=>{if(!e.target.closest('.search-wrapper'))this.closeSuggestions()});
+
+this.refs.filterStream.addEventListener('change',()=>{
+this.state.stream=this.refs.filterStream.value;
+this.updateCourseFilter();
+this.state.course=this.refs.filterCourse.value;
+this.state.displayCount=this.state.pageSize;
+this.cache=new LRUCache(64);
+this.applyFilters();
+this.stateToHash();
+});
+['filterCourse','filterYear','filterSemester'].forEach(id=>{
+const key=id.replace('filter','').toLowerCase();
+this.refs[id].addEventListener('change',()=>{
+this.state[key]=this.refs[id].value;
+this.state.displayCount=this.state.pageSize;
+this.cache=new LRUCache(64);
+this.applyFilters();
+this.stateToHash();
+});
+});
+
+document.querySelectorAll('.sort-btn').forEach(btn=>btn.addEventListener('click',e=>{this.createRipple(e,btn);this.handleSort(btn.dataset.sort)}));
+document.getElementById('clearAll').addEventListener('click',e=>{this.createRipple(e,e.currentTarget);setTimeout(()=>this.clearAll(),150)});
+this.refs.filtersToggleBtn.addEventListener('click',()=>this.refs.filtersPanel.classList.toggle('open'));
+document.querySelectorAll('.view-btn').forEach(btn=>btn.addEventListener('click',()=>this.setView(btn.dataset.view)));
+document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',e=>{this.createRipple(e,btn);this.setTab(btn.dataset.tab)}));
+this.refs.loadMoreBtn.addEventListener('click',()=>{this.state.displayCount+=this.state.pageSize;this.applyFilters()});
+
+this.refs.modalClose.addEventListener('click',()=>this.closeModal());
+this.refs.modalOverlay.addEventListener('click',e=>{if(e.target===this.refs.modalOverlay)this.closeModal()});
+
+let scrollTicking=false;
+window.addEventListener('scroll',()=>{
+if(!scrollTicking){
+requestAnimationFrame(()=>{
+this.refs.scrollTopBtn.classList.toggle('visible',window.scrollY>400);
+this.updateScrollProgress();
+scrollTicking=false;
+});
+scrollTicking=true;
+}
+},{passive:true});
+this.refs.scrollTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+this.refs.themeToggle.addEventListener('click',()=>this.toggleTheme());
+
+document.addEventListener('keydown',e=>{
+if(e.key==='/'&&!e.ctrlKey&&!e.metaKey&&document.activeElement!==this.refs.searchBar){e.preventDefault();this.refs.searchBar.focus()}
+if(e.key==='Escape'){
+if(this.refs.modalOverlay.classList.contains('active'))this.closeModal();
+else if(this.refs.suggestionsDropdown.classList.contains('active'))this.closeSuggestions();
+else if(document.activeElement===this.refs.searchBar)this.refs.searchBar.blur();
+}
+});
+
+let resizeTimer;
+window.addEventListener('resize',()=>{
+clearTimeout(resizeTimer);
+resizeTimer=setTimeout(()=>{
+if(window.innerWidth>768)this.refs.filtersPanel.classList.remove('open');
+},250);
+});
+}
+}
+
+new NoteVaultApp(DATA);
+})();
+</script>
+</body>
+</html>
