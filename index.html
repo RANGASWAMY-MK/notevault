@@ -51,9 +51,7 @@ overflow-x:hidden;transition:background var(--transition),color var(--transition
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--text-faint);border-radius:4px}
 ::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
-
 .scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));z-index:9999;width:0%;border-radius:0 2px 2px 0;transition:none}
-
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @keyframes floatParticle{0%{transform:translateY(100%) rotate(0deg) scale(0);opacity:0}10%{opacity:1;transform:translateY(80%) rotate(72deg) scale(1)}90%{opacity:.8}100%{transform:translateY(-100vh) rotate(720deg) scale(0);opacity:0}}
 @keyframes logoFloat{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-4px) rotate(-2deg)}75%{transform:translateY(-2px) rotate(2deg)}50%{transform:translateY(-6px) rotate(0deg)}}
@@ -76,7 +74,6 @@ overflow-x:hidden;transition:background var(--transition),color var(--transition
 @keyframes counterPulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
 @keyframes glowPulse{0%,100%{box-shadow:0 0 5px var(--primary-glow)}50%{box-shadow:0 0 20px var(--primary-glow),0 0 40px rgba(108,99,255,0.1)}}
 @keyframes dotBounce{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
-
 .header{
 position:relative;
 background:linear-gradient(135deg,#4A3AFF 0%,var(--primary) 30%,#7C3AED 70%,#A855F7 100%);
@@ -121,7 +118,6 @@ font-size:1.2rem;transition:all var(--transition)
 }
 .theme-toggle:hover{background:rgba(255,255,255,0.25);transform:rotate(30deg) scale(1.1)}
 .theme-toggle:active{transform:rotate(30deg) scale(0.95)}
-
 .search-container{max-width:680px;margin:-1.8rem auto 0;padding:0 calc(1rem + var(--safe-left));position:relative;z-index:20}
 .search-wrapper{position:relative}
 .search-bar{
@@ -143,7 +139,6 @@ font-size:0.9rem;transition:all var(--transition)
 .search-clear-btn:hover{background:var(--secondary);color:white;transform:rotate(90deg)}
 .search-clear-btn.visible{display:flex}
 .search-clear-btn.visible+.search-kbd{display:none}
-
 .suggestions-dropdown{
 position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--card-bg);
 border-radius:var(--radius-md);box-shadow:var(--shadow-xl);max-height:320px;overflow-y:auto;
@@ -160,7 +155,6 @@ z-index:100;display:none;border:1px solid var(--border);backdrop-filter:blur(20p
 .suggestion-text{flex:1;min-width:0}
 .suggestion-title{font-size:0.92rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .suggestion-meta{font-size:0.75rem;color:var(--text-faint)}
-
 .toolbar{max-width:1280px;margin:1.5rem auto 0;padding:0 calc(1rem + var(--safe-left))}
 .toolbar-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:0.8rem}
 .toolbar-left{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap}
@@ -221,7 +215,6 @@ font-weight:700;font-family:inherit;min-height:44px;position:relative;overflow:h
 }
 .clear-all-btn:hover{background:var(--secondary);color:white;transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,101,132,0.3)}
 .clear-all-btn:active{transform:translateY(0) scale(0.97)}
-
 .tabs-bar{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:0.5rem}
 .tab-btn{
 padding:0.7rem 1.2rem;font-size:clamp(0.82rem,2vw,0.88rem);font-weight:600;color:var(--text-muted);
@@ -236,11 +229,9 @@ align-items:center;gap:0.4rem;min-height:44px;position:relative;overflow:hidden
 .tab-btn.active::after{width:100%}
 .tab-count{background:var(--bg-secondary);font-size:0.72rem;padding:0.1rem 0.5rem;border-radius:var(--radius-full);font-weight:700;transition:all var(--transition-fast)}
 .tab-btn.active .tab-count{background:rgba(108,99,255,0.12);color:var(--primary)}
-
 .notes-container{max-width:1280px;margin:1rem auto 4rem;padding:0 calc(1rem + var(--safe-left));padding-bottom:var(--safe-bottom)}
 .notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:1.3rem}
 .notes-grid.list-view{grid-template-columns:1fr;gap:0.8rem}
-
 .note-card{
 background:var(--card-bg);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);
 transition:all var(--transition);display:flex;flex-direction:column;position:relative;
@@ -257,7 +248,6 @@ z-index:1;pointer-events:none;transition:none
 .note-card:active{transform:translateY(-2px) scale(0.995)}
 .note-card.bookmarked{box-shadow:var(--shadow-sm),0 0 0 1px rgba(255,217,61,0.3)}
 .note-card.bookmarked .bookmark-btn{color:var(--accent)}
-
 .list-view .note-card{flex-direction:row;align-items:stretch}
 .list-view .card-accent{width:5px;height:auto;min-height:100%}
 .list-view .card-body{flex-direction:row;align-items:center;gap:1.5rem;flex:1}
@@ -266,7 +256,6 @@ z-index:1;pointer-events:none;transition:none
 .list-view .card-subjects h3{margin-bottom:0.2rem}
 .list-view .subject-tags{margin-bottom:0}
 .list-view .card-footer{border-top:none;border-left:1px solid var(--divider);flex-direction:column;justify-content:center;min-width:140px}
-
 .card-accent{height:4px;flex-shrink:0}
 .card-body{padding:1.2rem 1.3rem;flex:1;display:flex;flex-direction:column}
 .card-top-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.7rem}
@@ -290,7 +279,6 @@ display:flex;align-items:center;justify-content:center
 .bookmark-btn:hover{color:var(--accent);transform:scale(1.2)}
 .bookmark-btn:active{transform:scale(0.9)}
 .bookmark-btn.pop{animation:bookmarkPop 0.4s var(--ease-bounce)}
-
 .card-subjects{flex:1}
 .card-subjects h3{font-size:clamp(0.92rem,2.2vw,1.02rem);font-weight:700;color:var(--text);margin-bottom:0.5rem;line-height:1.35}
 .card-subjects h3 .highlight{background:linear-gradient(120deg,rgba(108,99,255,0.15),rgba(108,99,255,0.3));border-radius:3px;padding:0 3px;color:var(--primary-dark);font-weight:800}
@@ -298,7 +286,6 @@ display:flex;align-items:center;justify-content:center
 .subject-tags{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.6rem}
 .subject-tag{background:var(--bg);color:var(--text-muted);padding:0.22rem 0.6rem;border-radius:var(--radius-xs);font-size:clamp(0.72rem,1.8vw,0.78rem);font-weight:500;transition:all var(--transition-fast)}
 .note-card:hover .subject-tag{background:rgba(108,99,255,0.06);color:var(--primary)}
-
 .card-footer{padding:0.8rem 1.3rem;border-top:1px solid var(--divider);display:flex;justify-content:space-between;align-items:center;gap:0.5rem}
 .file-info{font-size:clamp(0.72rem,1.8vw,0.78rem);color:var(--text-faint);display:flex;align-items:center;gap:0.3rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .download-btn{
@@ -311,12 +298,10 @@ font-family:inherit;min-height:40px;position:relative;overflow:hidden
 .download-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(108,99,255,0.4)}
 .download-btn:active{transform:translateY(0) scale(0.97)}
 .download-btn svg{width:14px;height:14px}
-
 .ripple-effect{
 position:absolute;border-radius:50%;background:rgba(255,255,255,0.3);
 transform:scale(0);animation:rippleAnim 0.6s ease-out;pointer-events:none
 }
-
 .no-results{text-align:center;padding:4rem 2rem;display:none}
 .no-results.visible{display:block;animation:slideUp 0.5s var(--ease-bounce)}
 .no-results-icon{font-size:3.5rem;margin-bottom:1rem;opacity:0.5}
@@ -334,7 +319,6 @@ font-family:inherit;min-height:44px;position:relative;overflow:hidden
 .load-more-dots span{width:6px;height:6px;border-radius:50%;background:var(--primary);animation:dotBounce 1.4s infinite ease-in-out both}
 .load-more-dots span:nth-child(1){animation-delay:-0.32s}
 .load-more-dots span:nth-child(2){animation-delay:-0.16s}
-
 .scroll-top-btn{
 position:fixed;bottom:calc(2rem + var(--safe-bottom));right:calc(2rem + var(--safe-right));width:48px;height:48px;
 border-radius:var(--radius-full);background:var(--primary);color:white;border:none;cursor:pointer;
@@ -344,7 +328,6 @@ font-size:1.3rem;z-index:50;opacity:0;visibility:hidden;transform:translateY(10p
 .scroll-top-btn.visible{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
 .scroll-top-btn:hover{transform:translateY(-3px) scale(1.1);box-shadow:0 8px 24px rgba(108,99,255,0.45)}
 .scroll-top-btn:active{transform:translateY(0) scale(0.95)}
-
 .modal-overlay{
 position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem
@@ -378,7 +361,6 @@ gap:0.4rem;font-family:inherit;color:var(--text-secondary);min-height:44px
 }
 .modal-bookmark-btn:hover{border-color:var(--accent);color:var(--accent)}
 .modal-bookmark-btn.bookmarked{border-color:var(--accent);color:var(--accent);background:rgba(255,217,61,0.1)}
-
 .toast-container{position:fixed;bottom:calc(2rem + var(--safe-bottom));left:50%;transform:translateX(-50%);z-index:2000;display:flex;flex-direction:column;gap:0.5rem;align-items:center;pointer-events:none}
 .toast{
 background:var(--text);color:var(--bg);padding:0.7rem 1.5rem;border-radius:var(--radius-full);
@@ -390,81 +372,52 @@ animation:toastIn 0.4s var(--ease-bounce),toastOut 0.3s var(--ease) 2.2s forward
 .footer-links{display:flex;gap:1.5rem;justify-content:center;margin-top:0.5rem;flex-wrap:wrap}
 .footer-links a{color:var(--text-muted);text-decoration:none;font-size:0.82rem;transition:all var(--transition-fast);padding:0.3rem}
 .footer-links a:hover{color:var(--primary);transform:translateY(-1px)}
-
 .skeleton-card{background:var(--card-bg);border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border)}
 .skeleton-bar{background:linear-gradient(90deg,var(--bg) 25%,var(--bg-secondary) 50%,var(--bg) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:4px}
-
 @media(max-width:480px){
-.stats-bar{gap:0.8rem}
-.stat-item{min-width:60px}
-.card-badges{gap:0.25rem}
-.badge{padding:0.15rem 0.45rem;font-size:0.62rem}
-.card-body{padding:1rem}
-.card-footer{padding:0.7rem 1rem;flex-wrap:wrap}
-.modal{margin:0.5rem;border-radius:var(--radius-md)}
-.modal-actions{flex-direction:column}
-.modal-actions .download-btn{min-width:unset}
+.stats-bar{gap:0.8rem}.stat-item{min-width:60px}.card-badges{gap:0.25rem}
+.badge{padding:0.15rem 0.45rem;font-size:0.62rem}.card-body{padding:1rem}
+.card-footer{padding:0.7rem 1rem;flex-wrap:wrap}.modal{margin:0.5rem;border-radius:var(--radius-md)}
+.modal-actions{flex-direction:column}.modal-actions .download-btn{min-width:unset}
 .filters-panel .filter-group{width:100%}
 }
 @media(max-width:640px){
-.toolbar-top{flex-direction:column;align-items:stretch}
-.toolbar-left{flex-direction:column;align-items:flex-start}
-.toolbar-right{justify-content:space-between}
-.footer-links{gap:1rem}
+.toolbar-top{flex-direction:column;align-items:stretch}.toolbar-left{flex-direction:column;align-items:flex-start}
+.toolbar-right{justify-content:space-between}.footer-links{gap:1rem}
 }
 @media(max-width:768px){
-.header{min-height:220px}
-.header-content{padding:2rem 1rem 3rem}
-.search-bar{font-size:0.95rem;padding:0.85rem 3.2rem 0.85rem 2.8rem}
-.search-kbd{display:none}
+.header{min-height:220px}.header-content{padding:2rem 1rem 3rem}
+.search-bar{font-size:0.95rem;padding:0.85rem 3.2rem 0.85rem 2.8rem}.search-kbd{display:none}
 .filters-toggle-btn{display:flex}
 .filters-panel{display:none;flex-direction:column;align-items:stretch;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-md);padding:1rem;margin-top:0.5rem;box-shadow:var(--shadow-md)}
 .filters-panel.open{display:flex;animation:slideDown 0.3s var(--ease)}
-.filter-select{width:100%;min-width:unset}
-.sort-buttons{width:100%}
-.sort-btn{flex:1;justify-content:center}
-.clear-all-btn{width:100%;text-align:center}
-.notes-grid{grid-template-columns:1fr;gap:0.8rem}
-.notes-grid.list-view .note-card{flex-direction:column}
-.list-view .card-accent{width:auto;height:4px;min-height:auto}
-.list-view .card-body{flex-direction:column;align-items:stretch}
-.list-view .card-badges{flex-direction:row}
+.filter-select{width:100%;min-width:unset}.sort-buttons{width:100%}.sort-btn{flex:1;justify-content:center}
+.clear-all-btn{width:100%;text-align:center}.notes-grid{grid-template-columns:1fr;gap:0.8rem}
+.notes-grid.list-view .note-card{flex-direction:column}.list-view .card-accent{width:auto;height:4px;min-height:auto}
+.list-view .card-body{flex-direction:column;align-items:stretch}.list-view .card-badges{flex-direction:row}
 .list-view .card-footer{border-left:none;border-top:1px solid var(--divider);min-width:unset;flex-direction:row}
 .scroll-top-btn{bottom:calc(1.2rem + var(--safe-bottom));right:calc(1.2rem + var(--safe-right));width:44px;height:44px}
 .header-blob{display:none}
 }
-@media(min-width:769px) and (max-width:1024px){
-.notes-grid{grid-template-columns:repeat(2,1fr)}
-}
+@media(min-width:769px) and (max-width:1024px){.notes-grid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1440px){
 .notes-grid{grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:1.5rem}
-.header{min-height:320px}
-.logo{font-size:3.2rem}
+.header{min-height:320px}.logo{font-size:3.2rem}
 }
-@media(min-width:1920px){
-.notes-container,.toolbar{max-width:1600px}
-.notes-grid{grid-template-columns:repeat(auto-fill,minmax(380px,1fr))}
-}
+@media(min-width:1920px){.notes-container,.toolbar{max-width:1600px}.notes-grid{grid-template-columns:repeat(auto-fill,minmax(380px,1fr))}}
 @media(hover:none) and (pointer:coarse){
-.note-card:hover{transform:none;box-shadow:var(--shadow-sm)}
-.note-card:hover::before{animation:none}
-.note-card:active{transform:scale(0.98);transition-duration:100ms}
-.download-btn:hover{transform:none}
+.note-card:hover{transform:none;box-shadow:var(--shadow-sm)}.note-card:hover::before{animation:none}
+.note-card:active{transform:scale(0.98);transition-duration:100ms}.download-btn:hover{transform:none}
 .download-btn:active{transform:scale(0.95)}
 }
 @media(orientation:landscape) and (max-height:500px){
-.header{min-height:160px}
-.header-content{padding:1rem 1rem 2rem}
-.stats-bar{margin-top:0.5rem}
+.header{min-height:160px}.header-content{padding:1rem 1rem 2rem}.stats-bar{margin-top:0.5rem}
 .search-container{margin-top:-1.2rem}
 }
 @media print{
 .header,.search-container,.toolbar,.scroll-top-btn,.toast-container,.modal-overlay,.footer,.scroll-progress{display:none!important}
 .note-card{break-inside:avoid;box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
-.notes-grid{display:block}
-.note-card{margin-bottom:1rem}
-.download-btn{display:none}
-.bookmark-btn{display:none}
+.notes-grid{display:block}.note-card{margin-bottom:1rem}.download-btn{display:none}.bookmark-btn{display:none}
 body{background:white;color:black}
 }
 </style>
@@ -543,734 +496,796 @@ body{background:white;color:black}
 <p>Made with ❤️ for students everywhere. <strong>NoteVault</strong> © 2025</p>
 <div class="footer-links"><a href="#">About</a><a href="#">Contribute Notes</a><a href="#">Contact</a></div>
 </footer>
+
 <script>
-(()=>{
+(function() {
 'use strict';
 
-class TrieNode{constructor(){this.c=new Map();this.items=[]}}
-class Trie{
-constructor(){this.root=new TrieNode()}
-insert(word,item){
-let n=this.root;
-for(const ch of word.toLowerCase()){
-if(!n.c.has(ch))n.c.set(ch,new TrieNode());
-n=n.c.get(ch);
-n.items.push(item);
-}
-}
-search(prefix){
-let n=this.root;
-for(const ch of prefix.toLowerCase()){
-if(!n.c.has(ch))return[];
-n=n.c.get(ch);
-}
-return n.items;
-}
-}
-
-class InvertedIndex{
-constructor(){this.map=new Map()}
-add(key,id){
-if(!this.map.has(key))this.map.set(key,new Set());
-this.map.get(key).add(id);
-}
-get(key){return this.map.get(key)||new Set()}
-static intersect(sets){
-if(!sets.length)return new Set();
-let sorted=[...sets].sort((a,b)=>a.size-b.size);
-let result=new Set(sorted[0]);
-for(let i=1;i<sorted.length;i++){
-const next=sorted[i];
-const filtered=new Set();
-for(const v of result){if(next.has(v))filtered.add(v)}
-result=filtered;
-if(!result.size)break;
-}
-return result;
-}
-}
-
-class LRUCache{
-constructor(cap){this.cap=cap;this.map=new Map()}
-get(key){
-if(!this.map.has(key))return null;
-const val=this.map.get(key);
-this.map.delete(key);
-this.map.set(key,val);
-return val;
-}
-set(key,val){
-if(this.map.has(key))this.map.delete(key);
-else if(this.map.size>=this.cap){this.map.delete(this.map.keys().next().value)}
-this.map.set(key,val);
-}
-}
-
-const DATA=[
-{Stream:"Engineering",Course:"B.Tech",Year:3,Semester:6,Subjects:["Internet Of Things","Embedded Systems"],Source:""},
-{Stream:"Engineering",Course:"B.Tech",Year:3,Semester:5,Subjects:["Computer Networks","Operating Systems"],Source:"files/physics.pdf"},
-{Stream:"Engineering",Course:"B.Tech",Year:2,Semester:4,Subjects:["Data Structures","Algorithm Design"],Source:"files/dsa_complete.pdf"},
-{Stream:"Engineering",Course:"B.Tech",Year:2,Semester:3,Subjects:["Digital Logic Design","Discrete Mathematics"],Source:"files/dld_notes.pdf"},
-{Stream:"Engineering",Course:"B.Tech",Year:1,Semester:1,Subjects:["Engineering Mathematics I","Engineering Physics"],Source:"files/math1_notes.pdf"},
-{Stream:"Engineering",Course:"B.Tech",Year:1,Semester:2,Subjects:["Engineering Mathematics II","Engineering Chemistry"],Source:"files/math2_notes.pdf"},
-{Stream:"Engineering",Course:"B.Tech",Year:4,Semester:7,Subjects:["Machine Learning","Artificial Intelligence"],Source:"files/ml_notes.pdf"},
-{Stream:"Engineering",Course:"B.Tech",Year:4,Semester:8,Subjects:["Deep Learning","Natural Language Processing"],Source:"files/dl_nlp.pdf"},
-{Stream:"Engineering",Course:"M.Tech",Year:1,Semester:1,Subjects:["Advanced Algorithms","Research Methodology"],Source:"files/mtech_algo.pdf"},
-{Stream:"Engineering",Course:"M.Tech",Year:1,Semester:2,Subjects:["Cloud Computing","Big Data Analytics"],Source:"files/cloud_bigdata.pdf"},
-{Stream:"Science",Course:"B.Sc",Year:1,Semester:1,Subjects:["Calculus","Mechanics"],Source:"files/bsc_calc.pdf"},
-{Stream:"Science",Course:"B.Sc",Year:1,Semester:2,Subjects:["Linear Algebra","Thermodynamics"],Source:"files/bsc_linalg.pdf"},
-{Stream:"Science",Course:"B.Sc",Year:2,Semester:3,Subjects:["Organic Chemistry","Real Analysis"],Source:"files/bsc_organic.pdf"},
-{Stream:"Science",Course:"B.Sc",Year:3,Semester:5,Subjects:["Quantum Mechanics","Statistical Mechanics"],Source:"files/bsc_quantum.pdf"},
-{Stream:"Commerce",Course:"B.Com",Year:1,Semester:1,Subjects:["Financial Accounting","Business Economics"],Source:"files/bcom_fa.pdf"},
-{Stream:"Commerce",Course:"B.Com",Year:2,Semester:3,Subjects:["Corporate Accounting","Cost Accounting"],Source:"files/bcom_corp.pdf"},
-{Stream:"Commerce",Course:"B.Com",Year:3,Semester:5,Subjects:["Auditing","Income Tax"],Source:"files/bcom_audit.pdf"},
-{Stream:"Arts",Course:"B.A",Year:1,Semester:1,Subjects:["Introduction to Sociology","Political Science Basics"],Source:"files/ba_socio.pdf"},
-{Stream:"Arts",Course:"B.A",Year:2,Semester:3,Subjects:["Modern Indian History","Public Administration"],Source:"files/ba_history.pdf"},
-{Stream:"Arts",Course:"B.A",Year:3,Semester:6,Subjects:["Philosophy of Mind","Ethics and Governance"],Source:"files/ba_philosophy.pdf"},
-{Stream:"Medical",Course:"MBBS",Year:1,Semester:1,Subjects:["Human Anatomy","Biochemistry"],Source:"files/mbbs_anatomy.pdf"},
-{Stream:"Medical",Course:"MBBS",Year:2,Semester:3,Subjects:["Pathology","Microbiology"],Source:"files/mbbs_patho.pdf"},
-{Stream:"Engineering",Course:"B.Tech",Year:3,Semester:5,Subjects:["Database Management Systems","Software Engineering"],Source:"files/dbms_se.pdf"},
-{Stream:"Engineering",Course:"B.Tech",Year:3,Semester:6,Subjects:["Compiler Design","Computer Graphics"],Source:"files/compiler_cg.pdf"},
-{Stream:"Science",Course:"M.Sc",Year:1,Semester:1,Subjects:["Advanced Quantum Theory","Mathematical Physics"],Source:"files/msc_quantum.pdf"},
-{Stream:"Science",Course:"M.Sc",Year:2,Semester:3,Subjects:["Condensed Matter Physics","Nuclear Physics"],Source:"files/msc_condensed.pdf"},
-{Stream:"Engineering",Course:"B.Tech",Year:2,Semester:4,Subjects:["Object Oriented Programming","Computer Organization"],Source:"files/oop_co.pdf"},
-{Stream:"Engineering",Course:"B.Tech",Year:4,Semester:7,Subjects:["Cyber Security","Blockchain Technology"],Source:"files/cyber_blockchain.pdf"},
-{Stream:"Commerce",Course:"B.Com",Year:2,Semester:4,Subjects:["Business Statistics","Management Accounting"],Source:"files/bcom_stats.pdf"},
-{Stream:"Medical",Course:"MBBS",Year:3,Semester:5,Subjects:["Pharmacology","Forensic Medicine"],Source:"files/mbbs_pharma.pdf"}
+// ============================================================
+// DATA — 48 notes across 5 streams
+// ============================================================
+const NOTES_DATA = [
+  { id:1, title:"Data Structures & Algorithms", stream:"Engineering", course:"B.Tech CSE", year:2, semester:3, subjects:["Arrays","Linked Lists","Trees","Graphs"], fileType:"PDF", fileSize:"2.4 MB", pages:156, author:"Prof. Sharma" },
+  { id:2, title:"Object Oriented Programming", stream:"Engineering", course:"B.Tech CSE", year:2, semester:3, subjects:["Classes","Inheritance","Polymorphism"], fileType:"PDF", fileSize:"1.8 MB", pages:120, author:"Prof. Gupta" },
+  { id:3, title:"Database Management Systems", stream:"Engineering", course:"B.Tech CSE", year:2, semester:4, subjects:["SQL","Normalization","ER Model","Transactions"], fileType:"PDF", fileSize:"3.1 MB", pages:198, author:"Prof. Mehta" },
+  { id:4, title:"Operating Systems", stream:"Engineering", course:"B.Tech CSE", year:3, semester:5, subjects:["Process Management","Memory","Scheduling","Deadlocks"], fileType:"PDF", fileSize:"2.9 MB", pages:175, author:"Prof. Iyer" },
+  { id:5, title:"Computer Networks", stream:"Engineering", course:"B.Tech CSE", year:3, semester:5, subjects:["TCP/IP","OSI Model","Routing","DNS"], fileType:"PDF", fileSize:"2.2 MB", pages:140, author:"Prof. Khan" },
+  { id:6, title:"Machine Learning", stream:"Engineering", course:"B.Tech CSE", year:4, semester:7, subjects:["Regression","Classification","Neural Networks","SVM"], fileType:"PDF", fileSize:"4.5 MB", pages:230, author:"Prof. Reddy" },
+  { id:7, title:"Digital Electronics", stream:"Engineering", course:"B.Tech ECE", year:2, semester:3, subjects:["Logic Gates","Flip-Flops","Counters","Registers"], fileType:"PDF", fileSize:"1.9 MB", pages:115, author:"Prof. Das" },
+  { id:8, title:"Signal Processing", stream:"Engineering", course:"B.Tech ECE", year:3, semester:5, subjects:["Fourier Transform","Filters","Sampling","Z-Transform"], fileType:"PDF", fileSize:"3.3 MB", pages:185, author:"Prof. Nair" },
+  { id:9, title:"Thermodynamics", stream:"Engineering", course:"B.Tech ME", year:2, semester:3, subjects:["Laws of Thermodynamics","Entropy","Carnot Cycle"], fileType:"PDF", fileSize:"2.1 MB", pages:130, author:"Prof. Singh" },
+  { id:10, title:"Fluid Mechanics", stream:"Engineering", course:"B.Tech ME", year:2, semester:4, subjects:["Bernoulli's Theorem","Viscosity","Flow Types"], fileType:"PDF", fileSize:"2.7 MB", pages:155, author:"Prof. Patel" },
+  { id:11, title:"Organic Chemistry", stream:"Science", course:"B.Sc Chemistry", year:1, semester:1, subjects:["Hydrocarbons","Reactions","Stereochemistry","Polymers"], fileType:"PDF", fileSize:"3.6 MB", pages:210, author:"Prof. Verma" },
+  { id:12, title:"Inorganic Chemistry", stream:"Science", course:"B.Sc Chemistry", year:1, semester:2, subjects:["Periodic Table","Coordination Compounds","Bonding"], fileType:"PDF", fileSize:"2.5 MB", pages:145, author:"Prof. Agarwal" },
+  { id:13, title:"Quantum Mechanics", stream:"Science", course:"B.Sc Physics", year:2, semester:3, subjects:["Wave Functions","Schrödinger Equation","Operators"], fileType:"PDF", fileSize:"4.1 MB", pages:220, author:"Prof. Bose" },
+  { id:14, title:"Classical Mechanics", stream:"Science", course:"B.Sc Physics", year:1, semester:1, subjects:["Newton's Laws","Lagrangian","Hamiltonian","Oscillations"], fileType:"PDF", fileSize:"2.8 MB", pages:160, author:"Prof. Chatterjee" },
+  { id:15, title:"Linear Algebra", stream:"Science", course:"B.Sc Mathematics", year:1, semester:1, subjects:["Matrices","Vector Spaces","Eigenvalues","Determinants"], fileType:"PDF", fileSize:"1.7 MB", pages:110, author:"Prof. Rao" },
+  { id:16, title:"Real Analysis", stream:"Science", course:"B.Sc Mathematics", year:2, semester:3, subjects:["Sequences","Series","Continuity","Differentiability"], fileType:"PDF", fileSize:"2.3 MB", pages:135, author:"Prof. Joshi" },
+  { id:17, title:"Molecular Biology", stream:"Science", course:"B.Sc Biology", year:2, semester:4, subjects:["DNA Replication","Transcription","Translation","Gene Regulation"], fileType:"PDF", fileSize:"3.8 MB", pages:195, author:"Prof. Saxena" },
+  { id:18, title:"Ecology & Environment", stream:"Science", course:"B.Sc Biology", year:3, semester:5, subjects:["Ecosystems","Biodiversity","Conservation","Climate"], fileType:"PDF", fileSize:"2.6 MB", pages:150, author:"Prof. Mukherjee" },
+  { id:19, title:"Electrodynamics", stream:"Science", course:"B.Sc Physics", year:2, semester:4, subjects:["Maxwell's Equations","Electromagnetic Waves","Radiation"], fileType:"PDF", fileSize:"3.2 MB", pages:178, author:"Prof. Menon" },
+  { id:20, title:"Probability & Statistics", stream:"Science", course:"B.Sc Mathematics", year:2, semester:4, subjects:["Distributions","Hypothesis Testing","Bayes Theorem"], fileType:"PDF", fileSize:"2.0 MB", pages:125, author:"Prof. Pillai" },
+  { id:21, title:"Financial Accounting", stream:"Commerce", course:"B.Com", year:1, semester:1, subjects:["Journal Entries","Ledger","Trial Balance","Final Accounts"], fileType:"PDF", fileSize:"2.4 MB", pages:155, author:"Prof. Jain" },
+  { id:22, title:"Cost Accounting", stream:"Commerce", course:"B.Com", year:2, semester:3, subjects:["Cost Sheet","Marginal Costing","Standard Costing"], fileType:"PDF", fileSize:"1.9 MB", pages:118, author:"Prof. Bansal" },
+  { id:23, title:"Business Law", stream:"Commerce", course:"B.Com", year:1, semester:2, subjects:["Contract Act","Sale of Goods","Partnership Act"], fileType:"PDF", fileSize:"2.1 MB", pages:132, author:"Prof. Kapoor" },
+  { id:24, title:"Macroeconomics", stream:"Commerce", course:"B.Com", year:2, semester:4, subjects:["GDP","Inflation","Fiscal Policy","Monetary Policy"], fileType:"PDF", fileSize:"2.8 MB", pages:162, author:"Prof. Srinivasan" },
+  { id:25, title:"Marketing Management", stream:"Commerce", course:"BBA", year:2, semester:3, subjects:["4Ps","Segmentation","Branding","Digital Marketing"], fileType:"PDF", fileSize:"3.0 MB", pages:175, author:"Prof. Malhotra" },
+  { id:26, title:"Human Resource Management", stream:"Commerce", course:"BBA", year:2, semester:4, subjects:["Recruitment","Training","Performance Appraisal"], fileType:"PDF", fileSize:"2.2 MB", pages:138, author:"Prof. Chopra" },
+  { id:27, title:"Corporate Finance", stream:"Commerce", course:"BBA", year:3, semester:5, subjects:["Capital Budgeting","WACC","Dividend Policy","Mergers"], fileType:"PDF", fileSize:"3.5 MB", pages:192, author:"Prof. Ahluwalia" },
+  { id:28, title:"Income Tax Law", stream:"Commerce", course:"B.Com", year:3, semester:5, subjects:["Tax Slabs","Deductions","TDS","Returns Filing"], fileType:"PDF", fileSize:"2.6 MB", pages:148, author:"Prof. Tiwari" },
+  { id:29, title:"Microeconomics", stream:"Commerce", course:"B.Com", year:1, semester:1, subjects:["Demand & Supply","Elasticity","Market Structures"], fileType:"PDF", fileSize:"1.8 MB", pages:115, author:"Prof. Deshpande" },
+  { id:30, title:"Auditing & Assurance", stream:"Commerce", course:"B.Com", year:3, semester:6, subjects:["Audit Planning","Internal Control","Vouching","Verification"], fileType:"PDF", fileSize:"2.3 MB", pages:140, author:"Prof. Sethi" },
+  { id:31, title:"English Literature: Romantics", stream:"Arts", course:"B.A English", year:1, semester:1, subjects:["Wordsworth","Keats","Shelley","Byron"], fileType:"PDF", fileSize:"1.5 MB", pages:98, author:"Prof. Bhatt" },
+  { id:32, title:"Modern Indian History", stream:"Arts", course:"B.A History", year:1, semester:2, subjects:["Freedom Movement","Partition","Constitution","Nehru Era"], fileType:"PDF", fileSize:"3.2 MB", pages:188, author:"Prof. Thapar" },
+  { id:33, title:"Political Theory", stream:"Arts", course:"B.A Political Science", year:1, semester:1, subjects:["Liberty","Equality","Justice","Rights","Democracy"], fileType:"PDF", fileSize:"2.0 MB", pages:124, author:"Prof. Kaviraj" },
+  { id:34, title:"Introduction to Sociology", stream:"Arts", course:"B.A Sociology", year:1, semester:1, subjects:["Social Structure","Culture","Stratification","Deviance"], fileType:"PDF", fileSize:"2.4 MB", pages:142, author:"Prof. Deshpande" },
+  { id:35, title:"Abnormal Psychology", stream:"Arts", course:"B.A Psychology", year:2, semester:3, subjects:["Anxiety Disorders","Depression","Schizophrenia","Therapy"], fileType:"PDF", fileSize:"3.1 MB", pages:182, author:"Prof. Kaur" },
+  { id:36, title:"Ancient Indian History", stream:"Arts", course:"B.A History", year:1, semester:1, subjects:["Indus Valley","Vedic Age","Maurya Empire","Gupta Dynasty"], fileType:"PDF", fileSize:"2.7 MB", pages:165, author:"Prof. Romila" },
+  { id:37, title:"Shakespeare Studies", stream:"Arts", course:"B.A English", year:2, semester:3, subjects:["Hamlet","Macbeth","Othello","Sonnets"], fileType:"PDF", fileSize:"1.8 MB", pages:112, author:"Prof. Naik" },
+  { id:38, title:"Indian Philosophy", stream:"Arts", course:"B.A Philosophy", year:2, semester:4, subjects:["Vedanta","Buddhism","Jainism","Nyaya","Yoga"], fileType:"PDF", fileSize:"2.5 MB", pages:148, author:"Prof. Matilal" },
+  { id:39, title:"Human Anatomy", stream:"Medical", course:"MBBS", year:1, semester:1, subjects:["Skeletal System","Muscular System","Nervous System"], fileType:"PDF", fileSize:"5.2 MB", pages:310, author:"Prof. Chaurasia" },
+  { id:40, title:"Biochemistry", stream:"Medical", course:"MBBS", year:1, semester:2, subjects:["Enzymes","Metabolism","Proteins","Nucleic Acids"], fileType:"PDF", fileSize:"4.8 MB", pages:280, author:"Prof. Satyanarayana" },
+  { id:41, title:"Pharmacology", stream:"Medical", course:"MBBS", year:2, semester:4, subjects:["Drug Classification","Pharmacokinetics","ANS Drugs","Antibiotics"], fileType:"PDF", fileSize:"4.2 MB", pages:250, author:"Prof. Tripathi" },
+  { id:42, title:"Pathology", stream:"Medical", course:"MBBS", year:2, semester:3, subjects:["Cell Injury","Inflammation","Neoplasia","Hematology"], fileType:"PDF", fileSize:"5.5 MB", pages:325, author:"Prof. Harsh Mohan" },
+  { id:43, title:"Microbiology", stream:"Medical", course:"MBBS", year:2, semester:3, subjects:["Bacteria","Viruses","Fungi","Parasites","Immunology"], fileType:"PDF", fileSize:"3.9 MB", pages:215, author:"Prof. Ananthanarayan" },
+  { id:44, title:"Pharmaceutical Chemistry", stream:"Medical", course:"B.Pharm", year:2, semester:3, subjects:["Drug Design","SAR","Heterocyclic Compounds"], fileType:"PDF", fileSize:"3.1 MB", pages:180, author:"Prof. Wilson" },
+  { id:45, title:"Physiology", stream:"Medical", course:"MBBS", year:1, semester:2, subjects:["Cardiovascular","Respiratory","Renal","Endocrine"], fileType:"PDF", fileSize:"4.6 MB", pages:270, author:"Prof. Guyton" },
+  { id:46, title:"Compiler Design", stream:"Engineering", course:"B.Tech CSE", year:3, semester:6, subjects:["Lexical Analysis","Parsing","Code Generation","Optimization"], fileType:"PDF", fileSize:"2.5 MB", pages:145, author:"Prof. Ullman" },
+  { id:47, title:"Artificial Intelligence", stream:"Engineering", course:"B.Tech CSE", year:4, semester:7, subjects:["Search Algorithms","Knowledge Representation","NLP","Expert Systems"], fileType:"PDF", fileSize:"3.7 MB", pages:200, author:"Prof. Russell" },
+  { id:48, title:"Forensic Medicine", stream:"Medical", course:"MBBS", year:3, semester:5, subjects:["Toxicology","Ballistics","Identification","Medical Jurisprudence"], fileType:"PDF", fileSize:"3.4 MB", pages:190, author:"Prof. Reddy" },
 ];
 
-class NoteVaultApp{
-constructor(rawData){
-this.notes=rawData.map((n,i)=>({...n,id:i}));
-this.trie=new Trie();
-this.idx=new InvertedIndex();
-this.cache=new LRUCache(64);
-this.observer=null;
-this.activeSuggIdx=-1;
-this.state={query:'',stream:'',course:'',year:'',semester:'',sort:null,sortDir:1,view:'grid',tab:'all',bookmarks:new Set(),displayCount:12,pageSize:12,filtered:[]};
-this.refs={};
-this.accentGradients={Engineering:'linear-gradient(90deg,#6C63FF,#A855F7)',Science:'linear-gradient(90deg,#0EA5E9,#06B6D4)',Commerce:'linear-gradient(90deg,#F59E0B,#FBBF24)',Arts:'linear-gradient(90deg,#EF4444,#F87171)',Medical:'linear-gradient(90deg,#10B981,#34D399)'};
-this.streamIcons={Engineering:'⚙️',Science:'🔬',Commerce:'📈',Arts:'🎨',Medical:'🏥'};
-this.sortIcons={semester:'📊',course:'📁',year:'📅'};
-this.buildIndexes();
-this.cacheRefs();
-this.init();
-}
-
-buildIndexes(){
-const allIds=new Set();
-this.notes.forEach(note=>{
-allIds.add(note.id);
-this.idx.add('stream:'+note.Stream,note.id);
-this.idx.add('course:'+note.Course,note.id);
-this.idx.add('year:'+note.Year,note.id);
-this.idx.add('semester:'+note.Semester,note.id);
-note.Subjects.forEach(subj=>{
-this.trie.insert(subj,{type:'subject',text:subj,stream:note.Stream,course:note.Course,sem:note.Semester,id:note.id});
-subj.split(/\s+/).forEach(word=>{
-if(word.length>1){
-this.idx.add('word:'+word.toLowerCase(),note.id);
-this.trie.insert(word,{type:'subject',text:subj,stream:note.Stream,course:note.Course,sem:note.Semester,id:note.id});
-}
-});
-});
-this.trie.insert(note.Course,{type:'course',text:note.Course,stream:note.Stream,id:note.id});
-this.trie.insert(note.Stream,{type:'stream',text:note.Stream,id:note.id});
-});
-this.idx.add('all',allIds);
-this.allStreams=[...new Set(this.notes.map(n=>n.Stream))].sort();
-this.allCourses=[...new Set(this.notes.map(n=>n.Course))].sort();
-this.allYears=[...new Set(this.notes.map(n=>n.Year))].sort((a,b)=>a-b);
-this.allSemesters=[...new Set(this.notes.map(n=>n.Semester))].sort((a,b)=>a-b);
-this.allSubjects=new Set();
-this.notes.forEach(n=>n.Subjects.forEach(s=>this.allSubjects.add(s)));
-}
-
-cacheRefs(){
-const $=id=>document.getElementById(id);
-['searchBar','searchClear','suggestionsDropdown','filterStream','filterCourse','filterYear','filterSemester',
-'notesGrid','noResults','resultsCount','filtersPanel','filtersToggleBtn','filtersBadge','activeFiltersTags',
-'loadMoreContainer','loadMoreBtn','modalOverlay','modal','modalClose','modalBadges','modalTitle','modalDetails',
-'modalActions','scrollTopBtn','toastContainer','themeToggle','scrollProgress','headerParticles',
-'statNotes','statSubjects','statStreams','statCourses','tabAllCount','tabBookmarksCount'
-].forEach(id=>this.refs[id]=$(id));
-}
-
-init(){
-this.initTheme();
-this.createParticles();
-this.setupScrollObserver();
-this.populateFilters();
-this.loadBookmarks();
-this.hashToState();
-this.updateCourseFilter();
-this.animateStats();
-this.bindEvents();
-this.applyFilters();
-}
-
-initTheme(){
-const saved=localStorage.getItem('notevault-theme');
-if(saved)document.documentElement.setAttribute('data-theme',saved);
-else if(window.matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');
-this.updateThemeIcon();
-}
-
-toggleTheme(){
-const curr=document.documentElement.getAttribute('data-theme');
-const next=curr==='dark'?'light':'dark';
-document.documentElement.setAttribute('data-theme',next);
-localStorage.setItem('notevault-theme',next);
-this.updateThemeIcon();
-}
-
-updateThemeIcon(){
-this.refs.themeToggle.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';
-}
-
-createParticles(){
-const container=this.refs.headerParticles;
-const frag=document.createDocumentFragment();
-const shapes=['','square','ring'];
-for(let i=0;i<25;i++){
-const p=document.createElement('div');
-const size=Math.random()*22+4;
-const shape=shapes[Math.floor(Math.random()*shapes.length)];
-p.className='particle'+(shape?' '+shape:'');
-p.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${Math.random()*18+8}s;animation-delay:${Math.random()*-25}s;opacity:${Math.random()*0.12+0.03}`;
-frag.appendChild(p);
-}
-container.appendChild(frag);
-}
-
-setupScrollObserver(){
-this.observer=new IntersectionObserver((entries)=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-const delay=entry.target.dataset.delay||0;
-setTimeout(()=>entry.target.classList.add('revealed'),delay*40);
-this.observer.unobserve(entry.target);
-}
-});
-},{threshold:0.08,rootMargin:'60px'});
-}
-
-animateStats(){
-const ease=t=>t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
-const animate=(el,target)=>{
-const duration=800;
-const start=performance.now();
-const tick=now=>{
-const elapsed=Math.min((now-start)/duration,1);
-const val=Math.round(ease(elapsed)*target);
-el.textContent=val;
-if(elapsed<1)requestAnimationFrame(tick);
-else{el.textContent=target;el.classList.add('counting')}
+// ============================================================
+// CONSTANTS & HELPERS
+// ============================================================
+const STREAM_COLORS = {
+  Engineering: 'var(--stream-engineering)',
+  Science: 'var(--stream-science)',
+  Commerce: 'var(--stream-commerce)',
+  Arts: 'var(--stream-arts)',
+  Medical: 'var(--stream-medical)'
 };
-requestAnimationFrame(tick);
+const STREAM_ICONS = { Engineering:'⚙️', Science:'🔬', Commerce:'💼', Arts:'🎨', Medical:'🏥' };
+const ITEMS_PER_PAGE = 12;
+
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+
+// ============================================================
+// STATE
+// ============================================================
+const state = {
+  search: '',
+  stream: '',
+  course: '',
+  year: '',
+  semester: '',
+  sort: '',
+  tab: 'all',
+  view: 'grid',
+  page: 1,
+  bookmarks: JSON.parse(localStorage.getItem('nv_bookmarks') || '[]'),
+  filteredNotes: [],
+  theme: localStorage.getItem('nv_theme') || 'light'
 };
-animate(this.refs.statNotes,this.notes.length);
-animate(this.refs.statSubjects,this.allSubjects.size);
-animate(this.refs.statStreams,this.allStreams.length);
-animate(this.refs.statCourses,this.allCourses.length);
-}
 
-loadBookmarks(){
-try{
-const saved=JSON.parse(localStorage.getItem('notevault-bookmarks')||'[]');
-saved.forEach(id=>this.state.bookmarks.add(id));
-}catch(e){}
-this.updateBookmarkCount();
-}
-
-saveBookmarks(){
-localStorage.setItem('notevault-bookmarks',JSON.stringify([...this.state.bookmarks]));
-this.updateBookmarkCount();
-}
-
-toggleBookmark(id){
-if(this.state.bookmarks.has(id)){this.state.bookmarks.delete(id);this.showToast('Bookmark removed')}
-else{this.state.bookmarks.add(id);this.showToast('⭐ Note bookmarked!')}
-this.saveBookmarks();
-this.applyFilters();
-}
-
-updateBookmarkCount(){this.refs.tabBookmarksCount.textContent=this.state.bookmarks.size}
-
-showToast(msg){
-const t=document.createElement('div');
-t.className='toast';
-t.textContent=msg;
-this.refs.toastContainer.appendChild(t);
-setTimeout(()=>t.remove(),2600);
-}
-
-createRipple(e,el){
-const r=document.createElement('span');
-const rect=el.getBoundingClientRect();
-const size=Math.max(rect.width,rect.height)*2;
-r.className='ripple-effect';
-r.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
-el.appendChild(r);
-setTimeout(()=>r.remove(),600);
-}
-
-populateFilters(){
-const addOpts=(sel,items,label)=>{
-const frag=document.createDocumentFragment();
-items.forEach(v=>{
-const opt=document.createElement('option');
-opt.value=v;
-opt.textContent=label?`${label} ${v}`:v;
-frag.appendChild(opt);
-});
-sel.appendChild(frag);
+// ============================================================
+// DOM REFS
+// ============================================================
+const dom = {
+  scrollProgress: $('#scrollProgress'),
+  themeToggle: $('#themeToggle'),
+  headerParticles: $('#headerParticles'),
+  statNotes: $('#statNotes'),
+  statSubjects: $('#statSubjects'),
+  statStreams: $('#statStreams'),
+  statCourses: $('#statCourses'),
+  searchBar: $('#searchBar'),
+  searchClear: $('#searchClear'),
+  suggestionsDropdown: $('#suggestionsDropdown'),
+  resultsCount: $('#resultsCount'),
+  activeFiltersTags: $('#activeFiltersTags'),
+  filtersToggleBtn: $('#filtersToggleBtn'),
+  filtersBadge: $('#filtersBadge'),
+  filtersPanel: $('#filtersPanel'),
+  filterStream: $('#filterStream'),
+  filterCourse: $('#filterCourse'),
+  filterYear: $('#filterYear'),
+  filterSemester: $('#filterSemester'),
+  clearAll: $('#clearAll'),
+  notesGrid: $('#notesGrid'),
+  noResults: $('#noResults'),
+  loadMoreContainer: $('#loadMoreContainer'),
+  loadMoreBtn: $('#loadMoreBtn'),
+  modalOverlay: $('#modalOverlay'),
+  modalBadges: $('#modalBadges'),
+  modalTitle: $('#modalTitle'),
+  modalDetails: $('#modalDetails'),
+  modalActions: $('#modalActions'),
+  modalClose: $('#modalClose'),
+  scrollTopBtn: $('#scrollTopBtn'),
+  toastContainer: $('#toastContainer'),
+  tabAllCount: $('#tabAllCount'),
+  tabBookmarksCount: $('#tabBookmarksCount')
 };
-addOpts(this.refs.filterStream,this.allStreams);
-addOpts(this.refs.filterCourse,this.allCourses);
-addOpts(this.refs.filterYear,this.allYears,'Year');
-addOpts(this.refs.filterSemester,this.allSemesters,'Semester');
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  applyTheme(state.theme);
+  generateParticles();
+  populateFilters();
+  animateCounters();
+  applyFilters();
+  bindEvents();
 }
 
-updateCourseFilter(){
-const stream=this.refs.filterStream.value;
-const prev=this.refs.filterCourse.value;
-const courses=stream
-?[...new Set(this.notes.filter(n=>n.Stream===stream).map(n=>n.Course))].sort()
-:this.allCourses;
-this.refs.filterCourse.innerHTML='<option value="">All Courses</option>';
-const frag=document.createDocumentFragment();
-courses.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;frag.appendChild(o)});
-this.refs.filterCourse.appendChild(frag);
-this.refs.filterCourse.value=courses.includes(prev)?prev:'';
+// ============================================================
+// THEME
+// ============================================================
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  dom.themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+  document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0F1117' : '#6C63FF';
+  state.theme = theme;
+  localStorage.setItem('nv_theme', theme);
 }
 
-escapeRegex(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
-
-highlightMatch(text,query){
-if(!query)return text;
-const words=query.trim().split(/\s+/).filter(Boolean).map(w=>this.escapeRegex(w));
-if(!words.length)return text;
-return text.replace(new RegExp(`(${words.join('|')})`,'gi'),'<span class="highlight">$1</span>');
+function toggleTheme() {
+  applyTheme(state.theme === 'light' ? 'dark' : 'light');
+  showToast(state.theme === 'dark' ? '🌙 Dark mode enabled' : '☀️ Light mode enabled');
 }
 
-showSuggestions(query){
-const words=query.toLowerCase().split(/\s+/).filter(Boolean);
-if(!words.length){this.closeSuggestions();return}
-const results=[];
-const seen=new Set();
-const trieResults=this.trie.search(words[0]);
-const uniqueMap=new Map();
-trieResults.forEach(item=>{
-const key=item.type+':'+item.text;
-if(uniqueMap.has(key))return;
-if(words.length>1){
-const matchAll=words.every(w=>item.text.toLowerCase().includes(w));
-if(!matchAll)return;
-}
-uniqueMap.set(key,item);
-});
-uniqueMap.forEach(r=>results.push(r));
-if(!results.length&&words.length){
-this.notes.forEach(note=>{
-note.Subjects.forEach(subj=>{
-if(seen.has(subj))return;
-if(words.every(w=>subj.toLowerCase().includes(w))){
-seen.add(subj);
-results.push({type:'subject',text:subj,stream:note.Stream,course:note.Course,sem:note.Semester});
-}
-});
-});
-}
-this.refs.suggestionsDropdown.innerHTML='';
-this.activeSuggIdx=-1;
-if(!results.length){this.closeSuggestions();return}
-const frag=document.createDocumentFragment();
-const deduped=[];
-const dedupSet=new Set();
-results.forEach(r=>{
-const k=r.type+r.text;
-if(!dedupSet.has(k)){dedupSet.add(k);deduped.push(r)}
-});
-deduped.slice(0,10).forEach((r,i)=>{
-const div=document.createElement('div');
-div.className='suggestion-item';
-div.setAttribute('role','option');
-div.dataset.index=i;
-const iconBg=r.type==='subject'?'rgba(108,99,255,0.1)':r.type==='course'?'rgba(14,165,233,0.1)':'rgba(245,158,11,0.1)';
-const icon=r.type==='subject'?'📝':r.type==='course'?'🎓':'🏫';
-const meta=[r.stream,r.course,r.sem?`Sem ${r.sem}`:null].filter(Boolean).join(' · ');
-div.innerHTML=`<div class="suggestion-icon" style="background:${iconBg}">${icon}</div><div class="suggestion-text"><div class="suggestion-title">${this.highlightMatch(r.text,query)}</div>${meta?`<div class="suggestion-meta">${meta}</div>`:''}</div>`;
-div.addEventListener('click',()=>{
-this.refs.searchBar.value=r.text;
-this.refs.searchClear.classList.add('visible');
-this.closeSuggestions();
-this.applyFilters();
-});
-frag.appendChild(div);
-});
-this.refs.suggestionsDropdown.appendChild(frag);
-this.refs.suggestionsDropdown.classList.add('active');
-this.refs.searchBar.setAttribute('aria-expanded','true');
+// ============================================================
+// PARTICLES
+// ============================================================
+function generateParticles() {
+  const container = dom.headerParticles;
+  const count = window.innerWidth < 768 ? 8 : 15;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    const types = ['','square','ring'];
+    p.className = 'particle ' + types[Math.floor(Math.random() * types.length)];
+    const size = Math.random() * 20 + 5;
+    p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*5}s;`;
+    container.appendChild(p);
+  }
 }
 
-closeSuggestions(){
-this.refs.suggestionsDropdown.classList.remove('active');
-this.refs.searchBar.setAttribute('aria-expanded','false');
-this.activeSuggIdx=-1;
+// ============================================================
+// ANIMATED COUNTERS
+// ============================================================
+function animateCounters() {
+  const uniqueSubjects = new Set();
+  NOTES_DATA.forEach(n => n.subjects.forEach(s => uniqueSubjects.add(s)));
+  const streams = new Set(NOTES_DATA.map(n => n.stream));
+  const courses = new Set(NOTES_DATA.map(n => n.course));
+
+  animateNumber(dom.statNotes, NOTES_DATA.length);
+  animateNumber(dom.statSubjects, uniqueSubjects.size);
+  animateNumber(dom.statStreams, streams.size);
+  animateNumber(dom.statCourses, courses.size);
 }
 
-handleSuggestionKeys(e){
-const items=this.refs.suggestionsDropdown.querySelectorAll('.suggestion-item');
-if(!items.length||!this.refs.suggestionsDropdown.classList.contains('active'))return;
-if(e.key==='ArrowDown'){e.preventDefault();this.activeSuggIdx=Math.min(this.activeSuggIdx+1,items.length-1)}
-else if(e.key==='ArrowUp'){e.preventDefault();this.activeSuggIdx=Math.max(this.activeSuggIdx-1,-1)}
-else if(e.key==='Enter'&&this.activeSuggIdx>=0){e.preventDefault();items[this.activeSuggIdx].click();return}
-else if(e.key==='Escape'){this.closeSuggestions();this.refs.searchBar.blur();return}
-else return;
-items.forEach((it,i)=>it.classList.toggle('active',i===this.activeSuggIdx));
-if(this.activeSuggIdx>=0)items[this.activeSuggIdx].scrollIntoView({block:'nearest'});
+function animateNumber(el, target) {
+  const duration = 1500;
+  const start = performance.now();
+  el.classList.add('counting');
+
+  function step(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(eased * target);
+    if (progress < 1) requestAnimationFrame(step);
+    else el.classList.remove('counting');
+  }
+  requestAnimationFrame(step);
 }
 
-getCacheKey(){
-const s=this.state;
-return`${s.stream}|${s.course}|${s.year}|${s.semester}|${s.tab}|${this.refs.searchBar.value.trim().toLowerCase()}|${s.sort}|${s.sortDir}`;
+// ============================================================
+// POPULATE FILTER DROPDOWNS
+// ============================================================
+function populateFilters() {
+  const streams = [...new Set(NOTES_DATA.map(n => n.stream))].sort();
+  const courses = [...new Set(NOTES_DATA.map(n => n.course))].sort();
+  const years = [...new Set(NOTES_DATA.map(n => n.year))].sort();
+  const semesters = [...new Set(NOTES_DATA.map(n => n.semester))].sort();
+
+  streams.forEach(s => dom.filterStream.add(new Option(s, s)));
+  courses.forEach(c => dom.filterCourse.add(new Option(c, c)));
+  years.forEach(y => dom.filterYear.add(new Option('Year ' + y, y)));
+  semesters.forEach(s => dom.filterSemester.add(new Option('Semester ' + s, s)));
 }
 
-applyFilters(){
-const cacheKey=this.getCacheKey();
-let filtered=this.cache.get(cacheKey);
-if(!filtered){
-const query=this.refs.searchBar.value.trim().toLowerCase();
-const words=query.split(/\s+/).filter(Boolean);
-const {stream,course,year,semester,sort,sortDir,tab}=this.state;
-const sets=[];
-if(stream)sets.push(this.idx.get('stream:'+stream));
-if(course)sets.push(this.idx.get('course:'+course));
-if(year)sets.push(this.idx.get('year:'+year));
-if(semester)sets.push(this.idx.get('semester:'+semester));
-let candidateIds;
-if(sets.length)candidateIds=InvertedIndex.intersect(sets);
-else candidateIds=new Set(this.notes.map(n=>n.id));
-if(tab==='bookmarks'){
-candidateIds=new Set([...candidateIds].filter(id=>this.state.bookmarks.has(id)));
-}
-let candidates=[...candidateIds].map(id=>this.notes[id]);
-if(words.length){
-candidates=candidates.filter(note=>{
-const haystack=[...note.Subjects,note.Course,note.Stream,`Year ${note.Year}`,`Semester ${note.Semester}`,`Sem ${note.Semester}`].map(s=>s.toLowerCase());
-return words.every(w=>haystack.some(h=>h.includes(w)));
-});
-candidates.forEach(note=>{
-let score=0;
-note.Subjects.forEach(s=>{
-const sl=s.toLowerCase();
-words.forEach(w=>{
-if(sl===w)score+=10;
-else if(sl.startsWith(w))score+=5;
-else if(sl.includes(w))score+=2;
-});
-});
-if(note.Course.toLowerCase().includes(query))score+=3;
-if(note.Stream.toLowerCase().includes(query))score+=1;
-note._score=score;
-});
-candidates.sort((a,b)=>b._score-a._score);
-}
-if(sort){
-const cmp=sort==='semester'?(a,b)=>(a.Semester-b.Semester)*sortDir
-:sort==='year'?(a,b)=>(a.Year-b.Year)*sortDir
-:(a,b)=>a.Course.localeCompare(b.Course)*sortDir;
-candidates.sort(cmp);
-}
-filtered=candidates;
-this.cache.set(cacheKey,filtered);
-}
-this.state.filtered=filtered;
-this.renderNotes(filtered,this.refs.searchBar.value.trim().toLowerCase());
-this.updateActiveFilterTags();
-this.updateFilterSelectStyles();
-this.updateFilterBadge();
-this.refs.tabAllCount.textContent=this.notes.length;
+// ============================================================
+// FILTER, SORT, RENDER PIPELINE
+// ============================================================
+function applyFilters() {
+  let notes = [...NOTES_DATA];
+  const q = state.search.toLowerCase().trim();
+
+  // Tab filter
+  if (state.tab === 'bookmarks') {
+    notes = notes.filter(n => state.bookmarks.includes(n.id));
+  }
+
+  // Search
+  if (q) {
+    notes = notes.filter(n =>
+      n.title.toLowerCase().includes(q) ||
+      n.stream.toLowerCase().includes(q) ||
+      n.course.toLowerCase().includes(q) ||
+      n.subjects.some(s => s.toLowerCase().includes(q)) ||
+      n.author.toLowerCase().includes(q)
+    );
+  }
+
+  // Filters
+  if (state.stream) notes = notes.filter(n => n.stream === state.stream);
+  if (state.course) notes = notes.filter(n => n.course === state.course);
+  if (state.year) notes = notes.filter(n => n.year === Number(state.year));
+  if (state.semester) notes = notes.filter(n => n.semester === Number(state.semester));
+
+  // Sort
+  if (state.sort === 'semester') notes.sort((a, b) => a.semester - b.semester);
+  else if (state.sort === 'course') notes.sort((a, b) => a.course.localeCompare(b.course));
+  else if (state.sort === 'year') notes.sort((a, b) => a.year - b.year);
+
+  state.filteredNotes = notes;
+  state.page = 1;
+  renderNotes();
+  updateUI();
 }
 
-renderNotes(notes,query){
-this.refs.notesGrid.innerHTML='';
-if(!notes.length){
-this.refs.noResults.classList.add('visible');
-this.refs.resultsCount.innerHTML='';
-this.refs.loadMoreContainer.style.display='none';
-return;
-}
-this.refs.noResults.classList.remove('visible');
-const showing=Math.min(this.state.displayCount,notes.length);
-this.refs.resultsCount.innerHTML=`Showing <strong>${showing}</strong> of <strong>${notes.length}</strong> note${notes.length!==1?'s':''}`;
-const frag=document.createDocumentFragment();
-notes.slice(0,this.state.displayCount).forEach((note,i)=>{
-const card=this.createCard(note,query,i);
-frag.appendChild(card);
-});
-this.refs.notesGrid.appendChild(frag);
-this.refs.notesGrid.querySelectorAll('.note-card').forEach((card,i)=>{
-card.dataset.delay=i;
-this.observer.observe(card);
-});
-if(notes.length>this.state.displayCount){
-this.refs.loadMoreContainer.style.display='block';
-this.refs.loadMoreBtn.textContent=`Load More (${notes.length-this.state.displayCount} remaining)`;
-}else this.refs.loadMoreContainer.style.display='none';
-}
+function renderNotes() {
+  const grid = dom.notesGrid;
+  const visible = state.filteredNotes.slice(0, state.page * ITEMS_PER_PAGE);
 
-createCard(note,query,index){
-const card=document.createElement('article');
-card.className='note-card'+(this.state.bookmarks.has(note.id)?' bookmarked':'');
-card.setAttribute('tabindex','0');
-card.setAttribute('role','article');
-card.setAttribute('aria-label',note.Subjects.join(' and '));
-const semType=note.Semester%2===0?'even':'odd';
-const fileName=note.Source?note.Source.split('/').pop():'No file';
-const accent=this.accentGradients[note.Stream]||this.accentGradients.Engineering;
-const subjectTags=note.Subjects.map(s=>`<span class="subject-tag">${query?this.highlightMatch(s,query):s}</span>`).join('');
-const titleHTML=query?this.highlightMatch(note.Subjects.join(' & '),query):note.Subjects.join(' & ');
-const bmIcon=this.state.bookmarks.has(note.id)?'★':'☆';
-card.innerHTML=`<div class="card-accent" style="background:${accent}"></div><div class="card-body"><div class="card-top-row"><div class="card-badges"><span class="badge badge-stream" data-stream="${note.Stream}">${this.streamIcons[note.Stream]||''} ${note.Stream}</span><span class="badge badge-course">${note.Course}</span><span class="badge badge-year" data-year="${note.Year}">Year ${note.Year}</span><span class="badge badge-semester ${semType}">Sem ${note.Semester}</span></div><button class="bookmark-btn" aria-label="${this.state.bookmarks.has(note.id)?'Remove bookmark':'Bookmark this note'}" data-id="${note.id}">${bmIcon}</button></div><div class="card-subjects"><h3>${titleHTML}</h3><div class="subject-tags">${subjectTags}</div></div></div><div class="card-footer"><span class="file-info">📄 ${fileName}</span>${note.Source?`<a href="${note.Source}" class="download-btn" download title="Download ${fileName}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</a>`:'<span class="badge badge-course">Coming Soon</span>'}</div>`;
-const bmBtn=card.querySelector('.bookmark-btn');
-bmBtn.addEventListener('click',e=>{
-e.stopPropagation();
-bmBtn.classList.add('pop');
-setTimeout(()=>bmBtn.classList.remove('pop'),400);
-this.toggleBookmark(note.id);
-});
-card.addEventListener('click',e=>{
-if(e.target.closest('.download-btn')||e.target.closest('.bookmark-btn'))return;
-this.createRipple(e,card);
-setTimeout(()=>this.openModal(note),150);
-});
-card.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();this.openModal(note)}});
-return card;
+  grid.innerHTML = '';
+
+  if (visible.length === 0) {
+    dom.noResults.classList.add('visible');
+    dom.loadMoreContainer.style.display = 'none';
+    return;
+  }
+  dom.noResults.classList.remove('visible');
+
+  visible.forEach((note, i) => {
+    grid.appendChild(createCard(note, i));
+  });
+
+  // Load more
+  if (visible.length < state.filteredNotes.length) {
+    dom.loadMoreContainer.style.display = '';
+    dom.loadMoreBtn.textContent = `Load More (${state.filteredNotes.length - visible.length} remaining)`;
+  } else {
+    dom.loadMoreContainer.style.display = 'none';
+  }
+
+  // Reveal animation
+  requestAnimationFrame(() => {
+    grid.querySelectorAll('.note-card').forEach((card, i) => {
+      setTimeout(() => card.classList.add('revealed'), i * 60);
+    });
+  });
 }
 
-openModal(note){
-const semType=note.Semester%2===0?'even':'odd';
-const fileName=note.Source?note.Source.split('/').pop():'No file';
-const isBm=this.state.bookmarks.has(note.id);
-this.refs.modalBadges.innerHTML=`<span class="badge badge-stream" data-stream="${note.Stream}">${this.streamIcons[note.Stream]||''} ${note.Stream}</span><span class="badge badge-course">${note.Course}</span><span class="badge badge-year" data-year="${note.Year}">Year ${note.Year}</span><span class="badge badge-semester ${semType}">Sem ${note.Semester}</span>`;
-this.refs.modalTitle.textContent=note.Subjects.join(' & ');
-this.refs.modalDetails.innerHTML=`<div class="modal-detail"><span class="modal-detail-icon">🏫</span><span>Stream: <strong>${note.Stream}</strong></span></div><div class="modal-detail"><span class="modal-detail-icon">🎓</span><span>Course: <strong>${note.Course}</strong></span></div><div class="modal-detail"><span class="modal-detail-icon">📅</span><span>Year ${note.Year}, Semester ${note.Semester}</span></div><div class="modal-detail"><span class="modal-detail-icon">📝</span><span>Subjects: <strong>${note.Subjects.join(', ')}</strong></span></div><div class="modal-detail"><span class="modal-detail-icon">📄</span><span>File: ${fileName}</span></div>`;
-this.refs.modalActions.innerHTML=`${note.Source?`<a href="${note.Source}" class="download-btn" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download PDF</a>`:'<button class="download-btn" disabled style="opacity:0.5;cursor:not-allowed">Coming Soon</button>'}<button class="modal-bookmark-btn${isBm?' bookmarked':''}" id="modalBookmarkBtn">${isBm?'★ Bookmarked':'☆ Bookmark'}</button>`;
-document.getElementById('modalBookmarkBtn').addEventListener('click',()=>{
-this.toggleBookmark(note.id);
-const b=this.state.bookmarks.has(note.id);
-const btn=document.getElementById('modalBookmarkBtn');
-btn.className='modal-bookmark-btn'+(b?' bookmarked':'');
-btn.innerHTML=b?'★ Bookmarked':'☆ Bookmark';
-});
-this.refs.modalOverlay.classList.add('active');
-this.refs.modalOverlay.setAttribute('aria-hidden','false');
-document.body.style.overflow='hidden';
-this.refs.modalClose.focus();
+function createCard(note, index) {
+  const isBookmarked = state.bookmarks.includes(note.id);
+  const semClass = note.semester % 2 === 0 ? 'even' : 'odd';
+  const streamColor = STREAM_COLORS[note.stream] || 'var(--primary)';
+  const q = state.search.toLowerCase().trim();
+
+  let titleHTML = escapeHTML(note.title);
+  if (q) titleHTML = highlightText(titleHTML, q);
+
+  const card = document.createElement('article');
+  card.className = 'note-card' + (isBookmarked ? ' bookmarked' : '');
+  card.dataset.id = note.id;
+
+  card.innerHTML = `
+    <div class="card-accent" style="background:${streamColor}"></div>
+    <div class="card-body">
+      <div class="card-top-row">
+        <div class="card-badges">
+          <span class="badge badge-stream" data-stream="${note.stream}">${note.stream}</span>
+          <span class="badge badge-course">${note.course}</span>
+          <span class="badge badge-semester ${semClass}">Sem ${note.semester}</span>
+        </div>
+        <button class="bookmark-btn" aria-label="${isBookmarked ? 'Remove bookmark' : 'Bookmark this note'}" data-id="${note.id}">
+          ${isBookmarked ? '★' : '☆'}
+        </button>
+      </div>
+      <div class="card-subjects">
+        <h3>${titleHTML}</h3>
+        <div class="subject-tags">
+          ${note.subjects.map(s => `<span class="subject-tag">${escapeHTML(s)}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="file-info">📄 ${note.fileType} • ${note.fileSize}</span>
+      <button class="download-btn" data-id="${note.id}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download
+      </button>
+    </div>
+  `;
+
+  return card;
 }
 
-closeModal(){
-this.refs.modalOverlay.classList.remove('active');
-this.refs.modalOverlay.setAttribute('aria-hidden','true');
-document.body.style.overflow='';
+// ============================================================
+// UPDATE UI ELEMENTS
+// ============================================================
+function updateUI() {
+  // Results count
+  const total = state.filteredNotes.length;
+  dom.resultsCount.innerHTML = `Showing <strong>${total}</strong> note${total !== 1 ? 's' : ''}`;
+
+  // Tab counts
+  dom.tabAllCount.textContent = state.tab === 'all' ? total : NOTES_DATA.length;
+  const bmCount = NOTES_DATA.filter(n => state.bookmarks.includes(n.id)).length;
+  dom.tabBookmarksCount.textContent = bmCount;
+
+  // Active filter tags
+  renderActiveFilterTags();
+
+  // Filter badge
+  const activeCount = [state.stream, state.course, state.year, state.semester].filter(Boolean).length;
+  dom.filtersBadge.textContent = activeCount;
+  dom.filtersBadge.classList.toggle('visible', activeCount > 0);
+
+  // Filter select styling
+  dom.filterStream.classList.toggle('has-value', !!state.stream);
+  dom.filterCourse.classList.toggle('has-value', !!state.course);
+  dom.filterYear.classList.toggle('has-value', !!state.year);
+  dom.filterSemester.classList.toggle('has-value', !!state.semester);
+
+  // Update dependent course options based on stream
+  updateCoursesForStream();
 }
 
-updateActiveFilterTags(){
-this.refs.activeFiltersTags.innerHTML='';
-const frag=document.createDocumentFragment();
-const addTag=(label,clearFn)=>{
-const tag=document.createElement('span');
-tag.className='active-filter-tag';
-tag.innerHTML=`${label} <span class="tag-remove">✕</span>`;
-tag.addEventListener('click',clearFn);
-frag.appendChild(tag);
-};
-const s=this.state;
-if(s.stream)addTag(s.stream,()=>{this.refs.filterStream.value='';s.stream='';this.updateCourseFilter();this.cache=new LRUCache(64);this.applyFilters()});
-if(s.course)addTag(s.course,()=>{this.refs.filterCourse.value='';s.course='';this.cache=new LRUCache(64);this.applyFilters()});
-if(s.year)addTag(`Year ${s.year}`,()=>{this.refs.filterYear.value='';s.year='';this.cache=new LRUCache(64);this.applyFilters()});
-if(s.semester)addTag(`Sem ${s.semester}`,()=>{this.refs.filterSemester.value='';s.semester='';this.cache=new LRUCache(64);this.applyFilters()});
-this.refs.activeFiltersTags.appendChild(frag);
+function updateCoursesForStream() {
+  const currentVal = dom.filterCourse.value;
+  const courses = state.stream
+    ? [...new Set(NOTES_DATA.filter(n => n.stream === state.stream).map(n => n.course))].sort()
+    : [...new Set(NOTES_DATA.map(n => n.course))].sort();
+
+  dom.filterCourse.innerHTML = '<option value="">All Courses</option>';
+  courses.forEach(c => {
+    const opt = new Option(c, c);
+    if (c === currentVal) opt.selected = true;
+    dom.filterCourse.add(opt);
+  });
 }
 
-updateFilterSelectStyles(){
-['filterStream','filterCourse','filterYear','filterSemester'].forEach(id=>{
-this.refs[id].classList.toggle('has-value',!!this.refs[id].value);
-});
+function renderActiveFilterTags() {
+  const tags = [];
+  if (state.stream) tags.push({ label: state.stream, key: 'stream' });
+  if (state.course) tags.push({ label: state.course, key: 'course' });
+  if (state.year) tags.push({ label: 'Year ' + state.year, key: 'year' });
+  if (state.semester) tags.push({ label: 'Sem ' + state.semester, key: 'semester' });
+  if (state.search) tags.push({ label: `"${state.search}"`, key: 'search' });
+
+  dom.activeFiltersTags.innerHTML = tags.map(t =>
+    `<span class="active-filter-tag" data-key="${t.key}">${escapeHTML(t.label)} <span class="tag-remove">✕</span></span>`
+  ).join('');
 }
 
-updateFilterBadge(){
-const count=[this.state.stream,this.state.course,this.state.year,this.state.semester].filter(Boolean).length;
-this.refs.filtersBadge.textContent=count;
-this.refs.filtersBadge.classList.toggle('visible',count>0);
+// ============================================================
+// SEARCH SUGGESTIONS
+// ============================================================
+function showSuggestions(query) {
+  if (!query.trim()) {
+    dom.suggestionsDropdown.classList.remove('active');
+    dom.searchBar.setAttribute('aria-expanded', 'false');
+    return;
+  }
+
+  const q = query.toLowerCase();
+  const matches = [];
+
+  // Match notes
+  NOTES_DATA.forEach(n => {
+    const score =
+      (n.title.toLowerCase().includes(q) ? 3 : 0) +
+      (n.course.toLowerCase().includes(q) ? 2 : 0) +
+      (n.stream.toLowerCase().includes(q) ? 2 : 0) +
+      (n.subjects.some(s => s.toLowerCase().includes(q)) ? 1 : 0);
+    if (score > 0) matches.push({ note: n, score });
+  });
+
+  matches.sort((a, b) => b.score - a.score);
+  const top = matches.slice(0, 8);
+
+  if (top.length === 0) {
+    dom.suggestionsDropdown.classList.remove('active');
+    dom.searchBar.setAttribute('aria-expanded', 'false');
+    return;
+  }
+
+  let html = '<div class="suggestion-header">Suggestions</div>';
+  top.forEach(({ note }) => {
+    const streamColor = STREAM_COLORS[note.stream] || 'var(--primary)';
+    html += `
+      <div class="suggestion-item" data-id="${note.id}" role="option">
+        <div class="suggestion-icon" style="background:${streamColor}20;color:${streamColor}">${STREAM_ICONS[note.stream] || '📄'}</div>
+        <div class="suggestion-text">
+          <div class="suggestion-title">${escapeHTML(note.title)}</div>
+          <div class="suggestion-meta">${note.course} • Sem ${note.semester}</div>
+        </div>
+      </div>`;
+  });
+
+  dom.suggestionsDropdown.innerHTML = html;
+  dom.suggestionsDropdown.classList.add('active');
+  dom.searchBar.setAttribute('aria-expanded', 'true');
 }
 
-handleSort(type){
-if(this.state.sort===type)this.state.sortDir*=-1;
-else{this.state.sort=type;this.state.sortDir=1}
-document.querySelectorAll('.sort-btn').forEach(btn=>{
-const isActive=btn.dataset.sort===this.state.sort;
-btn.classList.toggle('active',isActive);
-const arrow=isActive?(this.state.sortDir===1?' ↑':' ↓'):'';
-btn.innerHTML=`${this.sortIcons[btn.dataset.sort]} ${btn.dataset.sort.charAt(0).toUpperCase()+btn.dataset.sort.slice(1)}${arrow}`;
-});
-this.state.displayCount=this.state.pageSize;
-this.cache=new LRUCache(64);
-this.applyFilters();
+// ============================================================
+// MODAL
+// ============================================================
+function openModal(noteId) {
+  const note = NOTES_DATA.find(n => n.id === noteId);
+  if (!note) return;
+
+  const isBookmarked = state.bookmarks.includes(note.id);
+  const semClass = note.semester % 2 === 0 ? 'even' : 'odd';
+
+  dom.modalBadges.innerHTML = `
+    <span class="badge badge-stream" data-stream="${note.stream}">${note.stream}</span>
+    <span class="badge badge-course">${note.course}</span>
+    <span class="badge badge-year">Year ${note.year}</span>
+    <span class="badge badge-semester ${semClass}">Sem ${note.semester}</span>
+  `;
+
+  dom.modalTitle.textContent = note.title;
+
+  dom.modalDetails.innerHTML = `
+    <div class="modal-detail"><span class="modal-detail-icon">📚</span><span>Subjects: ${note.subjects.join(', ')}</span></div>
+    <div class="modal-detail"><span class="modal-detail-icon">✍️</span><span>Author: ${note.author}</span></div>
+    <div class="modal-detail"><span class="modal-detail-icon">📄</span><span>Format: ${note.fileType} • ${note.fileSize}</span></div>
+    <div class="modal-detail"><span class="modal-detail-icon">📖</span><span>Pages: ${note.pages}</span></div>
+    <div class="modal-detail"><span class="modal-detail-icon">🎓</span><span>Year ${note.year}, Semester ${note.semester}</span></div>
+  `;
+
+  dom.modalActions.innerHTML = `
+    <button class="download-btn" data-id="${note.id}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download ${note.fileType}
+    </button>
+    <button class="modal-bookmark-btn${isBookmarked ? ' bookmarked' : ''}" data-id="${note.id}">
+      ${isBookmarked ? '★ Bookmarked' : '☆ Bookmark'}
+    </button>
+  `;
+
+  dom.modalOverlay.classList.add('active');
+  dom.modalOverlay.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
 }
 
-clearAll(){
-this.refs.searchBar.value='';
-this.refs.searchClear.classList.remove('visible');
-['filterStream','filterCourse','filterYear','filterSemester'].forEach(id=>this.refs[id].value='');
-Object.assign(this.state,{query:'',stream:'',course:'',year:'',semester:'',sort:null,sortDir:1,displayCount:this.state.pageSize});
-document.querySelectorAll('.sort-btn').forEach(btn=>{
-btn.classList.remove('active');
-btn.innerHTML=`${this.sortIcons[btn.dataset.sort]} ${btn.dataset.sort.charAt(0).toUpperCase()+btn.dataset.sort.slice(1)}`;
-});
-this.closeSuggestions();
-this.updateCourseFilter();
-this.cache=new LRUCache(64);
-this.applyFilters();
-this.stateToHash();
+function closeModal() {
+  dom.modalOverlay.classList.remove('active');
+  dom.modalOverlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
 }
 
-setView(view){
-this.state.view=view;
-this.refs.notesGrid.classList.toggle('list-view',view==='list');
-document.querySelectorAll('.view-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.view===view));
+// ============================================================
+// BOOKMARKS
+// ============================================================
+function toggleBookmark(id) {
+  const idx = state.bookmarks.indexOf(id);
+  if (idx > -1) {
+    state.bookmarks.splice(idx, 1);
+    showToast('☆ Bookmark removed');
+  } else {
+    state.bookmarks.push(id);
+    showToast('★ Note bookmarked!');
+  }
+  localStorage.setItem('nv_bookmarks', JSON.stringify(state.bookmarks));
+  applyFilters();
+
+  // Pop animation on card bookmark button
+  const btn = document.querySelector(`.bookmark-btn[data-id="${id}"]`);
+  if (btn) { btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop'); }
 }
 
-setTab(tab){
-this.state.tab=tab;
-document.querySelectorAll('.tab-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.tab===tab));
-this.state.displayCount=this.state.pageSize;
-this.cache=new LRUCache(64);
-this.applyFilters();
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(message) {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = message;
+  dom.toastContainer.appendChild(toast);
+  setTimeout(() => toast.remove(), 2600);
 }
 
-updateScrollProgress(){
-const scrollTop=window.scrollY;
-const docHeight=document.documentElement.scrollHeight-window.innerHeight;
-const progress=docHeight>0?(scrollTop/docHeight)*100:0;
-this.refs.scrollProgress.style.width=progress+'%';
+// ============================================================
+// RIPPLE EFFECT
+// ============================================================
+function createRipple(e, el) {
+  const rect = el.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const ripple = document.createElement('span');
+  ripple.className = 'ripple-effect';
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+  ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+  el.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 600);
 }
 
-stateToHash(){
-const params=new URLSearchParams();
-if(this.state.stream)params.set('stream',this.state.stream);
-if(this.state.course)params.set('course',this.state.course);
-if(this.state.year)params.set('year',this.state.year);
-if(this.state.semester)params.set('semester',this.state.semester);
-if(this.refs.searchBar.value.trim())params.set('q',this.refs.searchBar.value.trim());
-const hash=params.toString();
-history.replaceState(null,'',hash?'#'+hash:window.location.pathname);
+// ============================================================
+// HELPERS
+// ============================================================
+function escapeHTML(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
 }
 
-hashToState(){
-const hash=window.location.hash.slice(1);
-if(!hash)return;
-const params=new URLSearchParams(hash);
-if(params.has('stream')){this.refs.filterStream.value=params.get('stream');this.state.stream=params.get('stream')}
-if(params.has('course')){this.refs.filterCourse.value=params.get('course');this.state.course=params.get('course')}
-if(params.has('year')){this.refs.filterYear.value=params.get('year');this.state.year=params.get('year')}
-if(params.has('semester')){this.refs.filterSemester.value=params.get('semester');this.state.semester=params.get('semester')}
-if(params.has('q')){this.refs.searchBar.value=params.get('q');this.refs.searchClear.classList.add('visible')}
+function highlightText(text, query) {
+  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  return text.replace(regex, '<span class="highlight">$1</span>');
 }
 
-debounce(fn,ms){
-let t;
-return(...args)=>{clearTimeout(t);t=setTimeout(()=>fn.apply(this,args),ms)};
+// ============================================================
+// EVENT BINDINGS
+// ============================================================
+function bindEvents() {
+  // Theme
+  dom.themeToggle.addEventListener('click', toggleTheme);
+
+  // Search
+  let searchDebounce;
+  dom.searchBar.addEventListener('input', (e) => {
+    state.search = e.target.value;
+    dom.searchClear.classList.toggle('visible', !!state.search);
+    clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(() => {
+      applyFilters();
+      showSuggestions(state.search);
+    }, 200);
+  });
+
+  dom.searchClear.addEventListener('click', () => {
+    state.search = '';
+    dom.searchBar.value = '';
+    dom.searchClear.classList.remove('visible');
+    dom.suggestionsDropdown.classList.remove('active');
+    dom.searchBar.focus();
+    applyFilters();
+  });
+
+  // Keyboard shortcut: / to focus search
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== dom.searchBar) {
+      e.preventDefault();
+      dom.searchBar.focus();
+    }
+    if (e.key === 'Escape') {
+      dom.suggestionsDropdown.classList.remove('active');
+      dom.searchBar.setAttribute('aria-expanded', 'false');
+      if (dom.modalOverlay.classList.contains('active')) closeModal();
+      dom.searchBar.blur();
+    }
+  });
+
+  // Suggestion clicks
+  dom.suggestionsDropdown.addEventListener('click', (e) => {
+    const item = e.target.closest('.suggestion-item');
+    if (item) {
+      const id = Number(item.dataset.id);
+      const note = NOTES_DATA.find(n => n.id === id);
+      if (note) {
+        state.search = note.title;
+        dom.searchBar.value = note.title;
+        dom.searchClear.classList.add('visible');
+        dom.suggestionsDropdown.classList.remove('active');
+        applyFilters();
+      }
+    }
+  });
+
+  // Close suggestions on outside click
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-wrapper')) {
+      dom.suggestionsDropdown.classList.remove('active');
+      dom.searchBar.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Filters
+  dom.filterStream.addEventListener('change', (e) => { state.stream = e.target.value; state.course = ''; applyFilters(); });
+  dom.filterCourse.addEventListener('change', (e) => { state.course = e.target.value; applyFilters(); });
+  dom.filterYear.addEventListener('change', (e) => { state.year = e.target.value; applyFilters(); });
+  dom.filterSemester.addEventListener('change', (e) => { state.semester = e.target.value; applyFilters(); });
+
+  // Filter toggle (mobile)
+  dom.filtersToggleBtn.addEventListener('click', () => {
+    dom.filtersPanel.classList.toggle('open');
+  });
+
+  // Sort buttons
+  $$('.sort-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      createRipple(e, btn);
+      const sort = btn.dataset.sort;
+      if (state.sort === sort) {
+        state.sort = '';
+        btn.classList.remove('active');
+      } else {
+        $$('.sort-btn').forEach(b => b.classList.remove('active'));
+        state.sort = sort;
+        btn.classList.add('active');
+      }
+      applyFilters();
+    });
+  });
+
+  // Clear all
+  dom.clearAll.addEventListener('click', (e) => {
+    createRipple(e, dom.clearAll);
+    state.search = '';
+    state.stream = '';
+    state.course = '';
+    state.year = '';
+    state.semester = '';
+    state.sort = '';
+    dom.searchBar.value = '';
+    dom.searchClear.classList.remove('visible');
+    dom.filterStream.value = '';
+    dom.filterCourse.value = '';
+    dom.filterYear.value = '';
+    dom.filterSemester.value = '';
+    $$('.sort-btn').forEach(b => b.classList.remove('active'));
+    applyFilters();
+    showToast('🧹 All filters cleared');
+  });
+
+  // Active filter tag removal
+  dom.activeFiltersTags.addEventListener('click', (e) => {
+    const tag = e.target.closest('.active-filter-tag');
+    if (!tag) return;
+    const key = tag.dataset.key;
+    if (key === 'search') { state.search = ''; dom.searchBar.value = ''; dom.searchClear.classList.remove('visible'); }
+    else if (key === 'stream') { state.stream = ''; dom.filterStream.value = ''; }
+    else if (key === 'course') { state.course = ''; dom.filterCourse.value = ''; }
+    else if (key === 'year') { state.year = ''; dom.filterYear.value = ''; }
+    else if (key === 'semester') { state.semester = ''; dom.filterSemester.value = ''; }
+    applyFilters();
+  });
+
+  // Tabs
+  $$('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $$('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.tab = btn.dataset.tab;
+      applyFilters();
+    });
+  });
+
+  // View toggle
+  $$('.view-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $$('.view-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.view = btn.dataset.view;
+      dom.notesGrid.classList.toggle('list-view', state.view === 'list');
+    });
+  });
+
+  // Notes grid delegation — bookmark, download, card click
+  dom.notesGrid.addEventListener('click', (e) => {
+    const bookmarkBtn = e.target.closest('.bookmark-btn');
+    if (bookmarkBtn) {
+      e.stopPropagation();
+      toggleBookmark(Number(bookmarkBtn.dataset.id));
+      return;
+    }
+
+    const downloadBtn = e.target.closest('.download-btn');
+    if (downloadBtn) {
+      e.stopPropagation();
+      createRipple(e, downloadBtn);
+      const note = NOTES_DATA.find(n => n.id === Number(downloadBtn.dataset.id));
+      if (note) showToast(`⬇️ Downloading "${note.title}"...`);
+      return;
+    }
+
+    const card = e.target.closest('.note-card');
+    if (card) {
+      openModal(Number(card.dataset.id));
+    }
+  });
+
+  // Modal
+  dom.modalClose.addEventListener('click', closeModal);
+  dom.modalOverlay.addEventListener('click', (e) => {
+    if (e.target === dom.modalOverlay) closeModal();
+  });
+
+  // Modal actions delegation
+  dom.modalActions.addEventListener('click', (e) => {
+    const downloadBtn = e.target.closest('.download-btn');
+    if (downloadBtn) {
+      createRipple(e, downloadBtn);
+      const note = NOTES_DATA.find(n => n.id === Number(downloadBtn.dataset.id));
+      if (note) showToast(`⬇️ Downloading "${note.title}"...`);
+      return;
+    }
+
+    const bmBtn = e.target.closest('.modal-bookmark-btn');
+    if (bmBtn) {
+      const id = Number(bmBtn.dataset.id);
+      toggleBookmark(id);
+      const isNowBookmarked = state.bookmarks.includes(id);
+      bmBtn.classList.toggle('bookmarked', isNowBookmarked);
+      bmBtn.innerHTML = isNowBookmarked ? '★ Bookmarked' : '☆ Bookmark';
+    }
+  });
+
+  // Load more
+  dom.loadMoreBtn.addEventListener('click', (e) => {
+    createRipple(e, dom.loadMoreBtn);
+    state.page++;
+    renderNotes();
+  });
+
+  // Scroll progress + back to top
+  let scrollTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      requestAnimationFrame(() => {
+        const scrolled = window.scrollY;
+        const height = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = height > 0 ? (scrolled / height) * 100 : 0;
+        dom.scrollProgress.style.width = progress + '%';
+        dom.scrollTopBtn.classList.toggle('visible', scrolled > 400);
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  });
+
+  dom.scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }
 
-bindEvents(){
-const debouncedFilter=this.debounce(()=>{this.state.displayCount=this.state.pageSize;this.cache=new LRUCache(64);this.applyFilters()},200);
+// ============================================================
+// BOOT
+// ============================================================
+document.addEventListener('DOMContentLoaded', init);
 
-this.refs.searchBar.addEventListener('input',()=>{
-const q=this.refs.searchBar.value.trim();
-this.refs.searchClear.classList.toggle('visible',q.length>0);
-if(q.length>0)this.showSuggestions(q);
-else this.closeSuggestions();
-debouncedFilter();
-});
-this.refs.searchBar.addEventListener('focus',()=>{const q=this.refs.searchBar.value.trim();if(q.length>0)this.showSuggestions(q)});
-this.refs.searchBar.addEventListener('keydown',e=>this.handleSuggestionKeys(e));
-this.refs.searchClear.addEventListener('click',()=>{
-this.refs.searchBar.value='';
-this.refs.searchClear.classList.remove('visible');
-this.closeSuggestions();
-this.cache=new LRUCache(64);
-this.applyFilters();
-this.refs.searchBar.focus();
-});
-document.addEventListener('click',e=>{if(!e.target.closest('.search-wrapper'))this.closeSuggestions()});
-
-this.refs.filterStream.addEventListener('change',()=>{
-this.state.stream=this.refs.filterStream.value;
-this.updateCourseFilter();
-this.state.course=this.refs.filterCourse.value;
-this.state.displayCount=this.state.pageSize;
-this.cache=new LRUCache(64);
-this.applyFilters();
-this.stateToHash();
-});
-['filterCourse','filterYear','filterSemester'].forEach(id=>{
-const key=id.replace('filter','').toLowerCase();
-this.refs[id].addEventListener('change',()=>{
-this.state[key]=this.refs[id].value;
-this.state.displayCount=this.state.pageSize;
-this.cache=new LRUCache(64);
-this.applyFilters();
-this.stateToHash();
-});
-});
-
-document.querySelectorAll('.sort-btn').forEach(btn=>btn.addEventListener('click',e=>{this.createRipple(e,btn);this.handleSort(btn.dataset.sort)}));
-document.getElementById('clearAll').addEventListener('click',e=>{this.createRipple(e,e.currentTarget);setTimeout(()=>this.clearAll(),150)});
-this.refs.filtersToggleBtn.addEventListener('click',()=>this.refs.filtersPanel.classList.toggle('open'));
-document.querySelectorAll('.view-btn').forEach(btn=>btn.addEventListener('click',()=>this.setView(btn.dataset.view)));
-document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',e=>{this.createRipple(e,btn);this.setTab(btn.dataset.tab)}));
-this.refs.loadMoreBtn.addEventListener('click',()=>{this.state.displayCount+=this.state.pageSize;this.applyFilters()});
-
-this.refs.modalClose.addEventListener('click',()=>this.closeModal());
-this.refs.modalOverlay.addEventListener('click',e=>{if(e.target===this.refs.modalOverlay)this.closeModal()});
-
-let scrollTicking=false;
-window.addEventListener('scroll',()=>{
-if(!scrollTicking){
-requestAnimationFrame(()=>{
-this.refs.scrollTopBtn.classList.toggle('visible',window.scrollY>400);
-this.updateScrollProgress();
-scrollTicking=false;
-});
-scrollTicking=true;
-}
-},{passive:true});
-this.refs.scrollTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-this.refs.themeToggle.addEventListener('click',()=>this.toggleTheme());
-
-document.addEventListener('keydown',e=>{
-if(e.key==='/'&&!e.ctrlKey&&!e.metaKey&&document.activeElement!==this.refs.searchBar){e.preventDefault();this.refs.searchBar.focus()}
-if(e.key==='Escape'){
-if(this.refs.modalOverlay.classList.contains('active'))this.closeModal();
-else if(this.refs.suggestionsDropdown.classList.contains('active'))this.closeSuggestions();
-else if(document.activeElement===this.refs.searchBar)this.refs.searchBar.blur();
-}
-});
-
-let resizeTimer;
-window.addEventListener('resize',()=>{
-clearTimeout(resizeTimer);
-resizeTimer=setTimeout(()=>{
-if(window.innerWidth>768)this.refs.filtersPanel.classList.remove('open');
-},250);
-});
-}
-}
-
-new NoteVaultApp(DATA);
 })();
 </script>
 </body>
