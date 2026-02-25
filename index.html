@@ -25,7 +25,7 @@
 --transition-fast:150ms var(--ease);--transition:300ms var(--ease);--transition-slow:500ms var(--ease);
 --stream-engineering:#6C63FF;--stream-science:#0EA5E9;--stream-commerce:#F59E0B;
 --stream-arts:#EF4444;--stream-medical:#10B981;
---header-height:280px;--nav-height:60px;
+--header-height:280px;
 --safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
 --safe-left:env(safe-area-inset-left,0px);--safe-right:env(safe-area-inset-right,0px)
 }
@@ -42,27 +42,25 @@ body{
 font-family:'Segoe UI',system-ui,-apple-system,BlinkMacSystemFont,'Inter',sans-serif;
 background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;
 overflow-x:hidden;transition:background var(--transition),color var(--transition);
--webkit-tap-highlight-color:transparent;touch-action:manipulation
+-webkit-tap-highlight-color:transparent
 }
 @media(prefers-reduced-motion:reduce){
-*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}
+*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
 }
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--text-faint);border-radius:4px}
 ::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
-.scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));z-index:9999;width:0%;border-radius:0 2px 2px 0;transition:none}
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));z-index:9999;width:0%;border-radius:0 2px 2px 0}
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @keyframes floatParticle{0%{transform:translateY(100%) rotate(0deg) scale(0);opacity:0}10%{opacity:1;transform:translateY(80%) rotate(72deg) scale(1)}90%{opacity:.8}100%{transform:translateY(-100vh) rotate(720deg) scale(0);opacity:0}}
-@keyframes logoFloat{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-4px) rotate(-2deg)}75%{transform:translateY(-2px) rotate(2deg)}50%{transform:translateY(-6px) rotate(0deg)}}
-@keyframes cardReveal{from{opacity:0;transform:translateY(40px) scale(0.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes logoFloat{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-4px) rotate(-2deg)}50%{transform:translateY(-6px) rotate(0deg)}75%{transform:translateY(-2px) rotate(2deg)}}
 @keyframes cardShine{0%{left:-150%}100%{left:250%}}
 @keyframes rippleAnim{0%{transform:scale(0);opacity:0.5}100%{transform:scale(4);opacity:0}}
-@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(108,99,255,0.4)}70%{box-shadow:0 0 0 12px rgba(108,99,255,0)}100%{box-shadow:0 0 0 0 rgba(108,99,255,0)}}
 @keyframes bookmarkPop{0%{transform:scale(1)}30%{transform:scale(1.5) rotate(15deg)}60%{transform:scale(0.9) rotate(-5deg)}100%{transform:scale(1) rotate(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@keyframes slideDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes scaleIn{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
 @keyframes morphBlob{0%,100%{border-radius:60% 40% 30% 70%/60% 30% 70% 40%}50%{border-radius:30% 60% 70% 40%/50% 60% 30% 60%}}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
@@ -73,7 +71,9 @@ overflow-x:hidden;transition:background var(--transition),color var(--transition
 @keyframes modalSlideUp{from{opacity:0;transform:translateY(40px) scale(0.92)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes counterPulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
 @keyframes glowPulse{0%,100%{box-shadow:0 0 5px var(--primary-glow)}50%{box-shadow:0 0 20px var(--primary-glow),0 0 40px rgba(108,99,255,0.1)}}
+@keyframes filterPanelOpen{from{opacity:0;transform:translateY(-12px) scaleY(0.95)}to{opacity:1;transform:translateY(0) scaleY(1)}}
 @keyframes dotBounce{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
+
 .header{
 position:relative;
 background:linear-gradient(135deg,#4A3AFF 0%,var(--primary) 30%,#7C3AED 70%,#A855F7 100%);
@@ -106,7 +106,7 @@ animation:morphBlob 8s ease-in-out infinite,breathe 4s ease-in-out infinite
 .tagline{color:rgba(255,255,255,0.8);font-size:clamp(0.85rem,2.5vw,1.05rem);font-weight:400;max-width:500px;margin:0 auto}
 .stats-bar{display:flex;gap:clamp(1rem,4vw,2rem);justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
 .stat-item{text-align:center;color:white}
-.stat-number{font-size:clamp(1.2rem,3.5vw,1.6rem);font-weight:800;line-height:1.2;transition:transform 0.2s var(--ease-bounce)}
+.stat-number{font-size:clamp(1.2rem,3.5vw,1.6rem);font-weight:800;line-height:1.2}
 .stat-number.counting{animation:counterPulse 0.3s var(--ease-bounce)}
 .stat-label{font-size:clamp(0.6rem,1.5vw,0.72rem);text-transform:uppercase;letter-spacing:1px;opacity:0.7;font-weight:600}
 .theme-toggle{
@@ -118,57 +118,133 @@ font-size:1.2rem;transition:all var(--transition)
 }
 .theme-toggle:hover{background:rgba(255,255,255,0.25);transform:rotate(30deg) scale(1.1)}
 .theme-toggle:active{transform:rotate(30deg) scale(0.95)}
-.search-container{max-width:680px;margin:-1.8rem auto 0;padding:0 calc(1rem + var(--safe-left));position:relative;z-index:20}
-.search-wrapper{position:relative}
+
+/* ===== SEARCH + FILTER ROW ===== */
+.search-filter-row{
+  max-width:740px;margin:-1.8rem auto 0;padding:0 1rem;position:relative;z-index:50;
+  display:flex;align-items:center;gap:0.6rem
+}
+.search-wrapper{position:relative;flex:1;min-width:0}
 .search-bar{
-width:100%;padding:1rem 3.5rem 1rem 3.2rem;border:2px solid transparent;border-radius:var(--radius-full);
-font-size:clamp(0.9rem,2.5vw,1rem);background:var(--card-bg);color:var(--text);box-shadow:var(--shadow-xl);
+width:100%;padding:0.9rem 3rem 0.9rem 3rem;border:2px solid transparent;border-radius:var(--radius-full);
+font-size:clamp(0.88rem,2.5vw,1rem);background:var(--card-bg);color:var(--text);box-shadow:var(--shadow-xl);
 transition:all var(--transition);outline:none;font-family:inherit
 }
-.search-bar:focus{border-color:var(--primary);box-shadow:var(--shadow-xl),0 0 0 4px var(--primary-glow);animation:glowPulse 2s ease-in-out infinite}
+.search-bar:focus{border-color:var(--primary);box-shadow:var(--shadow-xl),0 0 0 4px var(--primary-glow)}
 .search-bar::placeholder{color:var(--text-faint)}
-.search-icon{position:absolute;left:1.1rem;top:50%;transform:translateY(-50%);color:var(--text-faint);font-size:1.15rem;pointer-events:none;transition:all var(--transition)}
-.search-bar:focus~.search-icon{color:var(--primary);transform:translateY(-50%) scale(1.15)}
-.search-actions{position:absolute;right:0.6rem;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:0.3rem}
-.search-kbd{background:var(--bg-secondary);color:var(--text-muted);font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:4px;font-family:monospace;font-weight:700;border:1px solid var(--border)}
+.search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--text-faint);font-size:1.1rem;pointer-events:none;transition:all var(--transition)}
+.search-bar:focus~.search-icon{color:var(--primary);transform:translateY(-50%) scale(1.1)}
+.search-actions{position:absolute;right:0.5rem;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:0.3rem}
+.search-kbd{background:var(--bg-secondary);color:var(--text-muted);font-size:0.7rem;padding:0.12rem 0.45rem;border-radius:4px;font-family:monospace;font-weight:700;border:1px solid var(--border)}
 .search-clear-btn{
-background:var(--bg-secondary);border:none;color:var(--text-muted);width:32px;height:32px;
+background:var(--bg-secondary);border:none;color:var(--text-muted);width:28px;height:28px;
 border-radius:var(--radius-full);cursor:pointer;display:none;align-items:center;justify-content:center;
-font-size:0.9rem;transition:all var(--transition)
+font-size:0.8rem;transition:all var(--transition)
 }
 .search-clear-btn:hover{background:var(--secondary);color:white;transform:rotate(90deg)}
 .search-clear-btn.visible{display:flex}
 .search-clear-btn.visible+.search-kbd{display:none}
+
+/* Filter Toggle Button — always visible next to search */
+.filter-toggle-btn{
+  width:48px;height:48px;border-radius:var(--radius-md);background:var(--card-bg);
+  border:2px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:1.15rem;color:var(--text-secondary);transition:all var(--transition);
+  box-shadow:var(--shadow-xl);position:relative;flex-shrink:0
+}
+.filter-toggle-btn:hover{border-color:var(--primary);color:var(--primary);transform:scale(1.05)}
+.filter-toggle-btn:active{transform:scale(0.95)}
+.filter-toggle-btn.active{background:var(--primary);color:white;border-color:var(--primary);box-shadow:var(--shadow-primary)}
+.filter-badge{
+  position:absolute;top:-5px;right:-5px;background:var(--secondary);color:white;
+  font-size:0.65rem;min-width:18px;height:18px;border-radius:var(--radius-full);
+  display:none;align-items:center;justify-content:center;font-weight:800;
+  border:2px solid var(--card-bg);line-height:1
+}
+.filter-badge.visible{display:flex;animation:scaleIn 0.3s var(--ease-bounce)}
+
+/* ===== FILTER PANEL (dropdown below search row) ===== */
+.filter-panel-anchor{max-width:740px;margin:0 auto;padding:0 1rem;position:relative;z-index:45}
+.filter-panel{
+  display:none;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-md);
+  padding:1.2rem;margin-top:0.5rem;box-shadow:var(--shadow-xl);
+  transform-origin:top center
+}
+.filter-panel.open{display:block;animation:filterPanelOpen 0.3s var(--ease)}
+.filter-panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.filter-panel-title{font-size:0.92rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:0.4rem}
+.filter-panel-close{
+  background:var(--bg-secondary);border:none;width:30px;height:30px;border-radius:var(--radius-full);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-muted);
+  font-size:0.85rem;transition:all var(--transition-fast)
+}
+.filter-panel-close:hover{background:var(--secondary);color:white;transform:rotate(90deg)}
+.filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
+.filter-group{display:flex;flex-direction:column;gap:0.3rem}
+.filter-group.full-width{grid-column:1/-1}
+.filter-label{font-size:0.7rem;font-weight:700;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.6px;padding-left:0.1rem}
+.filter-select{
+padding:0.55rem 2rem 0.55rem 0.7rem;border:1.5px solid var(--border);border-radius:var(--radius-sm);
+font-size:0.85rem;color:var(--text);background-color:var(--card-bg);cursor:pointer;transition:all var(--transition);
+appearance:none;-webkit-appearance:none;width:100%;font-family:inherit;min-height:42px;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+background-repeat:no-repeat;background-position:right 0.6rem center
+}
+.filter-select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)}
+.filter-select.has-value{border-color:var(--primary);background-color:rgba(108,99,255,0.04)}
+.filter-select:disabled{opacity:0.5;cursor:not-allowed}
+.filter-option-count{color:var(--text-faint);font-size:0.8rem}
+.filter-panel-actions{display:flex;gap:0.5rem;margin-top:1rem;padding-top:0.8rem;border-top:1px solid var(--divider)}
+.sort-buttons{display:flex;gap:0.3rem;flex:1;flex-wrap:wrap}
+.sort-btn{
+padding:0.45rem 0.7rem;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:0.78rem;
+color:var(--text-muted);background:var(--card-bg);cursor:pointer;transition:all var(--transition);
+font-weight:600;font-family:inherit;display:inline-flex;align-items:center;gap:0.25rem;
+min-height:38px;position:relative;overflow:hidden;flex:1;justify-content:center
+}
+.sort-btn:hover{border-color:var(--primary);color:var(--primary)}
+.sort-btn.active{background:var(--primary);color:white;border-color:var(--primary)}
+.sort-btn:active{transform:scale(0.96)}
+.clear-all-btn{
+padding:0.45rem 0.8rem;border:1.5px solid var(--secondary);border-radius:var(--radius-sm);font-size:0.78rem;
+color:var(--secondary);background:transparent;cursor:pointer;transition:all var(--transition);
+font-weight:700;font-family:inherit;min-height:38px;white-space:nowrap
+}
+.clear-all-btn:hover{background:var(--secondary);color:white}
+.clear-all-btn:active{transform:scale(0.97)}
+
+/* Suggestions dropdown */
 .suggestions-dropdown{
-position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--card-bg);
-border-radius:var(--radius-md);box-shadow:var(--shadow-xl);max-height:320px;overflow-y:auto;
-z-index:100;display:none;border:1px solid var(--border);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)
+position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--card-bg);
+border-radius:var(--radius-md);box-shadow:var(--shadow-xl);max-height:300px;overflow-y:auto;
+z-index:100;display:none;border:1px solid var(--border)
 }
 .suggestions-dropdown.active{display:block;animation:dropdownOpen 0.2s var(--ease)}
-.suggestion-header{padding:0.6rem 1rem;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-faint);background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1}
-.suggestion-item{padding:0.7rem 1rem;cursor:pointer;transition:all var(--transition-fast);border-bottom:1px solid var(--divider);display:flex;align-items:center;gap:0.8rem}
+.suggestion-header{padding:0.5rem 0.8rem;font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-faint);background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1}
+.suggestion-item{padding:0.6rem 0.8rem;cursor:pointer;transition:all var(--transition-fast);border-bottom:1px solid var(--divider);display:flex;align-items:center;gap:0.7rem}
 .suggestion-item:last-child{border-bottom:none}
 .suggestion-item:hover,.suggestion-item.active{background:rgba(108,99,255,0.06)}
-.suggestion-item.active{border-left:3px solid var(--primary)}
-.suggestion-icon{width:34px;height:34px;border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;transition:transform var(--transition-fast)}
-.suggestion-item:hover .suggestion-icon{transform:scale(1.15)}
+.suggestion-icon{width:32px;height:32px;border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0}
+.suggestion-item:hover .suggestion-icon{transform:scale(1.1)}
 .suggestion-text{flex:1;min-width:0}
-.suggestion-title{font-size:0.92rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.suggestion-meta{font-size:0.75rem;color:var(--text-faint)}
-.toolbar{max-width:1280px;margin:1.5rem auto 0;padding:0 calc(1rem + var(--safe-left))}
-.toolbar-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:0.8rem}
-.toolbar-left{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap}
-.results-count{font-size:clamp(0.8rem,2vw,0.9rem);color:var(--text-secondary);font-weight:500}
+.suggestion-title{font-size:0.88rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.suggestion-meta{font-size:0.72rem;color:var(--text-faint)}
+
+/* ===== TOOLBAR (results + tags + view) ===== */
+.toolbar{max-width:1280px;margin:1.2rem auto 0;padding:0 1rem}
+.toolbar-row{display:flex;align-items:center;justify-content:space-between;gap:0.8rem;flex-wrap:wrap;margin-bottom:0.5rem}
+.toolbar-left{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;flex:1;min-width:0}
+.results-count{font-size:clamp(0.8rem,2vw,0.88rem);color:var(--text-secondary);font-weight:500;white-space:nowrap}
 .results-count strong{color:var(--primary);font-weight:700}
-.active-filters-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.active-filters-tags{display:flex;flex-wrap:wrap;gap:0.35rem}
 .active-filter-tag{
-display:inline-flex;align-items:center;gap:0.3rem;background:rgba(108,99,255,0.1);
-color:var(--primary);font-size:0.78rem;font-weight:600;padding:0.2rem 0.6rem 0.2rem 0.7rem;
+display:inline-flex;align-items:center;gap:0.25rem;background:rgba(108,99,255,0.1);
+color:var(--primary);font-size:0.75rem;font-weight:600;padding:0.18rem 0.5rem 0.18rem 0.6rem;
 border-radius:var(--radius-full);cursor:pointer;transition:all var(--transition-fast);animation:scaleIn 0.2s var(--ease-bounce)
 }
 .active-filter-tag:hover{background:var(--primary);color:white;transform:scale(1.05)}
-.active-filter-tag .tag-remove{font-size:0.9rem;line-height:1;opacity:0.7}
-.toolbar-right{display:flex;align-items:center;gap:0.5rem}
+.active-filter-tag .tag-remove{font-size:0.85rem;line-height:1;opacity:0.7}
+.toolbar-right{display:flex;align-items:center;gap:0.4rem}
 .view-toggle{display:flex;background:var(--bg-secondary);border-radius:var(--radius-sm);padding:3px;gap:2px}
 .view-btn{
 width:36px;height:36px;border:none;border-radius:var(--radius-xs);background:transparent;
@@ -177,148 +253,106 @@ font-size:1rem;transition:all var(--transition-fast);min-height:44px;min-width:4
 }
 .view-btn.active{background:var(--card-bg);color:var(--primary);box-shadow:var(--shadow-xs)}
 .view-btn:hover:not(.active){color:var(--text);transform:scale(1.05)}
-.view-btn:active{transform:scale(0.95)}
-.filters-toggle-btn{
-display:none;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;background:var(--card-bg);
-border:1.5px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;font-size:0.88rem;
-color:var(--text);font-weight:600;transition:all var(--transition);font-family:inherit;min-height:44px
-}
-.filters-toggle-btn:hover{border-color:var(--primary);color:var(--primary)}
-.filters-badge{background:var(--primary);color:white;font-size:0.7rem;min-width:18px;height:18px;border-radius:var(--radius-full);display:none;align-items:center;justify-content:center;font-weight:700}
-.filters-badge.visible{display:flex;animation:scaleIn 0.3s var(--ease-bounce)}
-.filters-panel{display:flex;flex-wrap:wrap;gap:0.7rem;align-items:flex-end;padding:0.8rem 0}
-.filter-group{display:flex;flex-direction:column;gap:0.25rem}
-.filter-label{font-size:0.68rem;font-weight:700;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.7px;padding-left:0.2rem}
-.filter-select{
-padding:0.55rem 2.2rem 0.55rem 0.8rem;border:1.5px solid var(--border);border-radius:var(--radius-sm);
-font-size:0.88rem;color:var(--text);background-color:var(--card-bg);cursor:pointer;transition:all var(--transition);
-appearance:none;-webkit-appearance:none;min-width:145px;font-family:inherit;min-height:44px;
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-background-repeat:no-repeat;background-position:right 0.7rem center
-}
-.filter-select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)}
-.filter-select.has-value{border-color:var(--primary);background-color:rgba(108,99,255,0.04)}
-.sort-buttons{display:flex;gap:0.35rem}
-.sort-btn{
-padding:0.55rem 0.9rem;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:0.82rem;
-color:var(--text-muted);background:var(--card-bg);cursor:pointer;transition:all var(--transition);
-font-weight:600;font-family:inherit;display:inline-flex;align-items:center;gap:0.3rem;
-min-height:44px;position:relative;overflow:hidden
-}
-.sort-btn:hover{border-color:var(--primary);color:var(--primary)}
-.sort-btn.active{background:var(--primary);color:white;border-color:var(--primary);box-shadow:var(--shadow-primary)}
-.sort-btn:active{transform:scale(0.96)}
-.clear-all-btn{
-padding:0.55rem 1rem;border:1.5px solid var(--secondary);border-radius:var(--radius-sm);font-size:0.82rem;
-color:var(--secondary);background:transparent;cursor:pointer;transition:all var(--transition);
-font-weight:700;font-family:inherit;min-height:44px;position:relative;overflow:hidden
-}
-.clear-all-btn:hover{background:var(--secondary);color:white;transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,101,132,0.3)}
-.clear-all-btn:active{transform:translateY(0) scale(0.97)}
+
+/* Tabs */
 .tabs-bar{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:0.5rem}
 .tab-btn{
-padding:0.7rem 1.2rem;font-size:clamp(0.82rem,2vw,0.88rem);font-weight:600;color:var(--text-muted);
+padding:0.6rem 1rem;font-size:clamp(0.8rem,2vw,0.86rem);font-weight:600;color:var(--text-muted);
 background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;
 cursor:pointer;transition:all var(--transition-fast);font-family:inherit;display:flex;
-align-items:center;gap:0.4rem;min-height:44px;position:relative;overflow:hidden
+align-items:center;gap:0.35rem;min-height:44px;position:relative
 }
 .tab-btn:hover{color:var(--text)}
 .tab-btn.active{color:var(--primary);border-bottom-color:var(--primary)}
-.tab-btn::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--primary);transition:all var(--transition);transform:translateX(-50%)}
-.tab-btn:hover::after{width:100%}
-.tab-btn.active::after{width:100%}
-.tab-count{background:var(--bg-secondary);font-size:0.72rem;padding:0.1rem 0.5rem;border-radius:var(--radius-full);font-weight:700;transition:all var(--transition-fast)}
+.tab-count{background:var(--bg-secondary);font-size:0.7rem;padding:0.08rem 0.45rem;border-radius:var(--radius-full);font-weight:700}
 .tab-btn.active .tab-count{background:rgba(108,99,255,0.12);color:var(--primary)}
-.notes-container{max-width:1280px;margin:1rem auto 4rem;padding:0 calc(1rem + var(--safe-left));padding-bottom:var(--safe-bottom)}
-.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:1.3rem}
-.notes-grid.list-view{grid-template-columns:1fr;gap:0.8rem}
+
+/* ===== NOTES GRID ===== */
+.notes-container{max-width:1280px;margin:0.8rem auto 4rem;padding:0 1rem;padding-bottom:var(--safe-bottom)}
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:1.2rem}
+.notes-grid.list-view{grid-template-columns:1fr;gap:0.7rem}
 .note-card{
 background:var(--card-bg);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);
 transition:all var(--transition);display:flex;flex-direction:column;position:relative;
-opacity:0;transform:translateY(40px) scale(0.95);border:1px solid var(--border);will-change:transform,opacity
+opacity:0;transform:translateY(30px) scale(0.97);border:1px solid var(--border);will-change:transform,opacity
 }
 .note-card.revealed{opacity:1;transform:translateY(0) scale(1)}
 .note-card::before{
 content:'';position:absolute;top:0;left:-150%;width:60%;height:100%;
 background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);
-z-index:1;pointer-events:none;transition:none
+z-index:1;pointer-events:none
 }
 .note-card:hover::before{animation:cardShine 0.7s ease forwards}
-.note-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:var(--shadow-lg);border-color:var(--border-hover)}
+.note-card:hover{transform:translateY(-5px) scale(1.01);box-shadow:var(--shadow-lg);border-color:var(--border-hover)}
 .note-card:active{transform:translateY(-2px) scale(0.995)}
 .note-card.bookmarked{box-shadow:var(--shadow-sm),0 0 0 1px rgba(255,217,61,0.3)}
 .note-card.bookmarked .bookmark-btn{color:var(--accent)}
 .list-view .note-card{flex-direction:row;align-items:stretch}
 .list-view .card-accent{width:5px;height:auto;min-height:100%}
-.list-view .card-body{flex-direction:row;align-items:center;gap:1.5rem;flex:1}
+.list-view .card-body{flex-direction:row;align-items:center;gap:1.2rem;flex:1}
 .list-view .card-badges{margin-bottom:0;flex-shrink:0;flex-direction:column}
 .list-view .card-subjects{flex:1}
-.list-view .card-subjects h3{margin-bottom:0.2rem}
+.list-view .card-subjects h3{margin-bottom:0.15rem}
 .list-view .subject-tags{margin-bottom:0}
-.list-view .card-footer{border-top:none;border-left:1px solid var(--divider);flex-direction:column;justify-content:center;min-width:140px}
+.list-view .card-footer{border-top:none;border-left:1px solid var(--divider);flex-direction:column;justify-content:center;min-width:130px}
 .card-accent{height:4px;flex-shrink:0}
-.card-body{padding:1.2rem 1.3rem;flex:1;display:flex;flex-direction:column}
-.card-top-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.7rem}
-.card-badges{display:flex;flex-wrap:wrap;gap:0.35rem}
-.badge{padding:0.18rem 0.6rem;border-radius:var(--radius-full);font-size:clamp(0.62rem,1.5vw,0.7rem);font-weight:700;letter-spacing:0.3px;text-transform:uppercase;white-space:nowrap;transition:all var(--transition-fast)}
+.card-body{padding:1.1rem 1.2rem;flex:1;display:flex;flex-direction:column}
+.card-top-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.6rem}
+.card-badges{display:flex;flex-wrap:wrap;gap:0.3rem}
+.badge{padding:0.15rem 0.55rem;border-radius:var(--radius-full);font-size:clamp(0.6rem,1.5vw,0.68rem);font-weight:700;letter-spacing:0.3px;text-transform:uppercase;white-space:nowrap}
 .badge-stream{background:rgba(108,99,255,0.1);color:var(--stream-engineering)}
 .badge-stream[data-stream="Science"]{background:rgba(14,165,233,0.1);color:var(--stream-science)}
 .badge-stream[data-stream="Commerce"]{background:rgba(245,158,11,0.1);color:var(--stream-commerce)}
 .badge-stream[data-stream="Arts"]{background:rgba(239,68,68,0.1);color:var(--stream-arts)}
 .badge-stream[data-stream="Medical"]{background:rgba(16,185,129,0.1);color:var(--stream-medical)}
 .badge-course{background:var(--bg-secondary);color:var(--text-secondary)}
-.badge-year{background:var(--bg-secondary);color:var(--text-secondary)}
-.badge-semester{color:white;font-size:0.68rem}
+.badge-semester{color:white;font-size:0.66rem}
 .badge-semester.odd{background:var(--primary)}
 .badge-semester.even{background:var(--stream-science)}
 .bookmark-btn{
-background:none;border:none;color:var(--text-faint);font-size:1.3rem;cursor:pointer;
-padding:0.3rem;transition:all var(--transition-fast);flex-shrink:0;line-height:1;min-width:44px;min-height:44px;
+background:none;border:none;color:var(--text-faint);font-size:1.2rem;cursor:pointer;
+padding:0.2rem;transition:all var(--transition-fast);flex-shrink:0;line-height:1;min-width:40px;min-height:40px;
 display:flex;align-items:center;justify-content:center
 }
 .bookmark-btn:hover{color:var(--accent);transform:scale(1.2)}
 .bookmark-btn:active{transform:scale(0.9)}
 .bookmark-btn.pop{animation:bookmarkPop 0.4s var(--ease-bounce)}
 .card-subjects{flex:1}
-.card-subjects h3{font-size:clamp(0.92rem,2.2vw,1.02rem);font-weight:700;color:var(--text);margin-bottom:0.5rem;line-height:1.35}
+.card-subjects h3{font-size:clamp(0.9rem,2.2vw,1rem);font-weight:700;color:var(--text);margin-bottom:0.45rem;line-height:1.3}
 .card-subjects h3 .highlight{background:linear-gradient(120deg,rgba(108,99,255,0.15),rgba(108,99,255,0.3));border-radius:3px;padding:0 3px;color:var(--primary-dark);font-weight:800}
 [data-theme="dark"] .card-subjects h3 .highlight{color:var(--primary-light)}
-.subject-tags{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.6rem}
-.subject-tag{background:var(--bg);color:var(--text-muted);padding:0.22rem 0.6rem;border-radius:var(--radius-xs);font-size:clamp(0.72rem,1.8vw,0.78rem);font-weight:500;transition:all var(--transition-fast)}
+.subject-tags{display:flex;flex-wrap:wrap;gap:0.25rem;margin-bottom:0.5rem}
+.subject-tag{background:var(--bg);color:var(--text-muted);padding:0.2rem 0.5rem;border-radius:var(--radius-xs);font-size:clamp(0.7rem,1.8vw,0.76rem);font-weight:500;transition:all var(--transition-fast)}
 .note-card:hover .subject-tag{background:rgba(108,99,255,0.06);color:var(--primary)}
-.card-footer{padding:0.8rem 1.3rem;border-top:1px solid var(--divider);display:flex;justify-content:space-between;align-items:center;gap:0.5rem}
-.file-info{font-size:clamp(0.72rem,1.8vw,0.78rem);color:var(--text-faint);display:flex;align-items:center;gap:0.3rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card-footer{padding:0.7rem 1.2rem;border-top:1px solid var(--divider);display:flex;justify-content:space-between;align-items:center;gap:0.5rem}
+.file-info{font-size:clamp(0.7rem,1.8vw,0.76rem);color:var(--text-faint);display:flex;align-items:center;gap:0.25rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .download-btn{
-display:inline-flex;align-items:center;gap:0.35rem;padding:0.45rem 1rem;
+display:inline-flex;align-items:center;gap:0.3rem;padding:0.4rem 0.9rem;
 background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;text-decoration:none;
-border-radius:var(--radius-full);font-size:0.82rem;font-weight:700;transition:all var(--transition);
+border-radius:var(--radius-full);font-size:0.8rem;font-weight:700;transition:all var(--transition);
 box-shadow:0 2px 8px rgba(108,99,255,0.25);white-space:nowrap;border:none;cursor:pointer;
-font-family:inherit;min-height:40px;position:relative;overflow:hidden
+font-family:inherit;min-height:38px;position:relative;overflow:hidden
 }
 .download-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(108,99,255,0.4)}
 .download-btn:active{transform:translateY(0) scale(0.97)}
-.download-btn svg{width:14px;height:14px}
+.download-btn svg{width:13px;height:13px}
 .ripple-effect{
 position:absolute;border-radius:50%;background:rgba(255,255,255,0.3);
 transform:scale(0);animation:rippleAnim 0.6s ease-out;pointer-events:none
 }
 .no-results{text-align:center;padding:4rem 2rem;display:none}
 .no-results.visible{display:block;animation:slideUp 0.5s var(--ease-bounce)}
-.no-results-icon{font-size:3.5rem;margin-bottom:1rem;opacity:0.5}
-.no-results h3{font-size:clamp(1.1rem,3vw,1.3rem);color:var(--text);margin-bottom:0.4rem}
-.no-results p{color:var(--text-muted);font-size:clamp(0.85rem,2vw,0.95rem);max-width:400px;margin:0 auto}
-.load-more-container{text-align:center;padding:2rem 0}
+.no-results-icon{font-size:3rem;margin-bottom:0.8rem;opacity:0.5}
+.no-results h3{font-size:clamp(1rem,3vw,1.2rem);color:var(--text);margin-bottom:0.3rem}
+.no-results p{color:var(--text-muted);font-size:clamp(0.82rem,2vw,0.92rem);max-width:380px;margin:0 auto}
+.load-more-container{text-align:center;padding:1.5rem 0}
 .load-more-btn{
-padding:0.7rem 2rem;background:var(--card-bg);border:2px solid var(--border);border-radius:var(--radius-full);
-font-size:0.92rem;font-weight:600;color:var(--text-secondary);cursor:pointer;transition:all var(--transition);
-font-family:inherit;min-height:44px;position:relative;overflow:hidden
+padding:0.65rem 1.8rem;background:var(--card-bg);border:2px solid var(--border);border-radius:var(--radius-full);
+font-size:0.88rem;font-weight:600;color:var(--text-secondary);cursor:pointer;transition:all var(--transition);
+font-family:inherit;min-height:44px
 }
 .load-more-btn:hover{border-color:var(--primary);color:var(--primary);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
-.load-more-btn:active{transform:translateY(0) scale(0.98)}
-.load-more-dots{display:inline-flex;gap:4px;margin-left:8px}
-.load-more-dots span{width:6px;height:6px;border-radius:50%;background:var(--primary);animation:dotBounce 1.4s infinite ease-in-out both}
-.load-more-dots span:nth-child(1){animation-delay:-0.32s}
-.load-more-dots span:nth-child(2){animation-delay:-0.16s}
+
 .scroll-top-btn{
 position:fixed;bottom:calc(2rem + var(--safe-bottom));right:calc(2rem + var(--safe-right));width:48px;height:48px;
 border-radius:var(--radius-full);background:var(--primary);color:white;border:none;cursor:pointer;
@@ -327,7 +361,8 @@ font-size:1.3rem;z-index:50;opacity:0;visibility:hidden;transform:translateY(10p
 }
 .scroll-top-btn.visible{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
 .scroll-top-btn:hover{transform:translateY(-3px) scale(1.1);box-shadow:0 8px 24px rgba(108,99,255,0.45)}
-.scroll-top-btn:active{transform:translateY(0) scale(0.95)}
+
+/* Modal */
 .modal-overlay{
 position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem
@@ -338,87 +373,86 @@ background:var(--card-bg);border-radius:var(--radius-lg);max-width:520px;width:1
 box-shadow:var(--shadow-xl);animation:modalSlideUp 0.4s var(--ease-bounce);overflow:hidden;
 max-height:90vh;overflow-y:auto
 }
-.modal-header{padding:1.5rem 1.5rem 0;display:flex;justify-content:space-between;align-items:flex-start}
+.modal-header{padding:1.3rem 1.3rem 0;display:flex;justify-content:space-between;align-items:flex-start}
 .modal-close{
-background:var(--bg-secondary);border:none;width:36px;height:36px;border-radius:var(--radius-full);
+background:var(--bg-secondary);border:none;width:34px;height:34px;border-radius:var(--radius-full);
 cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-muted);
-font-size:1rem;transition:all var(--transition-fast);min-width:44px;min-height:44px
+font-size:0.9rem;transition:all var(--transition-fast);min-width:44px;min-height:44px
 }
 .modal-close:hover{background:var(--secondary);color:white;transform:rotate(90deg)}
-.modal-body{padding:1.2rem 1.5rem 1.5rem}
-.modal-badges{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem}
-.modal-title{font-size:clamp(1.1rem,3vw,1.25rem);font-weight:800;margin-bottom:1rem;line-height:1.3}
-.modal-detail{display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0;font-size:0.9rem;color:var(--text-secondary);border-bottom:1px solid var(--divider);transition:background var(--transition-fast)}
+.modal-body{padding:1rem 1.3rem 1.3rem}
+.modal-badges{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:0.8rem}
+.modal-title{font-size:clamp(1.05rem,3vw,1.2rem);font-weight:800;margin-bottom:0.8rem;line-height:1.3}
+.modal-detail{display:flex;align-items:center;gap:0.5rem;padding:0.45rem 0;font-size:0.88rem;color:var(--text-secondary);border-bottom:1px solid var(--divider)}
 .modal-detail:last-of-type{border-bottom:none}
 .modal-detail:hover{background:rgba(108,99,255,0.03);border-radius:var(--radius-xs)}
-.modal-detail-icon{width:28px;text-align:center;font-size:1rem}
-.modal-actions{display:flex;gap:0.8rem;margin-top:1.5rem;flex-wrap:wrap}
-.modal-actions .download-btn{flex:1;justify-content:center;padding:0.7rem 1.5rem;font-size:0.95rem;min-width:160px}
+.modal-detail-icon{width:26px;text-align:center;font-size:0.95rem}
+.modal-actions{display:flex;gap:0.7rem;margin-top:1.2rem;flex-wrap:wrap}
+.modal-actions .download-btn{flex:1;justify-content:center;padding:0.65rem 1.3rem;font-size:0.92rem;min-width:150px}
 .modal-bookmark-btn{
-padding:0.7rem 1.2rem;border:2px solid var(--border);border-radius:var(--radius-full);background:var(--card-bg);
-cursor:pointer;font-size:1.1rem;transition:all var(--transition-fast);display:flex;align-items:center;
-gap:0.4rem;font-family:inherit;color:var(--text-secondary);min-height:44px
+padding:0.65rem 1rem;border:2px solid var(--border);border-radius:var(--radius-full);background:var(--card-bg);
+cursor:pointer;font-size:1rem;transition:all var(--transition-fast);display:flex;align-items:center;
+gap:0.35rem;font-family:inherit;color:var(--text-secondary);min-height:44px
 }
 .modal-bookmark-btn:hover{border-color:var(--accent);color:var(--accent)}
 .modal-bookmark-btn.bookmarked{border-color:var(--accent);color:var(--accent);background:rgba(255,217,61,0.1)}
+
 .toast-container{position:fixed;bottom:calc(2rem + var(--safe-bottom));left:50%;transform:translateX(-50%);z-index:2000;display:flex;flex-direction:column;gap:0.5rem;align-items:center;pointer-events:none}
 .toast{
-background:var(--text);color:var(--bg);padding:0.7rem 1.5rem;border-radius:var(--radius-full);
-font-size:0.88rem;font-weight:600;box-shadow:var(--shadow-lg);pointer-events:auto;
+background:var(--text);color:var(--bg);padding:0.65rem 1.3rem;border-radius:var(--radius-full);
+font-size:0.85rem;font-weight:600;box-shadow:var(--shadow-lg);pointer-events:auto;
 animation:toastIn 0.4s var(--ease-bounce),toastOut 0.3s var(--ease) 2.2s forwards;white-space:nowrap
 }
-.footer{text-align:center;padding:2rem calc(1rem + var(--safe-left));color:var(--text-faint);font-size:clamp(0.78rem,2vw,0.85rem);border-top:1px solid var(--border);background:var(--card-bg)}
+.footer{text-align:center;padding:1.5rem 1rem;color:var(--text-faint);font-size:clamp(0.76rem,2vw,0.83rem);border-top:1px solid var(--border);background:var(--card-bg)}
 .footer strong{color:var(--primary)}
-.footer-links{display:flex;gap:1.5rem;justify-content:center;margin-top:0.5rem;flex-wrap:wrap}
-.footer-links a{color:var(--text-muted);text-decoration:none;font-size:0.82rem;transition:all var(--transition-fast);padding:0.3rem}
-.footer-links a:hover{color:var(--primary);transform:translateY(-1px)}
-.skeleton-card{background:var(--card-bg);border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border)}
-.skeleton-bar{background:linear-gradient(90deg,var(--bg) 25%,var(--bg-secondary) 50%,var(--bg) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:4px}
+.footer-links{display:flex;gap:1.2rem;justify-content:center;margin-top:0.4rem;flex-wrap:wrap}
+.footer-links a{color:var(--text-muted);text-decoration:none;font-size:0.8rem;transition:color var(--transition-fast);padding:0.2rem}
+.footer-links a:hover{color:var(--primary)}
+
+/* ===== RESPONSIVE ===== */
 @media(max-width:480px){
-.stats-bar{gap:0.8rem}.stat-item{min-width:60px}.card-badges{gap:0.25rem}
-.badge{padding:0.15rem 0.45rem;font-size:0.62rem}.card-body{padding:1rem}
-.card-footer{padding:0.7rem 1rem;flex-wrap:wrap}.modal{margin:0.5rem;border-radius:var(--radius-md)}
-.modal-actions{flex-direction:column}.modal-actions .download-btn{min-width:unset}
-.filters-panel .filter-group{width:100%}
+  .search-filter-row{gap:0.4rem}
+  .filter-toggle-btn{width:44px;height:44px;font-size:1rem}
+  .search-bar{padding:0.8rem 2.5rem 0.8rem 2.6rem;font-size:0.88rem}
+  .search-icon{left:0.8rem;font-size:1rem}
+  .search-kbd{display:none}
+  .filter-grid{grid-template-columns:1fr}
+  .card-body{padding:0.9rem}
+  .card-footer{padding:0.6rem 0.9rem;flex-wrap:wrap}
+  .badge{padding:0.12rem 0.4rem;font-size:0.6rem}
+  .modal{margin:0.5rem;border-radius:var(--radius-md)}
+  .modal-actions{flex-direction:column}
+  .modal-actions .download-btn{min-width:unset}
 }
 @media(max-width:640px){
-.toolbar-top{flex-direction:column;align-items:stretch}.toolbar-left{flex-direction:column;align-items:flex-start}
-.toolbar-right{justify-content:space-between}.footer-links{gap:1rem}
+  .toolbar-row{flex-direction:column;align-items:stretch}
+  .toolbar-left{flex-direction:column;align-items:flex-start}
+  .toolbar-right{justify-content:space-between}
 }
 @media(max-width:768px){
-.header{min-height:220px}.header-content{padding:2rem 1rem 3rem}
-.search-bar{font-size:0.95rem;padding:0.85rem 3.2rem 0.85rem 2.8rem}.search-kbd{display:none}
-.filters-toggle-btn{display:flex}
-.filters-panel{display:none;flex-direction:column;align-items:stretch;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-md);padding:1rem;margin-top:0.5rem;box-shadow:var(--shadow-md)}
-.filters-panel.open{display:flex;animation:slideDown 0.3s var(--ease)}
-.filter-select{width:100%;min-width:unset}.sort-buttons{width:100%}.sort-btn{flex:1;justify-content:center}
-.clear-all-btn{width:100%;text-align:center}.notes-grid{grid-template-columns:1fr;gap:0.8rem}
-.notes-grid.list-view .note-card{flex-direction:column}.list-view .card-accent{width:auto;height:4px;min-height:auto}
-.list-view .card-body{flex-direction:column;align-items:stretch}.list-view .card-badges{flex-direction:row}
-.list-view .card-footer{border-left:none;border-top:1px solid var(--divider);min-width:unset;flex-direction:row}
-.scroll-top-btn{bottom:calc(1.2rem + var(--safe-bottom));right:calc(1.2rem + var(--safe-right));width:44px;height:44px}
-.header-blob{display:none}
+  .header{min-height:220px}
+  .header-content{padding:2rem 1rem 3rem}
+  .notes-grid{grid-template-columns:1fr;gap:0.7rem}
+  .notes-grid.list-view .note-card{flex-direction:column}
+  .list-view .card-accent{width:auto;height:4px;min-height:auto}
+  .list-view .card-body{flex-direction:column;align-items:stretch}
+  .list-view .card-badges{flex-direction:row}
+  .list-view .card-footer{border-left:none;border-top:1px solid var(--divider);min-width:unset;flex-direction:row}
+  .scroll-top-btn{bottom:calc(1rem + var(--safe-bottom));right:calc(1rem + var(--safe-right));width:44px;height:44px}
+  .header-blob{display:none}
 }
 @media(min-width:769px) and (max-width:1024px){.notes-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1440px){
-.notes-grid{grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:1.5rem}
-.header{min-height:320px}.logo{font-size:3.2rem}
-}
+@media(min-width:1440px){.notes-grid{grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:1.5rem}.header{min-height:320px}.logo{font-size:3rem}}
 @media(min-width:1920px){.notes-container,.toolbar{max-width:1600px}.notes-grid{grid-template-columns:repeat(auto-fill,minmax(380px,1fr))}}
 @media(hover:none) and (pointer:coarse){
 .note-card:hover{transform:none;box-shadow:var(--shadow-sm)}.note-card:hover::before{animation:none}
 .note-card:active{transform:scale(0.98);transition-duration:100ms}.download-btn:hover{transform:none}
 .download-btn:active{transform:scale(0.95)}
 }
-@media(orientation:landscape) and (max-height:500px){
-.header{min-height:160px}.header-content{padding:1rem 1rem 2rem}.stats-bar{margin-top:0.5rem}
-.search-container{margin-top:-1.2rem}
-}
 @media print{
-.header,.search-container,.toolbar,.scroll-top-btn,.toast-container,.modal-overlay,.footer,.scroll-progress{display:none!important}
-.note-card{break-inside:avoid;box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
-.notes-grid{display:block}.note-card{margin-bottom:1rem}.download-btn{display:none}.bookmark-btn{display:none}
-body{background:white;color:black}
+.header,.search-filter-row,.filter-panel-anchor,.toolbar,.scroll-top-btn,.toast-container,.modal-overlay,.footer,.scroll-progress{display:none!important}
+.note-card{break-inside:avoid;box-shadow:none;border:1px solid #ddd}.notes-grid{display:block}
+.note-card{margin-bottom:1rem}.download-btn,.bookmark-btn{display:none}body{background:white;color:black}
 }
 </style>
 </head>
@@ -441,7 +475,9 @@ body{background:white;color:black}
 </div>
 </div>
 </header>
-<div class="search-container">
+
+<!-- SEARCH + FILTER BUTTON ROW -->
+<div class="search-filter-row">
 <div class="search-wrapper" role="search">
 <span class="search-icon" aria-hidden="true">🔍</span>
 <input type="text" class="search-bar" id="searchBar" placeholder="Search subjects, courses, streams..." autocomplete="off" aria-label="Search notes" role="combobox" aria-expanded="false" aria-controls="suggestionsDropdown">
@@ -451,47 +487,90 @@ body{background:white;color:black}
 </div>
 <div class="suggestions-dropdown" id="suggestionsDropdown" role="listbox"></div>
 </div>
+<button class="filter-toggle-btn" id="filterToggleBtn" aria-label="Toggle filters" title="Filters">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+<span class="filter-badge" id="filterBadge">0</span>
+</button>
 </div>
+
+<!-- FILTER PANEL (drops below search row) -->
+<div class="filter-panel-anchor">
+<div class="filter-panel" id="filterPanel">
+<div class="filter-panel-header">
+<span class="filter-panel-title">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+Filters
+</span>
+<button class="filter-panel-close" id="filterPanelClose" aria-label="Close filters">✕</button>
+</div>
+<div class="filter-grid">
+<div class="filter-group">
+<label class="filter-label" for="filterSemester">Semester</label>
+<select class="filter-select" id="filterSemester"><option value="">All Semesters</option></select>
+</div>
+<div class="filter-group">
+<label class="filter-label" for="filterStream">Stream</label>
+<select class="filter-select" id="filterStream"><option value="">All Streams</option></select>
+</div>
+<div class="filter-group">
+<label class="filter-label" for="filterCourse">Course</label>
+<select class="filter-select" id="filterCourse"><option value="">All Courses</option></select>
+</div>
+<div class="filter-group">
+<label class="filter-label" for="filterSubject">Subject</label>
+<select class="filter-select" id="filterSubject"><option value="">All Subjects</option></select>
+</div>
+<div class="filter-group">
+<label class="filter-label" for="filterYear">Year</label>
+<select class="filter-select" id="filterYear"><option value="">All Years</option></select>
+</div>
+</div>
+<div class="filter-panel-actions">
+<div class="sort-buttons">
+<button class="sort-btn" data-sort="semester">📊 Semester</button>
+<button class="sort-btn" data-sort="course">📁 Course</button>
+<button class="sort-btn" data-sort="year">📅 Year</button>
+</div>
+<button class="clear-all-btn" id="clearAll">✕ Reset</button>
+</div>
+</div>
+</div>
+
 <section class="toolbar" id="toolbar">
-<div class="toolbar-top">
+<div class="toolbar-row">
 <div class="toolbar-left">
 <span class="results-count" id="resultsCount"></span>
 <div class="active-filters-tags" id="activeFiltersTags"></div>
 </div>
 <div class="toolbar-right">
-<button class="filters-toggle-btn" id="filtersToggleBtn">⚙️ Filters <span class="filters-badge" id="filtersBadge">0</span></button>
 <div class="view-toggle" role="radiogroup" aria-label="View mode">
 <button class="view-btn active" data-view="grid" aria-label="Grid view" title="Grid view">▦</button>
 <button class="view-btn" data-view="list" aria-label="List view" title="List view">☰</button>
 </div>
 </div>
 </div>
-<div class="filters-panel" id="filtersPanel">
-<div class="filter-group"><label class="filter-label" for="filterStream">Stream</label><select class="filter-select" id="filterStream"><option value="">All Streams</option></select></div>
-<div class="filter-group"><label class="filter-label" for="filterCourse">Course</label><select class="filter-select" id="filterCourse"><option value="">All Courses</option></select></div>
-<div class="filter-group"><label class="filter-label" for="filterYear">Year</label><select class="filter-select" id="filterYear"><option value="">All Years</option></select></div>
-<div class="filter-group"><label class="filter-label" for="filterSemester">Semester</label><select class="filter-select" id="filterSemester"><option value="">All Semesters</option></select></div>
-<div class="filter-group"><label class="filter-label">Sort</label><div class="sort-buttons"><button class="sort-btn" data-sort="semester">📊 Semester</button><button class="sort-btn" data-sort="course">📁 Course</button><button class="sort-btn" data-sort="year">📅 Year</button></div></div>
-<button class="clear-all-btn" id="clearAll">✕ Clear All</button>
-</div>
 <div class="tabs-bar">
 <button class="tab-btn active" data-tab="all">📄 All Notes <span class="tab-count" id="tabAllCount">0</span></button>
 <button class="tab-btn" data-tab="bookmarks">⭐ Bookmarks <span class="tab-count" id="tabBookmarksCount">0</span></button>
 </div>
 </section>
+
 <main class="notes-container" role="main">
 <div class="notes-grid" id="notesGrid" aria-live="polite"></div>
 <div class="no-results" id="noResults"><div class="no-results-icon">📭</div><h3>No notes found</h3><p>Try adjusting your search or filters to find what you're looking for.</p></div>
 <div class="load-more-container" id="loadMoreContainer" style="display:none"><button class="load-more-btn" id="loadMoreBtn">Load More Notes</button></div>
 </main>
+
 <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-hidden="true">
 <div class="modal" id="modal">
 <div class="modal-header"><div class="modal-badges" id="modalBadges"></div><button class="modal-close" id="modalClose" aria-label="Close modal">✕</button></div>
 <div class="modal-body"><h2 class="modal-title" id="modalTitle"></h2><div id="modalDetails"></div><div class="modal-actions" id="modalActions"></div></div>
 </div>
 </div>
+
 <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top" title="Back to top">↑</button>
 <div class="toast-container" id="toastContainer" aria-live="assertive"></div>
+
 <footer class="footer" role="contentinfo">
 <p>Made with ❤️ for students everywhere. <strong>NoteVault</strong> © 2025</p>
 <div class="footer-links"><a href="#">About</a><a href="#">Contribute Notes</a><a href="#">Contact</a></div>
@@ -555,19 +634,12 @@ const NOTES_DATA = [
   { id:48, title:"Forensic Medicine", stream:"Medical", course:"MBBS", year:3, semester:5, subjects:["Toxicology","Ballistics","Identification","Medical Jurisprudence"], fileType:"PDF", fileSize:"3.4 MB", pages:190, author:"Prof. Reddy" },
 ];
 
-// ============================================================
-// CONSTANTS & HELPERS
-// ============================================================
 const STREAM_COLORS = {
-  Engineering: 'var(--stream-engineering)',
-  Science: 'var(--stream-science)',
-  Commerce: 'var(--stream-commerce)',
-  Arts: 'var(--stream-arts)',
-  Medical: 'var(--stream-medical)'
+  Engineering:'var(--stream-engineering)', Science:'var(--stream-science)',
+  Commerce:'var(--stream-commerce)', Arts:'var(--stream-arts)', Medical:'var(--stream-medical)'
 };
 const STREAM_ICONS = { Engineering:'⚙️', Science:'🔬', Commerce:'💼', Arts:'🎨', Medical:'🏥' };
 const ITEMS_PER_PAGE = 12;
-
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
 
@@ -575,18 +647,12 @@ const $$ = s => document.querySelectorAll(s);
 // STATE
 // ============================================================
 const state = {
-  search: '',
-  stream: '',
-  course: '',
-  year: '',
-  semester: '',
-  sort: '',
-  tab: 'all',
-  view: 'grid',
-  page: 1,
+  search:'', stream:'', course:'', year:'', semester:'', subject:'',
+  sort:'', tab:'all', view:'grid', page:1,
   bookmarks: JSON.parse(localStorage.getItem('nv_bookmarks') || '[]'),
   filteredNotes: [],
-  theme: localStorage.getItem('nv_theme') || 'light'
+  theme: localStorage.getItem('nv_theme') || 'light',
+  filterOpen: false
 };
 
 // ============================================================
@@ -596,37 +662,23 @@ const dom = {
   scrollProgress: $('#scrollProgress'),
   themeToggle: $('#themeToggle'),
   headerParticles: $('#headerParticles'),
-  statNotes: $('#statNotes'),
-  statSubjects: $('#statSubjects'),
-  statStreams: $('#statStreams'),
-  statCourses: $('#statCourses'),
-  searchBar: $('#searchBar'),
-  searchClear: $('#searchClear'),
+  statNotes: $('#statNotes'), statSubjects: $('#statSubjects'),
+  statStreams: $('#statStreams'), statCourses: $('#statCourses'),
+  searchBar: $('#searchBar'), searchClear: $('#searchClear'),
   suggestionsDropdown: $('#suggestionsDropdown'),
-  resultsCount: $('#resultsCount'),
-  activeFiltersTags: $('#activeFiltersTags'),
-  filtersToggleBtn: $('#filtersToggleBtn'),
-  filtersBadge: $('#filtersBadge'),
-  filtersPanel: $('#filtersPanel'),
-  filterStream: $('#filterStream'),
-  filterCourse: $('#filterCourse'),
-  filterYear: $('#filterYear'),
-  filterSemester: $('#filterSemester'),
-  clearAll: $('#clearAll'),
-  notesGrid: $('#notesGrid'),
-  noResults: $('#noResults'),
-  loadMoreContainer: $('#loadMoreContainer'),
-  loadMoreBtn: $('#loadMoreBtn'),
-  modalOverlay: $('#modalOverlay'),
-  modalBadges: $('#modalBadges'),
-  modalTitle: $('#modalTitle'),
-  modalDetails: $('#modalDetails'),
-  modalActions: $('#modalActions'),
-  modalClose: $('#modalClose'),
-  scrollTopBtn: $('#scrollTopBtn'),
-  toastContainer: $('#toastContainer'),
-  tabAllCount: $('#tabAllCount'),
-  tabBookmarksCount: $('#tabBookmarksCount')
+  filterToggleBtn: $('#filterToggleBtn'), filterBadge: $('#filterBadge'),
+  filterPanel: $('#filterPanel'), filterPanelClose: $('#filterPanelClose'),
+  filterSemester: $('#filterSemester'), filterStream: $('#filterStream'),
+  filterCourse: $('#filterCourse'), filterSubject: $('#filterSubject'),
+  filterYear: $('#filterYear'), clearAll: $('#clearAll'),
+  resultsCount: $('#resultsCount'), activeFiltersTags: $('#activeFiltersTags'),
+  notesGrid: $('#notesGrid'), noResults: $('#noResults'),
+  loadMoreContainer: $('#loadMoreContainer'), loadMoreBtn: $('#loadMoreBtn'),
+  modalOverlay: $('#modalOverlay'), modalBadges: $('#modalBadges'),
+  modalTitle: $('#modalTitle'), modalDetails: $('#modalDetails'),
+  modalActions: $('#modalActions'), modalClose: $('#modalClose'),
+  scrollTopBtn: $('#scrollTopBtn'), toastContainer: $('#toastContainer'),
+  tabAllCount: $('#tabAllCount'), tabBookmarksCount: $('#tabBookmarksCount')
 };
 
 // ============================================================
@@ -635,7 +687,7 @@ const dom = {
 function init() {
   applyTheme(state.theme);
   generateParticles();
-  populateFilters();
+  populateAllFilterOptions();
   animateCounters();
   applyFilters();
   bindEvents();
@@ -647,29 +699,24 @@ function init() {
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   dom.themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-  document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0F1117' : '#6C63FF';
+  $('meta[name="theme-color"]').content = theme === 'dark' ? '#0F1117' : '#6C63FF';
   state.theme = theme;
   localStorage.setItem('nv_theme', theme);
-}
-
-function toggleTheme() {
-  applyTheme(state.theme === 'light' ? 'dark' : 'light');
-  showToast(state.theme === 'dark' ? '🌙 Dark mode enabled' : '☀️ Light mode enabled');
 }
 
 // ============================================================
 // PARTICLES
 // ============================================================
 function generateParticles() {
-  const container = dom.headerParticles;
+  const c = dom.headerParticles;
   const count = window.innerWidth < 768 ? 8 : 15;
   for (let i = 0; i < count; i++) {
     const p = document.createElement('div');
     const types = ['','square','ring'];
-    p.className = 'particle ' + types[Math.floor(Math.random() * types.length)];
-    const size = Math.random() * 20 + 5;
+    p.className = 'particle ' + types[Math.floor(Math.random()*types.length)];
+    const size = Math.random()*20+5;
     p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*5}s;`;
-    container.appendChild(p);
+    c.appendChild(p);
   }
 }
 
@@ -677,80 +724,194 @@ function generateParticles() {
 // ANIMATED COUNTERS
 // ============================================================
 function animateCounters() {
-  const uniqueSubjects = new Set();
-  NOTES_DATA.forEach(n => n.subjects.forEach(s => uniqueSubjects.add(s)));
-  const streams = new Set(NOTES_DATA.map(n => n.stream));
-  const courses = new Set(NOTES_DATA.map(n => n.course));
-
+  const subs = new Set(); NOTES_DATA.forEach(n => n.subjects.forEach(s => subs.add(s)));
   animateNumber(dom.statNotes, NOTES_DATA.length);
-  animateNumber(dom.statSubjects, uniqueSubjects.size);
-  animateNumber(dom.statStreams, streams.size);
-  animateNumber(dom.statCourses, courses.size);
+  animateNumber(dom.statSubjects, subs.size);
+  animateNumber(dom.statStreams, new Set(NOTES_DATA.map(n=>n.stream)).size);
+  animateNumber(dom.statCourses, new Set(NOTES_DATA.map(n=>n.course)).size);
 }
-
 function animateNumber(el, target) {
-  const duration = 1500;
   const start = performance.now();
   el.classList.add('counting');
+  (function step(now) {
+    const p = Math.min((now-start)/1500,1);
+    el.textContent = Math.round((1-Math.pow(1-p,3))*target);
+    if(p<1) requestAnimationFrame(step); else el.classList.remove('counting');
+  })(start);
+}
 
-  function step(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(eased * target);
-    if (progress < 1) requestAnimationFrame(step);
-    else el.classList.remove('counting');
+// ============================================================
+// CASCADING FILTER OPTIONS
+// This is the KEY logic:
+// When you select Semester 3, ALL other dropdowns update to show
+// only values that exist in Semester 3 notes.
+// When you then pick a Subject, Streams and Courses narrow further.
+// Each dropdown only shows options available given ALL other selections.
+// ============================================================
+function getAvailableNotes() {
+  // Returns notes matching ALL current filter selections
+  // EXCEPT we exclude one filter at a time when populating that dropdown
+  return NOTES_DATA;
+}
+
+function getFilteredSubset(excludeKey) {
+  // Get notes that match all filters EXCEPT the one named by excludeKey
+  let notes = [...NOTES_DATA];
+  if (excludeKey !== 'semester' && state.semester) notes = notes.filter(n => n.semester === Number(state.semester));
+  if (excludeKey !== 'stream' && state.stream) notes = notes.filter(n => n.stream === state.stream);
+  if (excludeKey !== 'course' && state.course) notes = notes.filter(n => n.course === state.course);
+  if (excludeKey !== 'year' && state.year) notes = notes.filter(n => n.year === Number(state.year));
+  if (excludeKey !== 'subject' && state.subject) notes = notes.filter(n => n.subjects.includes(state.subject));
+  return notes;
+}
+
+function populateAllFilterOptions() {
+  updateFilterDropdown('semester');
+  updateFilterDropdown('stream');
+  updateFilterDropdown('course');
+  updateFilterDropdown('subject');
+  updateFilterDropdown('year');
+}
+
+function updateFilterDropdown(key) {
+  // Get notes matching all OTHER filters (not this one)
+  const available = getFilteredSubset(key);
+  let select, currentVal, allLabel;
+
+  switch(key) {
+    case 'semester':
+      select = dom.filterSemester;
+      currentVal = state.semester;
+      allLabel = 'All Semesters';
+      const sems = [...new Set(available.map(n=>n.semester))].sort((a,b)=>a-b);
+      rebuildSelect(select, allLabel, sems.map(s => ({
+        value: s, label: `Semester ${s}`, count: available.filter(n=>n.semester===s).length
+      })), currentVal);
+      break;
+
+    case 'stream':
+      select = dom.filterStream;
+      currentVal = state.stream;
+      allLabel = 'All Streams';
+      const streams = [...new Set(available.map(n=>n.stream))].sort();
+      rebuildSelect(select, allLabel, streams.map(s => ({
+        value: s, label: s, count: available.filter(n=>n.stream===s).length
+      })), currentVal);
+      break;
+
+    case 'course':
+      select = dom.filterCourse;
+      currentVal = state.course;
+      allLabel = 'All Courses';
+      const courses = [...new Set(available.map(n=>n.course))].sort();
+      rebuildSelect(select, allLabel, courses.map(c => ({
+        value: c, label: c, count: available.filter(n=>n.course===c).length
+      })), currentVal);
+      break;
+
+    case 'subject':
+      select = dom.filterSubject;
+      currentVal = state.subject;
+      allLabel = 'All Subjects';
+      const subjectSet = new Set();
+      available.forEach(n => n.subjects.forEach(s => subjectSet.add(s)));
+      const subjects = [...subjectSet].sort();
+      rebuildSelect(select, allLabel, subjects.map(s => ({
+        value: s, label: s, count: available.filter(n=>n.subjects.includes(s)).length
+      })), currentVal);
+      break;
+
+    case 'year':
+      select = dom.filterYear;
+      currentVal = state.year;
+      allLabel = 'All Years';
+      const years = [...new Set(available.map(n=>n.year))].sort((a,b)=>a-b);
+      rebuildSelect(select, allLabel, years.map(y => ({
+        value: y, label: `Year ${y}`, count: available.filter(n=>n.year===y).length
+      })), currentVal);
+      break;
   }
-  requestAnimationFrame(step);
+}
+
+function rebuildSelect(selectEl, allLabel, options, currentVal) {
+  selectEl.innerHTML = '';
+  const allOpt = document.createElement('option');
+  allOpt.value = '';
+  allOpt.textContent = allLabel;
+  selectEl.appendChild(allOpt);
+
+  let currentStillValid = false;
+  options.forEach(opt => {
+    const o = document.createElement('option');
+    o.value = opt.value;
+    o.textContent = `${opt.label} (${opt.count})`;
+    if (String(opt.value) === String(currentVal)) {
+      o.selected = true;
+      currentStillValid = true;
+    }
+    selectEl.appendChild(o);
+  });
+
+  // If the current value no longer exists in options, reset it
+  if (currentVal && !currentStillValid) {
+    selectEl.value = '';
+    // Also reset the state
+    switch(selectEl) {
+      case dom.filterSemester: state.semester = ''; break;
+      case dom.filterStream: state.stream = ''; break;
+      case dom.filterCourse: state.course = ''; break;
+      case dom.filterSubject: state.subject = ''; break;
+      case dom.filterYear: state.year = ''; break;
+    }
+  }
+
+  selectEl.classList.toggle('has-value', !!selectEl.value);
+}
+
+function onFilterChange(changedKey) {
+  // Update state from the changed select
+  switch(changedKey) {
+    case 'semester': state.semester = dom.filterSemester.value; break;
+    case 'stream': state.stream = dom.filterStream.value; break;
+    case 'course': state.course = dom.filterCourse.value; break;
+    case 'subject': state.subject = dom.filterSubject.value; break;
+    case 'year': state.year = dom.filterYear.value; break;
+  }
+
+  // Cascade: rebuild ALL other dropdowns based on new combined state
+  const allKeys = ['semester','stream','course','subject','year'];
+  allKeys.forEach(key => {
+    if (key !== changedKey) updateFilterDropdown(key);
+  });
+
+  // Also re-check the changed dropdown (in case options narrowed it)
+  updateFilterDropdown(changedKey);
+
+  applyFilters();
 }
 
 // ============================================================
-// POPULATE FILTER DROPDOWNS
-// ============================================================
-function populateFilters() {
-  const streams = [...new Set(NOTES_DATA.map(n => n.stream))].sort();
-  const courses = [...new Set(NOTES_DATA.map(n => n.course))].sort();
-  const years = [...new Set(NOTES_DATA.map(n => n.year))].sort();
-  const semesters = [...new Set(NOTES_DATA.map(n => n.semester))].sort();
-
-  streams.forEach(s => dom.filterStream.add(new Option(s, s)));
-  courses.forEach(c => dom.filterCourse.add(new Option(c, c)));
-  years.forEach(y => dom.filterYear.add(new Option('Year ' + y, y)));
-  semesters.forEach(s => dom.filterSemester.add(new Option('Semester ' + s, s)));
-}
-
-// ============================================================
-// FILTER, SORT, RENDER PIPELINE
+// FILTER + SORT + RENDER
 // ============================================================
 function applyFilters() {
   let notes = [...NOTES_DATA];
   const q = state.search.toLowerCase().trim();
 
-  // Tab filter
-  if (state.tab === 'bookmarks') {
-    notes = notes.filter(n => state.bookmarks.includes(n.id));
-  }
-
-  // Search
-  if (q) {
-    notes = notes.filter(n =>
-      n.title.toLowerCase().includes(q) ||
-      n.stream.toLowerCase().includes(q) ||
-      n.course.toLowerCase().includes(q) ||
-      n.subjects.some(s => s.toLowerCase().includes(q)) ||
-      n.author.toLowerCase().includes(q)
-    );
-  }
-
-  // Filters
+  if (state.tab === 'bookmarks') notes = notes.filter(n => state.bookmarks.includes(n.id));
+  if (q) notes = notes.filter(n =>
+    n.title.toLowerCase().includes(q) || n.stream.toLowerCase().includes(q) ||
+    n.course.toLowerCase().includes(q) || n.subjects.some(s => s.toLowerCase().includes(q)) ||
+    n.author.toLowerCase().includes(q)
+  );
+  if (state.semester) notes = notes.filter(n => n.semester === Number(state.semester));
   if (state.stream) notes = notes.filter(n => n.stream === state.stream);
   if (state.course) notes = notes.filter(n => n.course === state.course);
   if (state.year) notes = notes.filter(n => n.year === Number(state.year));
-  if (state.semester) notes = notes.filter(n => n.semester === Number(state.semester));
+  if (state.subject) notes = notes.filter(n => n.subjects.includes(state.subject));
 
-  // Sort
-  if (state.sort === 'semester') notes.sort((a, b) => a.semester - b.semester);
-  else if (state.sort === 'course') notes.sort((a, b) => a.course.localeCompare(b.course));
-  else if (state.sort === 'year') notes.sort((a, b) => a.year - b.year);
+  if (state.sort === 'semester') notes.sort((a,b) => a.semester - b.semester);
+  else if (state.sort === 'course') notes.sort((a,b) => a.course.localeCompare(b.course));
+  else if (state.sort === 'year') notes.sort((a,b) => a.year - b.year);
 
   state.filteredNotes = notes;
   state.page = 1;
@@ -761,21 +922,16 @@ function applyFilters() {
 function renderNotes() {
   const grid = dom.notesGrid;
   const visible = state.filteredNotes.slice(0, state.page * ITEMS_PER_PAGE);
-
   grid.innerHTML = '';
 
-  if (visible.length === 0) {
+  if (!visible.length) {
     dom.noResults.classList.add('visible');
     dom.loadMoreContainer.style.display = 'none';
     return;
   }
   dom.noResults.classList.remove('visible');
+  visible.forEach((note, i) => grid.appendChild(createCard(note, i)));
 
-  visible.forEach((note, i) => {
-    grid.appendChild(createCard(note, i));
-  });
-
-  // Load more
   if (visible.length < state.filteredNotes.length) {
     dom.loadMoreContainer.style.display = '';
     dom.loadMoreBtn.textContent = `Load More (${state.filteredNotes.length - visible.length} remaining)`;
@@ -783,115 +939,74 @@ function renderNotes() {
     dom.loadMoreContainer.style.display = 'none';
   }
 
-  // Reveal animation
   requestAnimationFrame(() => {
     grid.querySelectorAll('.note-card').forEach((card, i) => {
-      setTimeout(() => card.classList.add('revealed'), i * 60);
+      setTimeout(() => card.classList.add('revealed'), i * 50);
     });
   });
 }
 
-function createCard(note, index) {
-  const isBookmarked = state.bookmarks.includes(note.id);
-  const semClass = note.semester % 2 === 0 ? 'even' : 'odd';
-  const streamColor = STREAM_COLORS[note.stream] || 'var(--primary)';
+function createCard(note) {
+  const bm = state.bookmarks.includes(note.id);
+  const semC = note.semester % 2 === 0 ? 'even' : 'odd';
+  const color = STREAM_COLORS[note.stream] || 'var(--primary)';
   const q = state.search.toLowerCase().trim();
-
   let titleHTML = escapeHTML(note.title);
   if (q) titleHTML = highlightText(titleHTML, q);
 
   const card = document.createElement('article');
-  card.className = 'note-card' + (isBookmarked ? ' bookmarked' : '');
+  card.className = 'note-card' + (bm ? ' bookmarked' : '');
   card.dataset.id = note.id;
-
   card.innerHTML = `
-    <div class="card-accent" style="background:${streamColor}"></div>
+    <div class="card-accent" style="background:${color}"></div>
     <div class="card-body">
       <div class="card-top-row">
         <div class="card-badges">
           <span class="badge badge-stream" data-stream="${note.stream}">${note.stream}</span>
           <span class="badge badge-course">${note.course}</span>
-          <span class="badge badge-semester ${semClass}">Sem ${note.semester}</span>
+          <span class="badge badge-semester ${semC}">Sem ${note.semester}</span>
         </div>
-        <button class="bookmark-btn" aria-label="${isBookmarked ? 'Remove bookmark' : 'Bookmark this note'}" data-id="${note.id}">
-          ${isBookmarked ? '★' : '☆'}
-        </button>
+        <button class="bookmark-btn" aria-label="${bm?'Remove bookmark':'Bookmark'}" data-id="${note.id}">${bm?'★':'☆'}</button>
       </div>
       <div class="card-subjects">
         <h3>${titleHTML}</h3>
-        <div class="subject-tags">
-          ${note.subjects.map(s => `<span class="subject-tag">${escapeHTML(s)}</span>`).join('')}
-        </div>
+        <div class="subject-tags">${note.subjects.map(s=>`<span class="subject-tag">${escapeHTML(s)}</span>`).join('')}</div>
       </div>
     </div>
     <div class="card-footer">
       <span class="file-info">📄 ${note.fileType} • ${note.fileSize}</span>
       <button class="download-btn" data-id="${note.id}">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-          <polyline points="7 10 12 15 17 10"/>
-          <line x1="12" y1="15" x2="12" y2="3"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download
       </button>
-    </div>
-  `;
-
+    </div>`;
   return card;
 }
 
 // ============================================================
-// UPDATE UI ELEMENTS
+// UPDATE UI
 // ============================================================
 function updateUI() {
-  // Results count
   const total = state.filteredNotes.length;
-  dom.resultsCount.innerHTML = `Showing <strong>${total}</strong> note${total !== 1 ? 's' : ''}`;
-
-  // Tab counts
+  dom.resultsCount.innerHTML = `Showing <strong>${total}</strong> note${total!==1?'s':''}`;
   dom.tabAllCount.textContent = state.tab === 'all' ? total : NOTES_DATA.length;
-  const bmCount = NOTES_DATA.filter(n => state.bookmarks.includes(n.id)).length;
-  dom.tabBookmarksCount.textContent = bmCount;
+  dom.tabBookmarksCount.textContent = NOTES_DATA.filter(n=>state.bookmarks.includes(n.id)).length;
 
-  // Active filter tags
   renderActiveFilterTags();
 
-  // Filter badge
-  const activeCount = [state.stream, state.course, state.year, state.semester].filter(Boolean).length;
-  dom.filtersBadge.textContent = activeCount;
-  dom.filtersBadge.classList.toggle('visible', activeCount > 0);
-
-  // Filter select styling
-  dom.filterStream.classList.toggle('has-value', !!state.stream);
-  dom.filterCourse.classList.toggle('has-value', !!state.course);
-  dom.filterYear.classList.toggle('has-value', !!state.year);
-  dom.filterSemester.classList.toggle('has-value', !!state.semester);
-
-  // Update dependent course options based on stream
-  updateCoursesForStream();
-}
-
-function updateCoursesForStream() {
-  const currentVal = dom.filterCourse.value;
-  const courses = state.stream
-    ? [...new Set(NOTES_DATA.filter(n => n.stream === state.stream).map(n => n.course))].sort()
-    : [...new Set(NOTES_DATA.map(n => n.course))].sort();
-
-  dom.filterCourse.innerHTML = '<option value="">All Courses</option>';
-  courses.forEach(c => {
-    const opt = new Option(c, c);
-    if (c === currentVal) opt.selected = true;
-    dom.filterCourse.add(opt);
-  });
+  const activeCount = [state.semester,state.stream,state.course,state.year,state.subject].filter(Boolean).length;
+  dom.filterBadge.textContent = activeCount;
+  dom.filterBadge.classList.toggle('visible', activeCount > 0);
 }
 
 function renderActiveFilterTags() {
   const tags = [];
-  if (state.stream) tags.push({ label: state.stream, key: 'stream' });
-  if (state.course) tags.push({ label: state.course, key: 'course' });
-  if (state.year) tags.push({ label: 'Year ' + state.year, key: 'year' });
-  if (state.semester) tags.push({ label: 'Sem ' + state.semester, key: 'semester' });
-  if (state.search) tags.push({ label: `"${state.search}"`, key: 'search' });
+  if (state.semester) tags.push({label:'Sem '+state.semester, key:'semester'});
+  if (state.stream) tags.push({label:state.stream, key:'stream'});
+  if (state.course) tags.push({label:state.course, key:'course'});
+  if (state.subject) tags.push({label:state.subject, key:'subject'});
+  if (state.year) tags.push({label:'Year '+state.year, key:'year'});
+  if (state.search) tags.push({label:`"${state.search}"`, key:'search'});
 
   dom.activeFiltersTags.innerHTML = tags.map(t =>
     `<span class="active-filter-tag" data-key="${t.key}">${escapeHTML(t.label)} <span class="tag-remove">✕</span></span>`
@@ -902,97 +1017,61 @@ function renderActiveFilterTags() {
 // SEARCH SUGGESTIONS
 // ============================================================
 function showSuggestions(query) {
-  if (!query.trim()) {
-    dom.suggestionsDropdown.classList.remove('active');
-    dom.searchBar.setAttribute('aria-expanded', 'false');
-    return;
-  }
-
+  if (!query.trim()) { dom.suggestionsDropdown.classList.remove('active'); return; }
   const q = query.toLowerCase();
   const matches = [];
-
-  // Match notes
   NOTES_DATA.forEach(n => {
-    const score =
-      (n.title.toLowerCase().includes(q) ? 3 : 0) +
-      (n.course.toLowerCase().includes(q) ? 2 : 0) +
-      (n.stream.toLowerCase().includes(q) ? 2 : 0) +
-      (n.subjects.some(s => s.toLowerCase().includes(q)) ? 1 : 0);
-    if (score > 0) matches.push({ note: n, score });
+    const score = (n.title.toLowerCase().includes(q)?3:0) + (n.course.toLowerCase().includes(q)?2:0) +
+      (n.stream.toLowerCase().includes(q)?2:0) + (n.subjects.some(s=>s.toLowerCase().includes(q))?1:0);
+    if (score>0) matches.push({note:n,score});
   });
-
-  matches.sort((a, b) => b.score - a.score);
-  const top = matches.slice(0, 8);
-
-  if (top.length === 0) {
-    dom.suggestionsDropdown.classList.remove('active');
-    dom.searchBar.setAttribute('aria-expanded', 'false');
-    return;
-  }
+  matches.sort((a,b)=>b.score-a.score);
+  const top = matches.slice(0,8);
+  if (!top.length) { dom.suggestionsDropdown.classList.remove('active'); return; }
 
   let html = '<div class="suggestion-header">Suggestions</div>';
-  top.forEach(({ note }) => {
-    const streamColor = STREAM_COLORS[note.stream] || 'var(--primary)';
-    html += `
-      <div class="suggestion-item" data-id="${note.id}" role="option">
-        <div class="suggestion-icon" style="background:${streamColor}20;color:${streamColor}">${STREAM_ICONS[note.stream] || '📄'}</div>
-        <div class="suggestion-text">
-          <div class="suggestion-title">${escapeHTML(note.title)}</div>
-          <div class="suggestion-meta">${note.course} • Sem ${note.semester}</div>
-        </div>
-      </div>`;
+  top.forEach(({note})=>{
+    const c = STREAM_COLORS[note.stream]||'var(--primary)';
+    html += `<div class="suggestion-item" data-id="${note.id}" role="option">
+      <div class="suggestion-icon" style="background:${c}20;color:${c}">${STREAM_ICONS[note.stream]||'📄'}</div>
+      <div class="suggestion-text"><div class="suggestion-title">${escapeHTML(note.title)}</div>
+      <div class="suggestion-meta">${note.course} • Sem ${note.semester}</div></div></div>`;
   });
-
   dom.suggestionsDropdown.innerHTML = html;
   dom.suggestionsDropdown.classList.add('active');
-  dom.searchBar.setAttribute('aria-expanded', 'true');
 }
 
 // ============================================================
 // MODAL
 // ============================================================
-function openModal(noteId) {
-  const note = NOTES_DATA.find(n => n.id === noteId);
+function openModal(id) {
+  const note = NOTES_DATA.find(n=>n.id===id);
   if (!note) return;
-
-  const isBookmarked = state.bookmarks.includes(note.id);
-  const semClass = note.semester % 2 === 0 ? 'even' : 'odd';
-
+  const bm = state.bookmarks.includes(note.id);
+  const semC = note.semester%2===0?'even':'odd';
   dom.modalBadges.innerHTML = `
     <span class="badge badge-stream" data-stream="${note.stream}">${note.stream}</span>
     <span class="badge badge-course">${note.course}</span>
-    <span class="badge badge-year">Year ${note.year}</span>
-    <span class="badge badge-semester ${semClass}">Sem ${note.semester}</span>
-  `;
-
+    <span class="badge badge-semester ${semC}">Sem ${note.semester}</span>`;
   dom.modalTitle.textContent = note.title;
-
   dom.modalDetails.innerHTML = `
     <div class="modal-detail"><span class="modal-detail-icon">📚</span><span>Subjects: ${note.subjects.join(', ')}</span></div>
     <div class="modal-detail"><span class="modal-detail-icon">✍️</span><span>Author: ${note.author}</span></div>
-    <div class="modal-detail"><span class="modal-detail-icon">📄</span><span>Format: ${note.fileType} • ${note.fileSize}</span></div>
-    <div class="modal-detail"><span class="modal-detail-icon">📖</span><span>Pages: ${note.pages}</span></div>
-    <div class="modal-detail"><span class="modal-detail-icon">🎓</span><span>Year ${note.year}, Semester ${note.semester}</span></div>
-  `;
-
+    <div class="modal-detail"><span class="modal-detail-icon">📄</span><span>${note.fileType} • ${note.fileSize}</span></div>
+    <div class="modal-detail"><span class="modal-detail-icon">📖</span><span>${note.pages} pages</span></div>
+    <div class="modal-detail"><span class="modal-detail-icon">🎓</span><span>Year ${note.year}, Semester ${note.semester}</span></div>`;
   dom.modalActions.innerHTML = `
     <button class="download-btn" data-id="${note.id}">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Download ${note.fileType}
-    </button>
-    <button class="modal-bookmark-btn${isBookmarked ? ' bookmarked' : ''}" data-id="${note.id}">
-      ${isBookmarked ? '★ Bookmarked' : '☆ Bookmark'}
-    </button>
-  `;
-
+      Download ${note.fileType}</button>
+    <button class="modal-bookmark-btn${bm?' bookmarked':''}" data-id="${note.id}">${bm?'★ Bookmarked':'☆ Bookmark'}</button>`;
   dom.modalOverlay.classList.add('active');
-  dom.modalOverlay.setAttribute('aria-hidden', 'false');
+  dom.modalOverlay.setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
 }
-
 function closeModal() {
   dom.modalOverlay.classList.remove('active');
-  dom.modalOverlay.setAttribute('aria-hidden', 'true');
+  dom.modalOverlay.setAttribute('aria-hidden','true');
   document.body.style.overflow = '';
 }
 
@@ -1001,59 +1080,46 @@ function closeModal() {
 // ============================================================
 function toggleBookmark(id) {
   const idx = state.bookmarks.indexOf(id);
-  if (idx > -1) {
-    state.bookmarks.splice(idx, 1);
-    showToast('☆ Bookmark removed');
-  } else {
-    state.bookmarks.push(id);
-    showToast('★ Note bookmarked!');
-  }
+  if (idx>-1) { state.bookmarks.splice(idx,1); showToast('☆ Bookmark removed'); }
+  else { state.bookmarks.push(id); showToast('★ Note bookmarked!'); }
   localStorage.setItem('nv_bookmarks', JSON.stringify(state.bookmarks));
   applyFilters();
-
-  // Pop animation on card bookmark button
   const btn = document.querySelector(`.bookmark-btn[data-id="${id}"]`);
   if (btn) { btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop'); }
 }
 
 // ============================================================
-// TOAST
+// TOAST + RIPPLE + HELPERS
 // ============================================================
-function showToast(message) {
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.textContent = message;
-  dom.toastContainer.appendChild(toast);
-  setTimeout(() => toast.remove(), 2600);
+function showToast(msg) {
+  const t = document.createElement('div'); t.className='toast'; t.textContent=msg;
+  dom.toastContainer.appendChild(t); setTimeout(()=>t.remove(),2600);
+}
+function createRipple(e,el) {
+  const r=el.getBoundingClientRect(), s=Math.max(r.width,r.height),
+  rip=document.createElement('span'); rip.className='ripple-effect';
+  rip.style.width=rip.style.height=s+'px';
+  rip.style.left=(e.clientX-r.left-s/2)+'px'; rip.style.top=(e.clientY-r.top-s/2)+'px';
+  el.appendChild(rip); setTimeout(()=>rip.remove(),600);
+}
+function escapeHTML(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function highlightText(text,q){
+  const re=new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi');
+  return text.replace(re,'<span class="highlight">$1</span>');
 }
 
 // ============================================================
-// RIPPLE EFFECT
+// FILTER PANEL TOGGLE
 // ============================================================
-function createRipple(e, el) {
-  const rect = el.getBoundingClientRect();
-  const size = Math.max(rect.width, rect.height);
-  const ripple = document.createElement('span');
-  ripple.className = 'ripple-effect';
-  ripple.style.width = ripple.style.height = size + 'px';
-  ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-  ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-  el.appendChild(ripple);
-  setTimeout(() => ripple.remove(), 600);
+function toggleFilterPanel() {
+  state.filterOpen = !state.filterOpen;
+  dom.filterPanel.classList.toggle('open', state.filterOpen);
+  dom.filterToggleBtn.classList.toggle('active', state.filterOpen);
 }
-
-// ============================================================
-// HELPERS
-// ============================================================
-function escapeHTML(str) {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
-}
-
-function highlightText(text, query) {
-  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-  return text.replace(regex, '<span class="highlight">$1</span>');
+function closeFilterPanel() {
+  state.filterOpen = false;
+  dom.filterPanel.classList.remove('open');
+  dom.filterToggleBtn.classList.remove('active');
 }
 
 // ============================================================
@@ -1061,7 +1127,21 @@ function highlightText(text, query) {
 // ============================================================
 function bindEvents() {
   // Theme
-  dom.themeToggle.addEventListener('click', toggleTheme);
+  dom.themeToggle.addEventListener('click', () => {
+    applyTheme(state.theme==='light'?'dark':'light');
+    showToast(state.theme==='dark'?'🌙 Dark mode':'☀️ Light mode');
+  });
+
+  // Filter panel toggle
+  dom.filterToggleBtn.addEventListener('click', toggleFilterPanel);
+  dom.filterPanelClose.addEventListener('click', closeFilterPanel);
+
+  // Close filter panel when clicking outside
+  document.addEventListener('click', (e) => {
+    if (state.filterOpen && !e.target.closest('.filter-panel') && !e.target.closest('.filter-toggle-btn')) {
+      closeFilterPanel();
+    }
+  });
 
   // Search
   let searchDebounce;
@@ -1069,83 +1149,49 @@ function bindEvents() {
     state.search = e.target.value;
     dom.searchClear.classList.toggle('visible', !!state.search);
     clearTimeout(searchDebounce);
-    searchDebounce = setTimeout(() => {
-      applyFilters();
-      showSuggestions(state.search);
-    }, 200);
+    searchDebounce = setTimeout(() => { applyFilters(); showSuggestions(state.search); }, 200);
   });
-
   dom.searchClear.addEventListener('click', () => {
-    state.search = '';
-    dom.searchBar.value = '';
-    dom.searchClear.classList.remove('visible');
-    dom.suggestionsDropdown.classList.remove('active');
-    dom.searchBar.focus();
-    applyFilters();
+    state.search=''; dom.searchBar.value=''; dom.searchClear.classList.remove('visible');
+    dom.suggestionsDropdown.classList.remove('active'); dom.searchBar.focus(); applyFilters();
   });
 
-  // Keyboard shortcut: / to focus search
+  // Keyboard
   document.addEventListener('keydown', (e) => {
-    if (e.key === '/' && document.activeElement !== dom.searchBar) {
-      e.preventDefault();
-      dom.searchBar.focus();
-    }
-    if (e.key === 'Escape') {
+    if (e.key==='/' && document.activeElement!==dom.searchBar) { e.preventDefault(); dom.searchBar.focus(); }
+    if (e.key==='Escape') {
       dom.suggestionsDropdown.classList.remove('active');
-      dom.searchBar.setAttribute('aria-expanded', 'false');
       if (dom.modalOverlay.classList.contains('active')) closeModal();
+      if (state.filterOpen) closeFilterPanel();
       dom.searchBar.blur();
     }
   });
 
-  // Suggestion clicks
+  // Suggestions click
   dom.suggestionsDropdown.addEventListener('click', (e) => {
     const item = e.target.closest('.suggestion-item');
     if (item) {
-      const id = Number(item.dataset.id);
-      const note = NOTES_DATA.find(n => n.id === id);
-      if (note) {
-        state.search = note.title;
-        dom.searchBar.value = note.title;
-        dom.searchClear.classList.add('visible');
-        dom.suggestionsDropdown.classList.remove('active');
-        applyFilters();
-      }
+      const note = NOTES_DATA.find(n=>n.id===Number(item.dataset.id));
+      if (note) { state.search=note.title; dom.searchBar.value=note.title; dom.searchClear.classList.add('visible'); dom.suggestionsDropdown.classList.remove('active'); applyFilters(); }
     }
   });
-
-  // Close suggestions on outside click
   document.addEventListener('click', (e) => {
-    if (!e.target.closest('.search-wrapper')) {
-      dom.suggestionsDropdown.classList.remove('active');
-      dom.searchBar.setAttribute('aria-expanded', 'false');
-    }
+    if (!e.target.closest('.search-wrapper')) dom.suggestionsDropdown.classList.remove('active');
   });
 
-  // Filters
-  dom.filterStream.addEventListener('change', (e) => { state.stream = e.target.value; state.course = ''; applyFilters(); });
-  dom.filterCourse.addEventListener('change', (e) => { state.course = e.target.value; applyFilters(); });
-  dom.filterYear.addEventListener('change', (e) => { state.year = e.target.value; applyFilters(); });
-  dom.filterSemester.addEventListener('change', (e) => { state.semester = e.target.value; applyFilters(); });
-
-  // Filter toggle (mobile)
-  dom.filtersToggleBtn.addEventListener('click', () => {
-    dom.filtersPanel.classList.toggle('open');
-  });
+  // CASCADING FILTERS — each dropdown triggers cascade
+  dom.filterSemester.addEventListener('change', () => onFilterChange('semester'));
+  dom.filterStream.addEventListener('change', () => onFilterChange('stream'));
+  dom.filterCourse.addEventListener('change', () => onFilterChange('course'));
+  dom.filterSubject.addEventListener('change', () => onFilterChange('subject'));
+  dom.filterYear.addEventListener('change', () => onFilterChange('year'));
 
   // Sort buttons
   $$('.sort-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      createRipple(e, btn);
-      const sort = btn.dataset.sort;
-      if (state.sort === sort) {
-        state.sort = '';
-        btn.classList.remove('active');
-      } else {
-        $$('.sort-btn').forEach(b => b.classList.remove('active'));
-        state.sort = sort;
-        btn.classList.add('active');
-      }
+      createRipple(e,btn);
+      if (state.sort===btn.dataset.sort) { state.sort=''; btn.classList.remove('active'); }
+      else { $$('.sort-btn').forEach(b=>b.classList.remove('active')); state.sort=btn.dataset.sort; btn.classList.add('active'); }
       applyFilters();
     });
   });
@@ -1153,19 +1199,10 @@ function bindEvents() {
   // Clear all
   dom.clearAll.addEventListener('click', (e) => {
     createRipple(e, dom.clearAll);
-    state.search = '';
-    state.stream = '';
-    state.course = '';
-    state.year = '';
-    state.semester = '';
-    state.sort = '';
-    dom.searchBar.value = '';
-    dom.searchClear.classList.remove('visible');
-    dom.filterStream.value = '';
-    dom.filterCourse.value = '';
-    dom.filterYear.value = '';
-    dom.filterSemester.value = '';
-    $$('.sort-btn').forEach(b => b.classList.remove('active'));
+    state.search=''; state.stream=''; state.course=''; state.year=''; state.semester=''; state.subject=''; state.sort='';
+    dom.searchBar.value=''; dom.searchClear.classList.remove('visible');
+    $$('.sort-btn').forEach(b=>b.classList.remove('active'));
+    populateAllFilterOptions();
     applyFilters();
     showToast('🧹 All filters cleared');
   });
@@ -1175,117 +1212,75 @@ function bindEvents() {
     const tag = e.target.closest('.active-filter-tag');
     if (!tag) return;
     const key = tag.dataset.key;
-    if (key === 'search') { state.search = ''; dom.searchBar.value = ''; dom.searchClear.classList.remove('visible'); }
-    else if (key === 'stream') { state.stream = ''; dom.filterStream.value = ''; }
-    else if (key === 'course') { state.course = ''; dom.filterCourse.value = ''; }
-    else if (key === 'year') { state.year = ''; dom.filterYear.value = ''; }
-    else if (key === 'semester') { state.semester = ''; dom.filterSemester.value = ''; }
+    switch(key) {
+      case 'search': state.search=''; dom.searchBar.value=''; dom.searchClear.classList.remove('visible'); break;
+      case 'semester': state.semester=''; break;
+      case 'stream': state.stream=''; break;
+      case 'course': state.course=''; break;
+      case 'subject': state.subject=''; break;
+      case 'year': state.year=''; break;
+    }
+    populateAllFilterOptions();
     applyFilters();
   });
 
   // Tabs
   $$('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      $$('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      state.tab = btn.dataset.tab;
-      applyFilters();
+      $$('.tab-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active'); state.tab=btn.dataset.tab; applyFilters();
     });
   });
 
   // View toggle
   $$('.view-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      $$('.view-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      state.view = btn.dataset.view;
-      dom.notesGrid.classList.toggle('list-view', state.view === 'list');
+      $$('.view-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active'); state.view=btn.dataset.view;
+      dom.notesGrid.classList.toggle('list-view', state.view==='list');
     });
   });
 
-  // Notes grid delegation — bookmark, download, card click
+  // Notes grid delegation
   dom.notesGrid.addEventListener('click', (e) => {
-    const bookmarkBtn = e.target.closest('.bookmark-btn');
-    if (bookmarkBtn) {
-      e.stopPropagation();
-      toggleBookmark(Number(bookmarkBtn.dataset.id));
-      return;
-    }
-
-    const downloadBtn = e.target.closest('.download-btn');
-    if (downloadBtn) {
-      e.stopPropagation();
-      createRipple(e, downloadBtn);
-      const note = NOTES_DATA.find(n => n.id === Number(downloadBtn.dataset.id));
-      if (note) showToast(`⬇️ Downloading "${note.title}"...`);
-      return;
-    }
-
+    const bmBtn = e.target.closest('.bookmark-btn');
+    if (bmBtn) { e.stopPropagation(); toggleBookmark(Number(bmBtn.dataset.id)); return; }
+    const dlBtn = e.target.closest('.download-btn');
+    if (dlBtn) { e.stopPropagation(); createRipple(e,dlBtn); const n=NOTES_DATA.find(x=>x.id===Number(dlBtn.dataset.id)); if(n) showToast(`⬇️ Downloading "${n.title}"...`); return; }
     const card = e.target.closest('.note-card');
-    if (card) {
-      openModal(Number(card.dataset.id));
-    }
+    if (card) openModal(Number(card.dataset.id));
   });
 
   // Modal
   dom.modalClose.addEventListener('click', closeModal);
-  dom.modalOverlay.addEventListener('click', (e) => {
-    if (e.target === dom.modalOverlay) closeModal();
-  });
-
-  // Modal actions delegation
+  dom.modalOverlay.addEventListener('click', (e) => { if(e.target===dom.modalOverlay) closeModal(); });
   dom.modalActions.addEventListener('click', (e) => {
-    const downloadBtn = e.target.closest('.download-btn');
-    if (downloadBtn) {
-      createRipple(e, downloadBtn);
-      const note = NOTES_DATA.find(n => n.id === Number(downloadBtn.dataset.id));
-      if (note) showToast(`⬇️ Downloading "${note.title}"...`);
-      return;
-    }
-
+    const dlBtn = e.target.closest('.download-btn');
+    if (dlBtn) { createRipple(e,dlBtn); const n=NOTES_DATA.find(x=>x.id===Number(dlBtn.dataset.id)); if(n) showToast(`⬇️ Downloading "${n.title}"...`); return; }
     const bmBtn = e.target.closest('.modal-bookmark-btn');
-    if (bmBtn) {
-      const id = Number(bmBtn.dataset.id);
-      toggleBookmark(id);
-      const isNowBookmarked = state.bookmarks.includes(id);
-      bmBtn.classList.toggle('bookmarked', isNowBookmarked);
-      bmBtn.innerHTML = isNowBookmarked ? '★ Bookmarked' : '☆ Bookmark';
-    }
+    if (bmBtn) { const id=Number(bmBtn.dataset.id); toggleBookmark(id); const bm=state.bookmarks.includes(id); bmBtn.classList.toggle('bookmarked',bm); bmBtn.innerHTML=bm?'★ Bookmarked':'☆ Bookmark'; }
   });
 
   // Load more
-  dom.loadMoreBtn.addEventListener('click', (e) => {
-    createRipple(e, dom.loadMoreBtn);
-    state.page++;
-    renderNotes();
-  });
+  dom.loadMoreBtn.addEventListener('click', (e) => { createRipple(e,dom.loadMoreBtn); state.page++; renderNotes(); });
 
-  // Scroll progress + back to top
-  let scrollTicking = false;
+  // Scroll
+  let scrollTick = false;
   window.addEventListener('scroll', () => {
-    if (!scrollTicking) {
-      requestAnimationFrame(() => {
-        const scrolled = window.scrollY;
-        const height = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = height > 0 ? (scrolled / height) * 100 : 0;
-        dom.scrollProgress.style.width = progress + '%';
-        dom.scrollTopBtn.classList.toggle('visible', scrolled > 400);
-        scrollTicking = false;
-      });
-      scrollTicking = true;
-    }
+    if (!scrollTick) { requestAnimationFrame(() => {
+      const s=window.scrollY, h=document.documentElement.scrollHeight-window.innerHeight;
+      dom.scrollProgress.style.width = (h>0?(s/h)*100:0)+'%';
+      dom.scrollTopBtn.classList.toggle('visible', s>400);
+      scrollTick=false;
+    }); scrollTick=true; }
   });
-
-  dom.scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  dom.scrollTopBtn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
 }
 
 // ============================================================
 // BOOT
 // ============================================================
 document.addEventListener('DOMContentLoaded', init);
-
 })();
 </script>
 </body>
